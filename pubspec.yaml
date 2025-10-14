@@ -41,6 +41,8 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_gen_runner:
   freezed_lint: ^0.0.12
+  mocktail: ^1.0.0
+  bloc_test: ^10.0.0
 
 flutter:
 
