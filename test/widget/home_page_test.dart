@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:home_mock/model/entity/item.dart';
 import 'package:home_mock/presentation/page/home_page.dart';
-import 'package:home_mock/presentation/state/home/home_bloc.dart';
-import 'package:home_mock/presentation/state/home/home_state.dart';
-import 'package:home_mock/service/home_service.dart';
 
 import '../helpers/test_helpers.dart';
 
@@ -195,7 +192,6 @@ void main() {
       await tester.tap(find.byIcon(Icons.dark_mode));
       await tester.pump();
 
-      // Verify that the theme was toggled
       expect(mockHomesBloc.state.isDarkMode, equals(false));
     });
   });

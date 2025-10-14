@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:home_mock/core/router/router.dart';
-import 'package:home_mock/presentation/state/home/home_bloc.dart';
-import 'package:home_mock/presentation/state/home/home_state.dart';
-import 'package:home_mock/service/home_service.dart';
-
-import '../helpers/test_helpers.dart';
 
 void main() {
   group('Router Integration Tests', () {
-    late MockHomeService mockHomeService;
-
-    setUp(() {
-      mockHomeService = MockHomeService();
-    });
 
     testWidgets('should navigate to home page by default', (tester) async {
       await tester.pumpWidget(

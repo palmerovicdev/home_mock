@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_mock/model/entity/item.dart';
 import 'package:home_mock/model/entity/owner.dart';
 import 'package:home_mock/presentation/state/home/home_bloc.dart';
-import 'package:home_mock/presentation/state/home/home_event.dart';
 import 'package:home_mock/presentation/state/home/home_state.dart';
 import 'package:home_mock/service/home_service.dart';
 
@@ -36,19 +35,10 @@ class MockHomesBloc extends HomesBloc {
   }
 
   @override
-  void add(HomesEvent event) {
-    // Mock implementation
-  }
-
-  @override
   Future<void> close() async {
     await _streamController.close();
     await super.close();
   }
-}
-
-void registerFallbacks() {
-  // No-op for now
 }
 
 Widget createTestWidget({

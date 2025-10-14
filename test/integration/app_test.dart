@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:home_mock/main.dart';
-import 'package:home_mock/presentation/state/home/home_bloc.dart';
-import 'package:home_mock/presentation/state/home/home_state.dart';
-import 'package:home_mock/service/home_service.dart';
-
-import '../helpers/test_helpers.dart';
 
 void main() {
   group('HomeMockApp Integration Tests', () {
-    late MockHomeService mockHomeService;
-
-    setUp(() {
-      mockHomeService = MockHomeService();
-    });
 
     testWidgets('should display home page on app start', (tester) async {
       await tester.pumpWidget(HomeMockApp());
@@ -96,7 +86,6 @@ void main() {
       await tester.drag(find.byType(CustomScrollView), const Offset(0, -1000));
       await tester.pumpAndSettle();
 
-      // Verify that more items were loaded
       expect(find.byType(GridView), findsOneWidget);
     });
 

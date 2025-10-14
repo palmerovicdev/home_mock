@@ -28,7 +28,6 @@ void main() {
     test(
       'should emit loading state then success state with items on fetch first',
       () async {
-        final items = createTestItems(count: 3);
 
         homesBloc.add(HomesFetchFirst());
 
