@@ -1,0 +1,58 @@
+name: home_mock
+description: "A project to find your next home (mock for interview)."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+  dio: ^5.9.0
+  go_router: ^16.2.4
+  get_it: ^8.2.0
+  json_annotation: ^4.9.0
+  flutter_svg: ^2.2.1
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  freezed_annotation: ^3.1.0
+  bloc: ^9.0.1
+  animate_do: ^4.2.0
+  cached_network_image: ^3.4.1
+  flutter_native_splash: ^2.4.6
+
+  # libreria actualmente en desarrollo por mí 😁
+  flutter_motionly: ^0.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  json_serializable: ^6.11.1
+  build_runner: ^2.4.13
+  freezed: ^3.2.3
+  flutter_launcher_icons: ^0.14.4
+  flutter_gen_runner:
+  freezed_lint: ^0.0.12
+
+flutter:
+
+  uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/image.png"
+
+flutter_native_splash:
+  color: "#040301"
+  image: assets/icon.png
+  android_12:
+    image: assets/icon.png
