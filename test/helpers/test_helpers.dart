@@ -9,12 +9,8 @@ import 'package:home_mock/service/home_service.dart';
 
 class MockHomeService implements HomeService {
   @override
-  Future<List<Item>> fetchHomes({
-    required int page,
-    String query = '',
-    Category? category,
-  }) async {
-    return createTestItems(count: 3);
+  Future<List<Item>> fetchAllHomes() async {
+    return createTestItems(count: 10);
   }
 }
 
@@ -109,27 +105,39 @@ List<Item> createTestItems({int count = 5}) {
 }
 
 HomesState createTestHomesState({
+  List<Item>? allItems,
   List<Item>? items,
   bool loading = false,
-  bool fetchingMore = false,
-  bool hasMore = true,
+  bool initialLoadComplete = false,
   String query = '',
   Category? category,
-  int page = 0,
   String? error,
   int version = 0,
   bool isDarkMode = true,
+  List<String>? selectedCities,
+  List<String>? availableCities,
+  double? minPriceFilter,
+  double? maxPriceFilter,
+  double? absoluteMinPrice,
+  double? absoluteMaxPrice,
+  SortBy? sortBy,
 }) {
   return HomesState(
+    allItems: allItems ?? [],
     items: items ?? [],
     loading: loading,
-    fetchingMore: fetchingMore,
-    hasMore: hasMore,
+    initialLoadComplete: initialLoadComplete,
     query: query,
     category: category,
-    page: page,
     error: error,
     version: version,
     isDarkMode: isDarkMode,
+    selectedCities: selectedCities ?? [],
+    availableCities: availableCities ?? [],
+    minPriceFilter: minPriceFilter ?? 0,
+    maxPriceFilter: maxPriceFilter ?? 10000,
+    absoluteMinPrice: absoluteMinPrice ?? 0,
+    absoluteMaxPrice: absoluteMaxPrice ?? 10000,
+    sortBy: sortBy,
   );
 }

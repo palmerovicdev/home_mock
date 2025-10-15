@@ -2,11 +2,7 @@ import '../data/repository/home_repository.dart';
 import '../model/entity/item.dart';
 
 abstract class HomeService {
-  Future<List<Item>> fetchHomes({
-    required int page,
-    String query = '',
-    Category? category,
-  });
+  Future<List<Item>> fetchAllHomes();
 }
 
 class HomeServiceImpl implements HomeService {
@@ -15,15 +11,7 @@ class HomeServiceImpl implements HomeService {
   final HomeRepository repository;
 
   @override
-  Future<List<Item>> fetchHomes({
-    required int page,
-    String query = '',
-    Category? category,
-  }) async {
-    return repository.fetch(
-      page: page,
-      query: query,
-      category: category,
-    );
+  Future<List<Item>> fetchAllHomes() async {
+    return repository.fetchAll();
   }
 }

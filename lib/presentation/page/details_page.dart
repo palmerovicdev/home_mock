@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 import 'package:home_mock/presentation/state/home/home_bloc.dart';
-import 'package:home_mock/presentation/state/home/home_event.dart';
+import 'package:home_mock/presentation/widget/like_button.dart';
 
 import '../../core/locator.dart';
 import '../../model/entity/item.dart';
@@ -52,19 +52,9 @@ class DetailsPage extends StatelessWidget {
                           const Expanded(child: SizedBox()),
                           Row(
                             children: [
-                              _circleButton(
-                                context,
-                                icon: item.isFavorite ? Icons.favorite : Icons.favorite_border,
-                                color: item.isFavorite ? Colors.red : null,
-                                onTap: () {
-                                  context.read<HomesBloc>().add(
-                                    HomesChangeFavorite(
-                                      item.copyWith(
-                                        isFavorite: !item.isFavorite,
-                                      ),
-                                    ),
-                                  );
-                                },
+                              SizedBox(
+                                width: 36,
+                                child: LikeButton(item: item),
                               ),
                             ],
                           ),
@@ -298,7 +288,7 @@ class DetailsPage extends StatelessWidget {
         rippleColorB: theme.bgDark.withAlpha(31),
         radius: 32,
         duration: const Duration(milliseconds: 200),
-        onPressed: onTap?? () {},
+        onPressed: onTap ?? () {},
       ),
     );
   }

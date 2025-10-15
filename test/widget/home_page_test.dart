@@ -173,7 +173,6 @@ void main() {
       await tester.tap(find.text('Apartment'));
       await tester.pump();
 
-      // Verify that the category was changed
       expect(mockHomesBloc.state.category, equals(Category.apartment));
     });
 

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/locator.dart';
+
 class CachedImage extends StatelessWidget {
   final String imageUrl;
   final BoxFit? fit;
@@ -34,14 +36,9 @@ class CachedImage extends StatelessWidget {
             width: width,
             height: height,
             color: Colors.grey.shade800,
-            child: const Center(
-              child: SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white38),
-                ),
+            child: Center(
+              child: CircularProgressIndicator(
+                color: theme.highlight,
               ),
             ),
           ),

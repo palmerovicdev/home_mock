@@ -22,7 +22,7 @@ class HomeMockApp extends StatelessWidget {
       create: (context) =>
       HomesBloc(homeService)
         ..add(
-     HomesFetchFirst()),
+     HomesLoadInitialData()),
    
            child: BlocBuilder<HomesBloc, HomesState>(
         buildWhen: (p, c) => p.version != c.version,

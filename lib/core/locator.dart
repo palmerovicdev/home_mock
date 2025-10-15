@@ -8,7 +8,10 @@ import 'package:home_mock/service/home_service.dart';
 final locator = GetIt.instance;
 
 Future<void> setUpLocator() async {
-  locator.registerSingleton<Theme>(Theme(true));
+  final theme = Theme(true);
+  await theme.load();
+  locator.registerSingleton<Theme>(theme);
+
   locator.registerLazySingleton<HomeApi>(() => HomeApiImpl());
   locator.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(locator<HomeApi>()),
