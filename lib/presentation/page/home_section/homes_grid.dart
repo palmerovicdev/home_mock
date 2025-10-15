@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_state.dart';
-import '../shimmer_loading.dart';
+import '../../widget/home/home_card.dart';
+import '../../widget/shimmer_loading.dart';
 import 'empty_state.dart';
 import 'error_state.dart';
-import 'home_card.dart';
 
 class HomesGrid extends StatelessWidget {
   const HomesGrid({super.key});

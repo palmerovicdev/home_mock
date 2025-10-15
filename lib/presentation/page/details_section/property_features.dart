@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../model/entity/item.dart';
-import 'feature_card.dart';
+import '../../widget/details/feature_card.dart';
 
 class PropertyFeatures extends StatelessWidget {
   const PropertyFeatures({

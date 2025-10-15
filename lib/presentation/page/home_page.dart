@@ -6,14 +6,14 @@ import '../../core/locator.dart';
 import '../state/home/home_bloc.dart';
 import '../state/home/home_event.dart';
 import '../state/home/home_state.dart';
-import '../widget/home/category_row.dart';
-import '../widget/home/city_filters.dart';
-import '../widget/home/filter_section.dart';
-import '../widget/home/home_header.dart';
-import '../widget/home/home_search_bar.dart';
-import '../widget/home/homes_grid.dart';
-import '../widget/home/price_range_filter.dart';
-import '../widget/home/sort_section.dart';
+import 'home_section/category_row.dart';
+import 'home_section/city_filters.dart';
+import 'home_section/filter_section.dart';
+import 'home_section/home_header.dart';
+import 'home_section/home_search_bar.dart';
+import 'home_section/homes_grid.dart';
+import 'home_section/price_range_filter.dart';
+import 'home_section/sort_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

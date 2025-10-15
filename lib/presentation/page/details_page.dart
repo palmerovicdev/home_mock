@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/locator.dart';
 import '../state/home/home_bloc.dart';
 import '../state/home/home_state.dart';
-import '../widget/details/owner_card.dart';
 import '../widget/details/price_bottom_sheet.dart';
-import '../widget/details/property_description.dart';
-import '../widget/details/property_features.dart';
-import '../widget/details/property_header.dart';
-import '../widget/details/property_title_section.dart';
+import 'details_section/owner_card.dart';
+import 'details_section/property_description.dart';
+import 'details_section/property_features.dart';
+import 'details_section/property_header.dart';
+import 'details_section/property_title_section.dart';
 
 class DetailsPage extends StatelessWidget {
   final String itemId;

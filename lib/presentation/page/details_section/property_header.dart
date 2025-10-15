@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:home_mock/presentation/widget/details/price_bottom_sheet.dart';
 
 import '../../../model/entity/item.dart';
-import '../cached_image.dart';
-import '../like_button.dart';
+import '../../widget/cached_image.dart';
+import '../../widget/like_button.dart';
 
 class PropertyHeader extends StatelessWidget {
   const PropertyHeader({

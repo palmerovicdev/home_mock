@@ -45,7 +45,7 @@ class PriceBottomSheet extends StatelessWidget {
               Text(
                 'Price',
                 style: TextStyle(
-                  color: theme.textMuted,
+                  color: theme.text,
                   fontSize: 14,
                 ),
               ),
