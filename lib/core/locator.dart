@@ -4,7 +4,6 @@ import 'package:home_mock/data/api/home_api.dart';
 import 'package:home_mock/data/repository/home_repository.dart';
 import 'package:home_mock/service/home_service.dart';
 
-
 final locator = GetIt.instance;
 
 Future<void> setUpLocator() async {
@@ -23,6 +22,9 @@ Future<void> setUpLocator() async {
 }
 
 Theme get theme => locator.get<Theme>();
+
 HomeApi get homeApi => locator.get<HomeApi>();
+
 HomeRepository get homeRepository => locator.get<HomeRepository>();
+
 HomeService get homeService => locator.get<HomeService>();

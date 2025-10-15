@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:home_mock/core/locator.dart';
 
 import '../../../model/entity/item.dart';
@@ -23,13 +24,13 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
   }
 
   final HomeService service;
+  final searchController = TextEditingController();
 
   Future<void> _onLoadInitialData(
     HomesLoadInitialData e,
     Emitter<HomesState> emit,
   ) async {
     if (state.initialLoadComplete) {
-      // Ya se cargaron los datos, solo aplicar filtros
       _applyFilters(emit);
       return;
     }
@@ -39,12 +40,10 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     try {
       final allData = await service.fetchAllHomes();
 
-      // Calcular rango de precios absoluto
       final prices = allData.map((e) => e.price.toDouble()).toList();
       final minPrice = prices.reduce((a, b) => a < b ? a : b);
       final maxPrice = prices.reduce((a, b) => a > b ? a : b);
 
-      // Obtener ciudades únicas
       final cities = allData.map((e) => e.city).toSet().toList()..sort();
 
       emit(
@@ -75,7 +74,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     Emitter<HomesState> emit,
   ) async {
     emit(state.copyWith(loading: true, query: e.query));
-    await Future.delayed(const Duration(milliseconds: 300)); // Simular búsqueda
+    await Future.delayed(const Duration(milliseconds: 300));
     _applyFilters(emit);
   }
 
@@ -84,7 +83,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     Emitter<HomesState> emit,
   ) async {
     emit(state.copyWith(loading: true, category: e.category));
-    await Future.delayed(const Duration(milliseconds: 400)); // Simular carga
+    await Future.delayed(const Duration(milliseconds: 400));
     _applyFilters(emit);
   }
 
@@ -101,7 +100,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     }
 
     emit(state.copyWith(loading: true, selectedCities: currentCities));
-    await Future.delayed(const Duration(milliseconds: 200)); // Simular filtrado
+    await Future.delayed(const Duration(milliseconds: 200));
     _applyFilters(emit);
   }
 
@@ -116,7 +115,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
         maxPriceFilter: e.max,
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 200)); // Simular filtrado
+    await Future.delayed(const Duration(milliseconds: 200));
     _applyFilters(emit);
   }
 
@@ -127,7 +126,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     emit(state.copyWith(loading: true, sortBy: e.sortBy));
     await Future.delayed(
       const Duration(milliseconds: 200),
-    ); // Simular ordenamiento
+    );
     _applyFilters(emit);
   }
 
@@ -146,6 +145,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
         sortBy: null,
       ),
     );
+    searchController.clear();
     await Future.delayed(const Duration(milliseconds: 200));
     _applyFilters(emit);
   }
@@ -153,36 +153,25 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
   void _applyFilters(Emitter<HomesState> emit) {
     var filtered = List<Item>.from(state.allItems);
 
-    // Filtro por query (título o ciudad)
     if (state.query.isNotEmpty) {
       final query = state.query.toLowerCase();
       filtered = filtered.where((item) {
-        return item.title.toLowerCase().contains(query) ||
-            item.city.toLowerCase().contains(query);
+        return item.title.toLowerCase().contains(query) || item.city.toLowerCase().contains(query);
       }).toList();
     }
 
-    // Filtro por categoría
     if (state.category != null && state.category != Category.all) {
-      filtered = filtered
-          .where((item) => item.category == state.category)
-          .toList();
+      filtered = filtered.where((item) => item.category == state.category).toList();
     }
 
-    // Filtro por ciudades
     if (state.selectedCities.isNotEmpty) {
-      filtered = filtered
-          .where((item) => state.selectedCities.contains(item.city))
-          .toList();
+      filtered = filtered.where((item) => state.selectedCities.contains(item.city)).toList();
     }
 
-    // Filtro por rango de precio
     filtered = filtered.where((item) {
-      return item.price >= state.minPriceFilter &&
-          item.price <= state.maxPriceFilter;
+      return item.price >= state.minPriceFilter && item.price <= state.maxPriceFilter;
     }).toList();
 
-    // Ordenamiento
     if (state.sortBy != null) {
       switch (state.sortBy!) {
         case SortBy.priceAsc:

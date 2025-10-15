@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
 import '../../state/home/home_state.dart';
 
-class CityFilters extends StatelessWidget {
+class CityFilters extends StatefulWidget {
   const CityFilters({super.key});
 
   @override
+  State<CityFilters> createState() => _CityFiltersState();
+}
+
+class _CityFiltersState extends State<CityFilters> {
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomesBloc, HomesState>(
+      buildWhen: (p, c) => p.selectedCities != c.selectedCities || p.availableCities != c.availableCities,
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -32,25 +39,35 @@ class CityFilters extends StatelessWidget {
                 runSpacing: 8,
                 children: state.availableCities.map((city) {
                   final isSelected = state.selectedCities.contains(city);
-                  return FilterChip(
-                    label: Text(city),
-                    selected: isSelected,
-                    onSelected: (_) {
-                      context.read<HomesBloc>().add(
-                        HomesToggleCityFilter(city),
-                      );
-                    },
-                    backgroundColor: theme.bgLight,
-                    selectedColor: theme.primary,
-                    labelStyle: TextStyle(
-                      color: isSelected ? theme.bgDark : theme.text,
-                      fontWeight: isSelected
-                          ? FontWeight.w600
-                          : FontWeight.w400,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide.none,
+                  return SizedBox(
+                    height: 32,
+                    width: 120,
+                    child: RippleRevealButton(
+                      selected: isSelected,
+                      border: isSelected ? Border.all(color: theme.primary, width: 1.8) : Border.all(color: theme.border, width: 1.5),
+                      onPressed: () {
+                        context.read<HomesBloc>().add(
+                          HomesToggleCityFilter(city),
+                        );
+                      },
+                      radius: 12,
+                      widgetA: Text(
+                        city,
+                        style: TextStyle(
+                          color: theme.bgDark,
+                        ),
+                      ),
+                      widgetB: Text(
+                        city,
+                        style: TextStyle(
+                          color: theme.text,
+                        ),
+                      ),
+                      duration: const Duration(milliseconds: 300),
+                      backgroundColorA: theme.bgDark,
+                      backgroundColorB: theme.primary,
+                      rippleColorA: theme.primary,
+                      rippleColorB: theme.bgDark,
                     ),
                   );
                 }).toList(),

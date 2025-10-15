@@ -29,6 +29,11 @@ class Theme {
     await reload();
   }
 
+  Future<void> setDarkMode(bool darkMode) async {
+    isDark = darkMode;
+    await reload();
+  }
+
   Future<void> changeColorScheme(ColorScheme newScheme) async {
     colorScheme = newScheme;
     await reload();
@@ -53,18 +58,31 @@ class Theme {
   }
 
   Color get bgDark => _palette.bgDark.toColor();
+
   Color get bg => _palette.bg.toColor();
+
   Color get bgLight => _palette.bgLight.toColor();
+
   Color get text => _palette.text.toColor();
+
   Color get textMuted => _palette.textMuted.toColor();
+
   Color get highlight => _palette.highlight.toColor();
+
   Color get border => _palette.border.toColor();
+
   Color get borderMuted => _palette.borderMuted.toColor();
+
   Color get primary => _palette.primary.toColor();
+
   Color get secondary => _palette.secondary.toColor();
+
   Color get danger => _palette.danger.toColor();
+
   Color get warning => _palette.warning.toColor();
+
   Color get success => _palette.success.toColor();
+
   Color get info => _palette.info.toColor();
 }
 

@@ -5,17 +5,16 @@ import '../../../model/entity/item.dart';
 enum SortBy { priceAsc, priceDesc, city }
 
 class HomesState extends Equatable {
-  final List<Item> allItems; // Todos los datos cargados
-  final List<Item> items; // Items filtrados y ordenados
+  final List<Item> allItems;
+  final List<Item> items;
   final bool loading;
-  final bool initialLoadComplete; // Si ya se cargaron los datos iniciales
+  final bool initialLoadComplete;
   final String query;
   final Category? category;
   final String? error;
   final int version;
   final bool isDarkMode;
 
-  // Filtros
   final List<String> selectedCities;
   final List<String> availableCities;
   final double minPriceFilter;
@@ -23,7 +22,6 @@ class HomesState extends Equatable {
   final double absoluteMinPrice;
   final double absoluteMaxPrice;
 
-  // Ordenamiento
   final SortBy? sortBy;
 
   const HomesState({
@@ -102,9 +100,5 @@ class HomesState extends Equatable {
   );
 
   bool get hasActiveFilters =>
-      query.isNotEmpty ||
-      category != null && category != Category.all ||
-      selectedCities.isNotEmpty ||
-      minPriceFilter > absoluteMinPrice ||
-      maxPriceFilter < absoluteMaxPrice;
+      query.isNotEmpty || category != null && category != Category.all || selectedCities.isNotEmpty || minPriceFilter > absoluteMinPrice || maxPriceFilter < absoluteMaxPrice;
 }

@@ -15,22 +15,16 @@ class HomesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomesBloc, HomesState>(
-      buildWhen: (a, b) =>
-          a.items != b.items ||
-          a.loading != b.loading ||
-          a.version != b.version ||
-          a.error != b.error,
+      buildWhen: (a, b) => a.items != b.items || a.loading != b.loading || a.version != b.version || a.error != b.error,
       builder: (context, state) {
         final items = state.items;
 
-        // Estado de error
         if (state.error != null && !state.initialLoadComplete) {
-          return const SliverToBoxAdapter(
+          return SliverToBoxAdapter(
             child: ErrorState(),
           );
         }
 
-        // Estado de carga inicial con skeleton
         if (state.loading && !state.initialLoadComplete) {
           return SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -49,14 +43,12 @@ class HomesGrid extends StatelessWidget {
           );
         }
 
-        // Estado vacío cuando no hay resultados
         if (!state.loading && items.isEmpty && state.initialLoadComplete) {
           return SliverToBoxAdapter(
             child: EmptyState(hasActiveFilters: state.hasActiveFilters),
           );
         }
 
-        // Grid de propiedades con skeleton durante filtrado
         return SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           sliver: SliverLayoutBuilder(
@@ -66,7 +58,6 @@ class HomesGrid extends StatelessWidget {
               const childAspect = 0.75;
 
               if (state.loading && state.initialLoadComplete) {
-                // Mostrar skeleton mientras se filtra
                 return SliverGrid(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: cross,

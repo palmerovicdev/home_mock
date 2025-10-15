@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/locator.dart';
 
 class ShimmerLoading extends StatefulWidget {
@@ -15,8 +16,7 @@ class ShimmerLoading extends StatefulWidget {
   State<ShimmerLoading> createState() => _ShimmerLoadingState();
 }
 
-class _ShimmerLoadingState extends State<ShimmerLoading>
-    with SingleTickerProviderStateMixin {
+class _ShimmerLoadingState extends State<ShimmerLoading> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override

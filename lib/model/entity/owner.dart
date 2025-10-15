@@ -11,6 +11,7 @@ class Owner with _$Owner {
     required this.avatarUrl,
     required this.city,
   });
+
   @override
   final String name;
   @override
@@ -19,6 +20,6 @@ class Owner with _$Owner {
   final String city;
 
   factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
-  Map<String, dynamic> toJson() => _$OwnerToJson(this);
 
+  Map<String, dynamic> toJson() => _$OwnerToJson(this);
 }

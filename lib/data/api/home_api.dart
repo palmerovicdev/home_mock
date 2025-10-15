@@ -8,14 +8,13 @@ abstract class HomeApi {
 }
 
 class HomeApiImpl implements HomeApi {
-  static const _totalItems = 50; // Genera 50 propiedades
+  static const _totalItems = 50;
 
   @override
   Future<List<Item>> getAllHomes() async {
-    // Simula carga inicial (solo se ejecuta una vez)
     await Future.delayed(const Duration(milliseconds: 1500));
 
-    final randomGenerator = Random(42); // Seed fijo para datos consistentes
+    final randomGenerator = Random(42);
     final List<Item> allItems = List.generate(_totalItems, (index) {
       final globalItemIndex = index + 1;
       final itemCategory = Category.values[randomGenerator.nextInt(2)];
@@ -33,16 +32,13 @@ class HomeApiImpl implements HomeApi {
       ];
 
       final imageUrlsByCategory = {
-        Category.apartment:
-            'https://picsum.photos/id/$globalItemIndex/1200/1200',
+        Category.apartment: 'https://picsum.photos/id/$globalItemIndex/1200/1200',
         Category.house: 'https://picsum.photos/id/$globalItemIndex/1200/1200',
       };
 
       final descriptionsByCategory = {
-        Category.apartment:
-            'A nice apartment located in the city center with all amenities nearby.',
-        Category.house:
-            'A beautiful house with a garden and spacious rooms, perfect for families.',
+        Category.apartment: 'A nice apartment located in the city center with all amenities nearby.',
+        Category.house: 'A beautiful house with a garden and spacious rooms, perfect for families.',
       };
 
       final ownerNames = [

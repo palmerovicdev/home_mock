@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_motionly/widget/button/pulsating_button.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../core/locator.dart';
+import '../../../gen/assets.gen.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
 
@@ -14,16 +17,18 @@ class ErrorState extends StatelessWidget {
       padding: const EdgeInsets.all(40),
       child: Column(
         children: [
-          Icon(
-            Icons.error_outline,
-            size: 80,
-            color: theme.textMuted,
+          Lottie.asset(
+            Assets.animations.failed,
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover,
+            repeat: true,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           Text(
             '¡Oops! Algo salió mal',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.w600,
               color: theme.text,
             ),
@@ -39,21 +44,22 @@ class ErrorState extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          ElevatedButton.icon(
-            onPressed: () {
-              context.read<HomesBloc>().add(HomesRetryLoad());
-            },
-            icon: const Icon(Icons.refresh),
-            label: const Text('Reintentar'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.primary,
-              foregroundColor: theme.bgDark,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 16,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+          SizedBox(
+            height: 50,
+            width: 180,
+            child: PulsatingButton(
+              height: 40,
+              width: 160,
+              color: theme.primary,
+              onClick: () {
+                context.read<HomesBloc>().add(HomesRetryLoad());
+              },
+              child: Text(
+                'Reintentar',
+                style: TextStyle(
+                  color: theme.bgLight,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),

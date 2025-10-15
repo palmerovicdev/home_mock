@@ -17,17 +17,30 @@ class $AssetsAnimationsGen {
   /// File path: assets/animations/ahouse_apartment.json
   String get ahouseApartment => 'assets/animations/ahouse_apartment.json';
 
+  /// File path: assets/animations/failed.json
+  String get failed => 'assets/animations/failed.json';
+
   /// File path: assets/animations/farm_house.json
   String get farmHouse => 'assets/animations/farm_house.json';
 
   /// File path: assets/animations/house_loader.json
   String get houseLoader => 'assets/animations/house_loader.json';
 
+  /// File path: assets/animations/info.json
+  String get info => 'assets/animations/info.json';
+
   /// File path: assets/animations/like.json
   String get like => 'assets/animations/like.json';
 
   /// List of all assets
-  List<String> get values => [ahouseApartment, farmHouse, houseLoader, like];
+  List<String> get values => [
+    ahouseApartment,
+    failed,
+    farmHouse,
+    houseLoader,
+    info,
+    like,
+  ];
 }
 
 class $AssetsThemesGen {

@@ -11,6 +11,7 @@ import '../state/home/home_event.dart';
 
 class LikeButton extends StatefulWidget {
   const LikeButton({super.key, required this.item});
+
   final Item item;
 
   @override

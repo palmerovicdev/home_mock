@@ -24,7 +24,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _scroll = ScrollController();
-  final _searchCtrl = TextEditingController();
   bool _showFilters = false;
 
   @override
@@ -36,7 +35,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _scroll.dispose();
-    _searchCtrl.dispose();
     super.dispose();
   }
 
@@ -53,11 +51,13 @@ class _HomePageState extends State<HomePage> {
                 return CustomScrollView(
                   controller: _scroll,
                   slivers: [
-                    const SliverToBoxAdapter(child: HomeHeader()),
+                    SliverToBoxAdapter(child: HomeHeader()),
                     SliverToBoxAdapter(
                       child: FadeInLeft(
                         duration: const Duration(milliseconds: 200),
-                        child: HomeSearchBar(controller: _searchCtrl),
+                        child: HomeSearchBar(
+                          controller: context.read<HomesBloc>().searchController,
+                        ),
                       ),
                     ),
                     SliverToBoxAdapter(

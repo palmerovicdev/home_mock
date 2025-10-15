@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../item.dart';
+part of '../user.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,48 +13,33 @@ part of '../item.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Item {
+mixin _$User {
 
   String get id;
 
-  String get title;
+  String get email;
 
-  String get city;
+  String get name;
 
-  String get imageUrl;
+  String get avatarUrl;
 
-  int get price;
+  bool get isLoggedIn;
 
-  Category get category;
+  DateTime? get lastLogin;
 
-  String get description;
-
-  bool get isFavorite;
-
-  String get size;
-
-  int get bedrooms;
-
-  int get bathrooms;
-
-  Owner get owner;
-
-  /// Create a copy of Item
+  /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $ItemCopyWith<Item> get copyWith => _$ItemCopyWithImpl<Item>(this as Item, _$identity);
+  $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
 
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Item && (identical(other.id, id) || other.id == id) && (identical(other.title, title) || other.title == title) &&
-            (identical(other.city, city) || other.city == city) && (identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl) &&
-            (identical(other.price, price) || other.price == price) && (identical(other.category, category) || other.category == category) &&
-            (identical(other.description, description) || other.description == description) && (identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite) &&
-            (identical(other.size, size) || other.size == size) && (identical(other.bedrooms, bedrooms) || other.bedrooms == bedrooms) &&
-            (identical(other.bathrooms, bathrooms) || other.bathrooms == bathrooms) && (identical(other.owner, owner) || other.owner == owner));
+        (other.runtimeType == runtimeType && other is User && (identical(other.id, id) || other.id == id) && (identical(other.email, email) || other.email == email) &&
+            (identical(other.name, name) || other.name == name) && (identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl) &&
+            (identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn) && (identical(other.lastLogin, lastLogin) || other.lastLogin == lastLogin));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -63,85 +48,66 @@ mixin _$Item {
       Object.hash(
           runtimeType,
           id,
-          title,
-          city,
-          imageUrl,
-          price,
-          category,
-          description,
-          isFavorite,
-          size,
-          bedrooms,
-          bathrooms,
-          owner);
+          email,
+          name,
+          avatarUrl,
+          isLoggedIn,
+          lastLogin);
 
   @override
   String toString() {
-    return 'Item(id: $id, title: $title, city: $city, imageUrl: $imageUrl, price: $price, category: $category, description: $description, isFavorite: $isFavorite, size: $size, bedrooms: $bedrooms, bathrooms: $bathrooms, owner: $owner)';
+    return 'User(id: $id, email: $email, name: $name, avatarUrl: $avatarUrl, isLoggedIn: $isLoggedIn, lastLogin: $lastLogin)';
   }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) _then) = _$ItemCopyWithImpl;
+abstract mixin class $UserCopyWith<$Res> {
+  factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 
   @useResult
   $Res call({
-    String id, String title, String city, String imageUrl, int price, Category category, String description, String size, int bedrooms, int bathrooms, Owner owner, bool isFavorite
+    String id, String email, String name, String avatarUrl, bool isLoggedIn, DateTime? lastLogin
   });
 
 
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res>
-    implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._self, this._then);
+class _$UserCopyWithImpl<$Res>
+    implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(this._self, this._then);
 
-  final Item _self;
-  final $Res Function(Item) _then;
+  final User _self;
+  final $Res Function(User) _then;
 
-  /// Create a copy of Item
+  /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call(
-      {Object? id = null, Object? title = null, Object? city = null, Object? imageUrl = null, Object? price = null, Object? category = null, Object? description = null, Object? size = null, Object? bedrooms = null, Object? bathrooms = null, Object? owner = null, Object? isFavorite = null,}) {
-    return _then(Item(
+  $Res call({Object? id = null, Object? email = null, Object? name = null, Object? avatarUrl = null, Object? isLoggedIn = null, Object? lastLogin = freezed,}) {
+    return _then(User(
       id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
       as String,
-      title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+      email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
       as String,
-      city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+      name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
       as String,
-      imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
       as String,
-      price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-      as int,
-      category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-      as Category,
-      description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-      as String,
-      size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
-      as String,
-      bedrooms: null == bedrooms ? _self.bedrooms : bedrooms // ignore: cast_nullable_to_non_nullable
-      as int,
-      bathrooms: null == bathrooms ? _self.bathrooms : bathrooms // ignore: cast_nullable_to_non_nullable
-      as int,
-      owner: null == owner ? _self.owner : owner // ignore: cast_nullable_to_non_nullable
-      as Owner,
-      isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+      isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
       as bool,
+      lastLogin: freezed == lastLogin ? _self.lastLogin : lastLogin // ignore: cast_nullable_to_non_nullable
+      as DateTime?,
     ));
   }
 
 }
 
 
-/// Adds pattern-matching-related methods to [Item].
-extension ItemPatterns on Item {
+/// Adds pattern-matching-related methods to [User].
+extension UserPatterns on User {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:

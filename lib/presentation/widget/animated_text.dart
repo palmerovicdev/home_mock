@@ -9,13 +9,11 @@
 /// http://fluttermotionly-doc-whlgkc-bc9a19-217-15-171-136.traefik.me/
 ///
 
-
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_motionly/common/utils.dart';
-import 'package:characters/characters.dart';
 
 /// Tipos de división del texto para la animación.
 ///
@@ -109,7 +107,7 @@ enum AnimationType {
 ///   splitType: SplitType.word,
 /// );
 ///
-/// // Lanzar animación más tarde:
+///
 /// textKey.currentState?.play();
 /// ```
 ///
@@ -174,7 +172,7 @@ class AnimatedText extends StatefulWidget {
   ///   autoPlay: false,
   /// )
   ///
-  /// // Para lanzar la animación:
+  ///
   /// textKey.currentState?.play();
   /// ```
   const AnimatedText({
@@ -269,20 +267,20 @@ class AnimatedTextState extends State<AnimatedText> {
           builder: (context, value, child) {
             return widget.animationType == AnimationType.decode
                 ? Text(
-              value < 0.5
-                  ? randomAscii(e.length)
-                  : e +
-                  (widget.splitType == SplitType.char
-                      ? ''
-                      : widget.splitType == SplitType.word
-                      ? ' '
-                      : '\n'),
-              style: TextStyle(
-                fontSize: value < 0.5 ? widget.fontSize - 4 * value : widget.fontSize,
-                color: widget.color,
-                fontWeight: value < 0.5 ? FontWeight.w400 : FontWeight.w500,
-              ),
-            )
+                    value < 0.5
+                        ? randomAscii(e.length)
+                        : e +
+                              (widget.splitType == SplitType.char
+                                  ? ''
+                                  : widget.splitType == SplitType.word
+                                  ? ' '
+                                  : '\n'),
+                    style: TextStyle(
+                      fontSize: value < 0.5 ? widget.fontSize - 4 * value : widget.fontSize,
+                      color: widget.color,
+                      fontWeight: value < 0.5 ? FontWeight.w400 : FontWeight.w500,
+                    ),
+                  )
                 : _buildAnimatedChild(value, e, child);
           },
           child: Text(
@@ -389,7 +387,6 @@ class AnimatedTextState extends State<AnimatedText> {
           ),
         );
       case AnimationType.erodeBlur:
-      // En web, erode no está soportado, usamos solo blur con escala
         if (kIsWeb) {
           return ClipRect(
             child: ImageFiltered(
@@ -426,7 +423,6 @@ class AnimatedTextState extends State<AnimatedText> {
           ),
         );
       case AnimationType.dilateBlur:
-      // En web, dilate no está soportado, usamos solo blur con escala
         if (kIsWeb) {
           return ClipRect(
             child: ImageFiltered(

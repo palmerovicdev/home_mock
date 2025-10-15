@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'owner.dart';
+
 part 'gen/item.freezed.dart';
 part 'gen/item.g.dart';
 
@@ -21,6 +22,7 @@ class Item with _$Item {
     required this.owner,
     @Default(false) this.isFavorite = false,
   });
+
   @override
   final String id, title, city, imageUrl;
   @override
@@ -41,6 +43,7 @@ class Item with _$Item {
   final Owner owner;
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+
   Map<String, dynamic> toJson() => _$ItemToJson(this);
 }
 

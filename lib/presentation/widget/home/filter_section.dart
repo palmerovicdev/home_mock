@@ -47,16 +47,18 @@ class FilterSection extends StatelessWidget {
                 ),
 
               SizedBox(
-                height: 40,
-                width: 70,
+                height: 32,
+                width: 60,
                 child: RippleRevealButton(
                   onPressed: onToggleFilters,
+                  radius: 12,
                   widgetA: Icon(
                     showFilters ? Icons.filter_list_off : Icons.filter_list,
-                    color: showFilters ? theme.primary : theme.textMuted,
-                  ),widgetB: Icon(
+                    color: showFilters ? theme.bgDark : theme.textMuted,
+                  ),
+                  widgetB: Icon(
                     showFilters ? Icons.filter_list_off : Icons.filter_list,
-                    color: showFilters ? theme.primary : theme.textMuted,
+                    color: showFilters ? theme.bgDark : theme.textMuted,
                   ),
                   duration: const Duration(milliseconds: 300),
                   backgroundColorA: theme.bgDark,
