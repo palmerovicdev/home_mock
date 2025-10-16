@@ -8,7 +8,6 @@ import '../../../core/constants/app_radius.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../../core/utils/feedback.dart';
-import '../../state/home/home_bloc.dart';
 
 class PriceBottomSheet extends StatelessWidget {
   const PriceBottomSheet({
@@ -55,7 +54,10 @@ class PriceBottomSheet extends StatelessWidget {
                 ),
               ),
               Text(
-                CurrencyFormatter.formatWithSuffix(price.toDouble(), currency: context.read<SettingsBloc>().state.currency),
+                CurrencyFormatter.formatWithSuffix(
+                  price.toDouble(),
+                  currency: context.read<SettingsBloc>().state.currency,
+                ),
                 style: TextStyle(
                   color: theme.text,
                   fontWeight: FontWeight.bold,
@@ -76,7 +78,22 @@ class PriceBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
               ),
             ),
-            onPressed: click(() {}),
+            onPressed: click(() {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    context.l10n.purchaseInProgress,
+                    style: TextStyle(
+                      color: theme.bgDark,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                  duration: const Duration(seconds: 2),
+                  backgroundColor: theme.primary,
+                ),
+              );
+            }),
             child: Text(
               context.l10n.buyNow,
               style: TextStyle(
@@ -92,7 +109,13 @@ class PriceBottomSheet extends StatelessWidget {
 }
 
 class CircleButton extends StatelessWidget {
-  const CircleButton({super.key, required this.icon, this.onTap, this.color, this.size = 36});
+  const CircleButton({
+    super.key,
+    required this.icon,
+    this.onTap,
+    this.color,
+    this.size = 36,
+  });
 
   final IconData icon;
   final VoidCallback? onTap;
@@ -116,7 +139,9 @@ class CircleButton extends StatelessWidget {
         padding: EdgeInsets.zero,
         selected: color == Colors.red,
         backgroundColorA: !isDark ? theme.bgDark : theme.bgDark.withAlpha(120),
-        backgroundColorB: !isDark ? theme.bgDark.withAlpha(254) : theme.bgDark.withAlpha(121),
+        backgroundColorB: !isDark
+            ? theme.bgDark.withAlpha(254)
+            : theme.bgDark.withAlpha(121),
         rippleColorA: theme.warning.withAlpha(300),
         rippleColorB: theme.bgDark.withAlpha(31),
         radius: AppRadius.circular,

@@ -400,5 +400,49 @@
   "checkingAuth": "Checking authentication...",
   "@checkingAuth": {
     "description": "Message in splash while checking auth"
+  },
+  "loginRequired": "You must log in to continue",
+  "@loginRequired": {
+    "description": "Message when trying to access protected route without authentication"
+  },
+  "sessionExpired": "Your session has expired",
+  "@sessionExpired": {
+    "description": "Message when session expires"
+  },
+  "authenticationFailed": "Authentication failed",
+  "@authenticationFailed": {
+    "description": "Generic authentication error message"
+  },
+  "serverError": "Server error, please try again",
+  "@serverError": {
+    "description": "Server error"
+  },
+  "networkError": "Connection error, check your internet",
+  "@networkError": {
+    "description": "Network error"
+  },
+  "unexpectedError": "Unexpected error, try later",
+  "@unexpectedError": {
+    "description": "Unexpected error"
+  },
+  "purchaseInProgress": "Processing purchase...",
+  "@purchaseInProgress": {
+    "description": "Purchase in progress message"
+  },
+  "contactingOwner": "Contacting owner...",
+  "@contactingOwner": {
+    "description": "Message when contacting owner"
+  },
+  "filtersCleared": "Filters cleared",
+  "@filtersCleared": {
+    "description": "Message when filters are cleared"
+  },
+  "loggedOutSuccessfully": "Logged out successfully",
+  "@loggedOutSuccessfully": {
+    "description": "Message when logged out"
+  },
+  "noResultsForSearch": "No results for your search",
+  "@noResultsForSearch": {
+    "description": "Message when search returns no results"
   }
 }

@@ -327,4 +327,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get checkingAuth => 'Checking authentication...';
+
+  @override
+  String get loginRequired => 'You must log in to continue';
+
+  @override
+  String get sessionExpired => 'Your session has expired';
+
+  @override
+  String get authenticationFailed => 'Authentication failed';
+
+  @override
+  String get serverError => 'Server error, please try again';
+
+  @override
+  String get networkError => 'Connection error, check your internet';
+
+  @override
+  String get unexpectedError => 'Unexpected error, try later';
+
+  @override
+  String get purchaseInProgress => 'Processing purchase...';
+
+  @override
+  String get contactingOwner => 'Contacting owner...';
+
+  @override
+  String get filtersCleared => 'Filters cleared';
+
+  @override
+  String get loggedOutSuccessfully => 'Logged out successfully';
+
+  @override
+  String get noResultsForSearch => 'No results for your search';
 }

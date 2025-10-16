@@ -25,6 +25,8 @@ class AuthState extends Equatable {
 
   bool get hasError => status == AuthStatus.error;
 
+  bool get hasFailed => status == AuthStatus.failed;
+
   @override
   List<Object?> get props => [status, token, user, errorMessage];
 
@@ -44,7 +46,7 @@ class AuthState extends Equatable {
 
   AuthState clearError() {
     return AuthState(
-      status: status,
+      status: AuthStatus.unauthenticated,
       token: token,
       user: user,
       errorMessage: null,

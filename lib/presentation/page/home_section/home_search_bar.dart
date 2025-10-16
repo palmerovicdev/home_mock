@@ -28,80 +28,89 @@ class HomeSearchBar extends StatelessWidget {
       padding: AppSpacing.horizontalHuge,
       child: SizedBox(
         height: 52,
-        child: TextField(
-          cursorHeight: 18,
-          controller: controller,
-          onChanged: (v) => bloc.add(HomesChangeQuery(v)),
-          style: TextStyle(color: theme.sText),
-          cursorColor: theme.primary,
-          textInputAction: TextInputAction.search,
-          autocorrect: false,
-          enableSuggestions: false,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            hintText: context.l10n.findYourNextHome,
-            hintStyle: TextStyle(color: theme.sTextMuted),
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Icon(
-                Icons.search,
-                color: theme.sTextMuted,
-                size: 20,
-              ),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: theme.primary,
+              selectionColor: theme.primary.withOpacity(0.1),
+              selectionHandleColor: theme.primary,
             ),
-            suffixIcon: IconButton(
-              onPressed: click(() {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => _FiltersBottomSheet(),
-                );
-              }),
-              icon: Icon(
-                Icons.filter_list_outlined,
-                size: 24,
-                color: theme.sTextMuted,
+          ),
+          child: TextField(
+            cursorHeight: 18,
+            controller: controller,
+            onChanged: (v) => bloc.add(HomesChangeQuery(v)),
+            style: TextStyle(color: theme.sText),
+            cursorColor: theme.primary,
+            textInputAction: TextInputAction.search,
+            autocorrect: false,
+            enableSuggestions: false,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+              hintText: context.l10n.findYourNextHome,
+              hintStyle: TextStyle(color: theme.sTextMuted),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Icon(
+                  Icons.search,
+                  color: theme.sTextMuted,
+                  size: 20,
+                ),
               ),
-            ),
-            filled: true,
-            fillColor: theme.sBgDark,
-            border: OutlineInputBorder(
-              borderRadius: AppRadius.borderCircular,
-              borderSide: BorderSide(
-                color: theme.borderMuted,
-                width: 0.5,
+              suffixIcon: IconButton(
+                onPressed: click(() {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => _FiltersBottomSheet(),
+                  );
+                }),
+                icon: Icon(
+                  Icons.filter_list_outlined,
+                  size: 24,
+                  color: theme.sTextMuted,
+                ),
               ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: AppRadius.borderCircular,
-              borderSide: BorderSide(
-                color: theme.borderMuted,
-                width: 0.5,
+              filled: true,
+              fillColor: theme.sBgDark,
+              border: OutlineInputBorder(
+                borderRadius: AppRadius.borderCircular,
+                borderSide: BorderSide(
+                  color: theme.borderMuted,
+                  width: 0.5,
+                ),
               ),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderRadius: AppRadius.borderCircular,
-              borderSide: BorderSide(
-                color: theme.borderMuted,
-                width: 0.5,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: AppRadius.borderCircular,
+                borderSide: BorderSide(
+                  color: theme.borderMuted,
+                  width: 0.5,
+                ),
               ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: AppRadius.borderCircular,
-              borderSide: BorderSide(
-                color: theme.borderMuted,
-                width: 0.5,
+              disabledBorder: OutlineInputBorder(
+                borderRadius: AppRadius.borderCircular,
+                borderSide: BorderSide(
+                  color: theme.borderMuted,
+                  width: 0.5,
+                ),
               ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: AppRadius.borderCircular,
-              borderSide: BorderSide(
-                color: theme.borderMuted,
-                width: 0.5,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: AppRadius.borderCircular,
+                borderSide: BorderSide(
+                  color: theme.borderMuted,
+                  width: 0.5,
+                ),
               ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: AppRadius.borderCircular,
+                borderSide: BorderSide(
+                  color: theme.borderMuted,
+                  width: 0.5,
+                ),
+              ),
+              contentPadding: AppSpacing.verticalXxl,
             ),
-            contentPadding: AppSpacing.verticalXxl,
           ),
         ),
       ),

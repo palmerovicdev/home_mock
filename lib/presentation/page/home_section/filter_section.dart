@@ -37,6 +37,21 @@ class FilterSection extends StatelessWidget {
                 TextButton.icon(
                   onPressed: click(() {
                     context.read<HomesBloc>().add(HomesClearFilters());
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          context.l10n.filtersCleared,
+                          style: TextStyle(
+                            color: theme.bgDark,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        duration: const Duration(seconds: 2),
+                        backgroundColor: theme.primary,
+                      ),
+                    );
                   }),
                   icon: Icon(Icons.clear, size: 16, color: theme.primary),
                   label: Text(

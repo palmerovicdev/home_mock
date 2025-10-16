@@ -16,9 +16,11 @@ class EmptyState extends StatelessWidget {
   const EmptyState({
     super.key,
     required this.hasActiveFilters,
+    this.searchQuery = '',
   });
 
   final bool hasActiveFilters;
+  final String searchQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,8 @@ class EmptyState extends StatelessWidget {
       children: [
         Lottie.asset(
           Assets.animations.info,
-          width: 240,
-          height: 240,
+          width: 220,
+          height: 220,
           fit: BoxFit.cover,
           repeat: true,
         ),
@@ -45,7 +47,11 @@ class EmptyState extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Text(
-            hasActiveFilters ? context.l10n.tryAdjustingFilters : context.l10n.thereAreNoPropertiesRightNow,
+            searchQuery.isNotEmpty
+                ? context.l10n.noResultsForSearch
+                : hasActiveFilters
+                ? context.l10n.tryAdjustingFilters
+                : context.l10n.thereAreNoPropertiesRightNow,
             style: TextStyle(
               color: theme.textMuted,
               fontSize: 14,
@@ -53,6 +59,21 @@ class EmptyState extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
+        if (searchQuery.isNotEmpty) ...[
+          AppSpacing.gapSm,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Text(
+              '"$searchQuery"',
+              style: TextStyle(
+                color: theme.primary,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
         if (hasActiveFilters) ...[
           AppSpacing.gapLg,
           SizedBox(

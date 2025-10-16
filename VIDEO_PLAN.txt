@@ -1,0 +1,1015 @@
+================================================================================
+  📹 PLAN DE VIDEO TÉCNICO - HOME MOCK FLUTTER APP
+  Guion detallado con código incluido para video técnico y demostración
+================================================================================
+
+DURACIÓN ESTIMADA: 15-20 minutos
+AUDIENCIA: Desarrolladores Flutter, Technical Reviewers
+
+================================================================================
+SECCIÓN 1: INTRODUCCIÓN Y OVERVIEW (2 min)
+================================================================================
+
+[PANTALLA: Mostrar app corriendo]
+
+🎯 Guion:
+"Buenos dias, en este video voy a mostrarte Home Mock, una aplicación Flutter moderna 
+para búsqueda de propiedades inmobiliarias. Esta app demuestra arquitectura 
+limpia, gestión de estado con BLoC, y mejores prácticas de Flutter."
+
+📊 Puntos clave a mencionar:
+- Arquitectura en capas
+- BLoC para gestión de estado
+- Material Design 3
+- Soporte multiidioma (ES/EN)
+- Modo oscuro/claro
+
+[PANTALLA: Mostrar estructura de carpetas en VS Code]
+
+📁 Estructura rápida:
+"""
+lib/
+├── core/         → Configuración base
+├── data/         → APIs y repositorios
+├── model/        → Entidades con Freezed
+├── presentation/ → UI y BLoC
+└── service/      → Lógica de negocio
+"""
+
+================================================================================
+SECCIÓN 2: DEMOSTRACIÓN DE FUNCIONALIDADES (3 min)
+================================================================================
+
+[PANTALLA: Grabar flujo completo de la app]
+
+🎬 Flow de demostración:
+
+1. LOGIN (20 seg)
+   - Mostrar validación de formulario
+   - Ingresar credenciales (cualquiera funciona)
+   - Animación de carga
+   - Transición a Home
+
+2. HOME - LISTA DE PROPIEDADES (40 seg)
+   - Scroll por la lista
+   - Mostrar shimmer loading al inicio
+   - Hero animation al hacer tap en una propiedad
+   - Volver atrás
+
+3. BÚSQUEDA Y FILTROS (40 seg)
+   - Usar barra de búsqueda (ej: "Brockly")
+   - Aplicar filtro de categoría (Apartamentos)
+   - Mostrar estado vacío (búsqueda sin resultados: "xyz123")
+   - Limpiar búsqueda
+
+4. FAVORITOS Y DETALLES (40 seg)
+   - Marcar propiedad como favorita
+   - Ver animación de like
+   - Ir a pantalla de detalle
+   - Mostrar información completa
+
+5. CONFIGURACIÓN (20 seg)
+   - Cambiar idioma (ES ↔ EN)
+   - Cambiar tema (Claro ↔ Oscuro)
+   - Cambiar moneda (USD → EUR)
+
+================================================================================
+SECCIÓN 3: ARQUITECTURA TÉCNICA (4 min)
+================================================================================
+
+[PANTALLA: Diagrama de arquitectura]
+
+🏗️ Explicación de capas:
+
+"La app sigue una arquitectura limpia con separación clara de responsabilidades"
+
+1. CAPA DE PRESENTACIÓN (UI)
+   📍 Archivo: lib/presentation/page/home_page.dart
+
+   Código a mostrar:
+   ```dart
+   class HomePage extends StatefulWidget {
+     @override
+     Widget build(BuildContext context) {
+       return BlocBuilder<HomesBloc, HomesState>(
+         builder: (context, state) {
+           // UI reactiva al estado
+           return Scaffold(
+             body: HomesGrid(items: state.items),
+           );
+         },
+       );
+     }
+   }
+   ```
+
+   💡 Explicar: "La UI escucha cambios de estado y se reconstruye automáticamente"
+
+2. CAPA DE ESTADO (BLoC)
+   📍 Archivo: lib/presentation/state/home/home_bloc.dart
+
+   Código a mostrar:
+   ```dart
+   class HomesBloc extends Bloc<HomesEvent, HomesState> {
+     HomesBloc(this.service) : super(const HomesState()) {
+       on<HomesLoadInitialData>(_onLoadInitialData);
+       on<HomesChangeQuery>(_onChangeQuery);
+     }
+
+     Future<void> _onChangeQuery(
+       HomesChangeQuery e,
+       Emitter<HomesState> emit,
+     ) async {
+       emit(state.copyWith(loading: true, query: e.query));
+       await Future.delayed(AppDurations.searchDebounce);
+       _applyFilters(emit);
+     }
+   }
+   ```
+
+   💡 Explicar: "BLoC procesa eventos y emite nuevos estados. Incluye debouncing 
+   para optimizar búsquedas"
+
+3. CAPA DE SERVICIO (Lógica de Negocio)
+   📍 Archivo: lib/service/home_service.dart
+
+   Código a mostrar:
+   ```dart
+   abstract class HomeService {
+     Future<List<Item>> fetchAllHomes();
+   }
+
+   class HomeServiceImpl implements HomeService {
+     final HomeRepository repository;
+
+     @override
+     Future<List<Item>> fetchAllHomes() async {
+       return repository.fetchAll();
+     }
+   }
+   ```
+
+   💡 Explicar: "El servicio abstrae la lógica de negocio del BLoC"
+
+4. CAPA DE DATOS (Repository + API)
+   📍 Archivo: lib/data/api/home_api.dart
+
+   Código a mostrar:
+   ```dart
+   class HomeApiImpl implements HomeApi {
+     @override
+     Future<List<Item>> getAllHomes() async {
+       await Future.delayed(AppDurations.apiSimulatedDelay);
+       
+       final List<Item> allItems = List.generate(50, (index) {
+         return Item(
+           id: 'home_${index + 1}',
+           title: 'Property ${index + 1}',
+           price: 750 + Random().nextInt(900),
+           // ... más propiedades
+         );
+       });
+       
+       return allItems;
+     }
+   }
+   ```
+
+   💡 Explicar: "API simulada con delay realista. Fácil de reemplazar con API real"
+
+================================================================================
+SECCIÓN 4: GESTIÓN DE ESTADO CON BLOC (3 min)
+================================================================================
+
+[PANTALLA: Mostrar archivos de BLoC]
+
+📦 Estructura de un BLoC:
+
+1. ESTADO (State)
+   📍 Archivo: lib/presentation/state/home/home_state.dart
+
+   ```dart
+   class HomesState extends Equatable {
+     final List<Item> items;
+     final bool loading;
+     final String query;
+     final Category? category;
+     
+     const HomesState({
+       this.items = const [],
+       this.loading = false,
+       this.query = '',
+       this.category,
+     });
+
+     @override
+     List<Object?> get props => [items, loading, query, category];
+
+     HomesState copyWith({
+       List<Item>? items,
+       bool? loading,
+       String? query,
+       Category? category,
+     }) => HomesState(
+       items: items ?? this.items,
+       loading: loading ?? this.loading,
+       query: query ?? this.query,
+       category: category ?? this.category,
+     );
+   }
+   ```
+
+   💡 Explicar: 
+   - "Estado inmutable con Equatable para comparaciones eficientes"
+   - "copyWith permite crear nuevas instancias con cambios parciales"
+
+2. EVENTOS (Events)
+   📍 Archivo: lib/presentation/state/home/home_event.dart
+
+   ```dart
+   abstract class HomesEvent extends Equatable {
+     const HomesEvent();
+   }
+
+   class HomesLoadInitialData extends HomesEvent {
+     @override
+     List<Object> get props => [];
+   }
+
+   class HomesChangeQuery extends HomesEvent {
+     final String query;
+     const HomesChangeQuery(this.query);
+     
+     @override
+     List<Object> get props => [query];
+   }
+
+   class HomesChangeCategory extends HomesEvent {
+     final Category category;
+     const HomesChangeCategory(this.category);
+     
+     @override
+     List<Object> get props => [category];
+   }
+   ```
+
+   💡 Explicar: "Cada acción del usuario es un evento que el BLoC procesa"
+
+3. FLUJO COMPLETO DE DATOS
+   
+   [PANTALLA: Diagrama animado del flujo]
+
+   """
+   Usuario escribe en búsqueda
+        ↓
+   Widget dispara: HomesChangeQuery('casa')
+        ↓
+   BLoC recibe evento
+        ↓
+   BLoC llama a Service
+        ↓
+   Service consulta Repository
+        ↓
+   Repository obtiene datos de API
+        ↓
+   BLoC emite nuevo estado
+        ↓
+   UI se reconstruye con nuevos datos
+   """
+
+================================================================================
+SECCIÓN 5: MODELOS INMUTABLES CON FREEZED (2 min)
+================================================================================
+
+[PANTALLA: Mostrar archivo de modelo]
+
+📍 Archivo: lib/model/entity/item.dart
+
+🔥 Freezed + JSON Serializable:
+
+```dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'owner.dart';
+
+part 'gen/item.freezed.dart';
+part 'gen/item.g.dart';
+
+@freezed
+class Item with _$Item {
+  const factory Item({
+    required String id,
+    required String title,
+    required String city,
+    required String imageUrl,
+    required int price,
+    required Category category,
+    required String description,
+    required String size,
+    required int bedrooms,
+    required int bathrooms,
+    required Owner owner,
+    @Default(false) bool isFavorite,
+  }) = _Item;
+
+  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+}
+
+enum Category {
+  apartment,
+  house,
+  all,
+}
+```
+
+💡 Beneficios a explicar:
+1. "Freezed genera automáticamente:"
+   - copyWith() para crear copias modificadas
+   - Operador == y hashCode
+   - toString() legible
+   - Clases sealed para pattern matching
+
+2. "JSON Serializable:"
+   - fromJson / toJson automáticos
+   - Type-safe parsing
+
+3. Comando para generar código:
+   ```bash
+   dart run build_runner build --delete-conflicting-outputs
+   ```
+
+================================================================================
+SECCIÓN 6: DEPENDENCY INJECTION CON GET_IT (2 min)
+================================================================================
+
+[PANTALLA: Mostrar locator.dart]
+
+📍 Archivo: lib/core/locator.dart
+
+```dart
+import 'package:get_it/get_it.dart';
+
+final locator = GetIt.instance;
+
+Future<void> setUpLocator() async {
+  // Singletons
+  locator.registerSingleton<FlutterSecureStorage>(
+    const FlutterSecureStorage(
+      aOptions: AndroidOptions(encryptedSharedPreferences: true),
+    ),
+  );
+
+  // Lazy Singletons - se crean cuando se necesitan
+  locator.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(locator<FlutterSecureStorage>()),
+  );
+  
+  locator.registerLazySingleton<AuthService>(
+    () => AuthServiceImpl(locator<AuthRepository>()),
+  );
+
+  locator.registerLazySingleton<HomeApi>(() => HomeApiImpl());
+  
+  locator.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(locator<HomeApi>()),
+  );
+  
+  locator.registerLazySingleton<HomeService>(
+    () => HomeServiceImpl(locator<HomeRepository>()),
+  );
+}
+
+// Getters para acceso rápido
+HomeService get homeService => locator.get<HomeService>();
+AuthService get authService => locator.get<AuthService>();
+```
+
+💡 Explicar:
+- "GetIt es un Service Locator para inyección de dependencias"
+- "registerSingleton: instancia única creada al inicio"
+- "registerLazySingleton: instancia única creada al primer uso"
+- "Facilita testing con mocking"
+
+Uso en la app:
+```dart
+// En main.dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setUpLocator();  // ← Configurar DI
+  runApp(const HomeMockApp());
+}
+
+// En cualquier parte
+final homes = await homeService.fetchAllHomes();
+```
+
+================================================================================
+SECCIÓN 7: NAVEGACIÓN CON GO_ROUTER (2 min)
+================================================================================
+
+[PANTALLA: Mostrar router.dart]
+
+📍 Archivo: lib/core/router/router.dart
+
+```dart
+import 'package:go_router/go_router.dart';
+
+final authStateNotifier = ValueNotifier<AuthStatus>(AuthStatus.initial);
+
+GoRouter createRouter() {
+  return GoRouter(
+    initialLocation: Routes.splash.path,
+    refreshListenable: authStateNotifier,  // ← Observa cambios de auth
+    
+    redirect: (context, state) {
+      final authStatus = authStateNotifier.value;
+      final isAuthenticated = authStatus == AuthStatus.authenticated;
+      
+      // Proteger rutas
+      if (!isAuthenticated && !state.matchedLocation.contains('login')) {
+        return Routes.login.path;
+      }
+      
+      if (isAuthenticated && state.matchedLocation == Routes.login.path) {
+        return Routes.home.path;
+      }
+      
+      return null;  // Permitir navegación
+    },
+    
+    routes: [
+      GoRoute(
+        path: Routes.login.path,
+        name: Routes.login.name,
+        pageBuilder: (context, state) => MaterialPage(
+          child: const LoginPage(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.home.path,
+        name: Routes.home.name,
+        pageBuilder: (context, state) => MaterialPage(
+          child: HomePage(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.details.path,
+        name: Routes.details.name,
+        pageBuilder: (context, state) {
+          final itemId = state.extra as String;  // ← Parámetros
+          return MaterialPage(
+            child: DetailsPage(itemId: itemId),
+          );
+        },
+      ),
+    ],
+  );
+}
+```
+
+💡 Explicar:
+- "refreshListenable: auto-redirecciona cuando cambia el estado de auth"
+- "redirect: lógica de protección de rutas"
+- "MaterialPage: control completo de transiciones"
+- "extra: pasar datos entre rutas"
+
+Navegación en la app:
+```dart
+// Navegar con nombre
+context.pushNamed(Routes.details.name, extra: item.id);
+
+// Navegar con path
+context.push('/home');
+
+// Reemplazar ruta
+context.go('/login');
+```
+
+================================================================================
+SECCIÓN 8: SISTEMA DE CONSTANTES (1.5 min)
+================================================================================
+
+[PANTALLA: Mostrar carpeta constants/]
+
+💡 "Para mantener consistencia, todos los valores 'mágicos' están centralizados"
+
+1. DURACIONES
+   📍 Archivo: lib/core/constants/app_durations.dart
+
+   ```dart
+   class AppDurations {
+     AppDurations._();
+
+     /// 100ms
+     static const ultraFast = Duration(milliseconds: 100);
+     
+     /// 200ms
+     static const fast = Duration(milliseconds: 200);
+     
+     /// 300ms
+     static const medium = Duration(milliseconds: 300);
+     
+     /// 300ms - Debounce para búsquedas
+     static const searchDebounce = Duration(milliseconds: 300);
+   }
+   ```
+
+2. RADIUS Y SPACING
+   📍 Archivo: lib/core/constants/app_radius.dart
+
+   ```dart
+   class AppRadius {
+     /// 12.0
+     static const double lg = 12.0;
+     
+     /// 18.0
+     static const double xxxl = 18.0;
+     
+     /// BorderRadius predefinido 12.0
+     static BorderRadius get borderLg => BorderRadius.circular(lg);
+   }
+   ```
+
+   Uso:
+   ```dart
+   // Antes (número mágico)
+   BorderRadius.circular(18)
+   
+   // Después (constante semántica)
+   AppRadius.borderXxxl
+   ```
+
+3. SPACING
+   ```dart
+   class AppSpacing {
+     /// 20.0
+     static const double huge = 20.0;
+     
+     /// EdgeInsets predefinido
+     static const EdgeInsets horizontalHuge = 
+       EdgeInsets.symmetric(horizontal: 20.0);
+     
+     /// Gap vertical
+     static const SizedBox gapLg = SizedBox(height: 12.0);
+   }
+   ```
+
+================================================================================
+SECCIÓN 9: INTERNACIONALIZACIÓN (1.5 min)
+================================================================================
+
+[PANTALLA: Mostrar archivos l10n/]
+
+🌍 Sistema de localización:
+
+1. ARCHIVOS ARB
+   📍 lib/l10n/app_es.arb
+
+   ```json
+   {
+     "findYourNextHome": "Encuentra tu próxima casa",
+     "@findYourNextHome": {
+       "description": "Placeholder de búsqueda"
+     },
+     "apartment": "Apartamento",
+     "house": "Casa",
+     "all": "Todos",
+     "noResultsFound": "No se encontraron resultados",
+     "tryDifferentSearch": "Intenta con una búsqueda diferente"
+   }
+   ```
+
+2. USO EN LA APP
+   ```dart
+   import 'package:home_mock/core/localization/app_locale.dart';
+
+   // En cualquier widget
+   Text(context.l10n.findYourNextHome)
+   
+   // Cambiar idioma
+   context.read<SettingsBloc>().add(
+     SettingsChangeLanguage(AppLanguage.en),
+   );
+   ```
+
+3. CONFIGURACIÓN
+   📍 l10n.yaml
+   ```yaml
+   arb-dir: lib/l10n
+   template-arb-file: app_es.arb
+   output-localization-file: app_localizations.dart
+   ```
+
+   Comando para generar:
+   ```bash
+   flutter gen-l10n
+   ```
+
+================================================================================
+SECCIÓN 10: UI/UX AVANZADO (2 min)
+================================================================================
+
+[PANTALLA: Mostrar ejemplos visuales]
+
+1. SHIMMER LOADING
+   📍 Archivo: lib/presentation/widget/shimmer_loading.dart
+
+   ```dart
+   class ShimmerLoading extends StatefulWidget {
+     @override
+     Widget build(BuildContext context) {
+       return AnimatedBuilder(
+         animation: _controller,
+         builder: (context, child) {
+           return ShaderMask(
+             shaderCallback: (bounds) {
+               return LinearGradient(
+                 colors: [
+                   theme.bgLight.withOpacity(0.3),
+                   theme.bgLight.withOpacity(0.8),
+                   theme.bgLight.withOpacity(0.3),
+                 ],
+                 stops: [0.0, _controller.value, 1.0],
+               ).createShader(bounds);
+             },
+             child: widget.child,
+           );
+         },
+       );
+     }
+   }
+   ```
+
+   💡 Explicar: "Shimmer muestra skeleton mientras cargan los datos reales"
+
+2. HERO ANIMATIONS
+   ```dart
+   // En lista
+   Hero(
+     tag: 'home_${item.id}',
+     child: CachedImage(imageUrl: item.imageUrl),
+   )
+
+   // En detalle (mismo tag)
+   Hero(
+     tag: 'home_${item.id}',
+     child: CachedImage(imageUrl: item.imageUrl),
+   )
+   ```
+
+   💡 Explicar: "Hero crea transición fluida entre pantallas"
+
+3. CACHÉ DE IMÁGENES
+   ```dart
+   CachedNetworkImage(
+     imageUrl: item.imageUrl,
+     placeholder: (context, url) => ShimmerLoading(),
+     errorWidget: (context, url, error) => Icon(Icons.error),
+     fit: BoxFit.cover,
+     memCacheWidth: 600,  // Optimización de memoria
+   )
+   ```
+
+4. ANIMACIONES CON ANIMATE_DO
+   ```dart
+   FadeInLeft(
+     duration: AppDurations.medium,
+     child: HomeSearchBar(),
+   )
+   ```
+
+================================================================================
+SECCIÓN 11: TESTING (1.5 min)
+================================================================================
+
+[PANTALLA: Mostrar archivos de test/]
+
+📍 Archivo: test/unit/home_bloc_test.dart
+
+```dart
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('HomesBloc', () {
+    late HomesBloc homesBloc;
+    late MockHomeService mockHomeService;
+
+    setUp(() {
+      mockHomeService = MockHomeService();
+      homesBloc = HomesBloc(mockHomeService);
+    });
+
+    tearDown(() {
+      homesBloc.close();
+    });
+
+    test('initial state should be correct', () {
+      expect(homesBloc.state, equals(const HomesState()));
+    });
+
+    blocTest<HomesBloc, HomesState>(
+      'should load all data initially',
+      build: () => homesBloc,
+      act: (bloc) => bloc.add(HomesLoadInitialData()),
+      wait: const Duration(milliseconds: 100),
+      expect: () => [
+        isA<HomesState>()
+            .having((s) => s.loading, 'loading', true),
+        isA<HomesState>()
+            .having((s) => s.items.length, 'items length', 10)
+            .having((s) => s.loading, 'loading', false)
+            .having((s) => s.initialLoadComplete, 'complete', true),
+      ],
+    );
+
+    blocTest<HomesBloc, HomesState>(
+      'should filter items when query changes',
+      build: () => homesBloc,
+      seed: () => HomesState(allItems: mockItems),
+      act: (bloc) => bloc.add(HomesChangeQuery('apartment')),
+      wait: const Duration(milliseconds: 400),
+      expect: () => [
+        isA<HomesState>().having((s) => s.loading, 'loading', true),
+        isA<HomesState>()
+            .having((s) => s.items.length, 'filtered items', 5)
+            .having((s) => s.loading, 'loading', false),
+      ],
+    );
+  });
+}
+```
+
+💡 Explicar:
+- "bloc_test simplifica testing de BLoCs"
+- "Verificamos estados inicial, intermedio y final"
+- "Mocking de servicios para aislar tests"
+
+Ejecutar tests:
+```bash
+flutter test
+flutter test --coverage
+```
+
+================================================================================
+SECCIÓN 12: MEJORES PRÁCTICAS IMPLEMENTADAS (1 min)
+================================================================================
+
+[PANTALLA: Código limpio en acción]
+
+✅ Checklist de mejores prácticas:
+
+1. CÓDIGO LIMPIO
+   - Nombres descriptivos de variables y funciones
+   - Funciones pequeñas y con responsabilidad única
+   - Comentarios solo donde es necesario
+   - Const constructors donde es posible
+
+2. PERFORMANCE
+   ```dart
+   // Const para evitar reconstrucciones
+   const EdgeInsets.symmetric(horizontal: 20)
+   
+   // Debouncing para reducir operaciones
+   await Future.delayed(AppDurations.searchDebounce);
+   
+   // Lazy loading de servicios
+   locator.registerLazySingleton<HomeService>(...)
+   ```
+
+3. MANTENIBILIDAD
+   - Constantes centralizadas (no números mágicos)
+   - Separación clara de responsabilidades
+   - Dependency Injection para fácil testing
+   - Modelos inmutables con Freezed
+
+4. ACCESIBILIDAD
+   - Semántica en widgets importantes
+   - Soporte de temas claro/oscuro
+   - Textos localizados
+
+5. SEGURIDAD
+   - FlutterSecureStorage para tokens
+   - Validación de formularios
+   - Manejo de errores en BLoC
+
+================================================================================
+SECCIÓN 13: CÓMO EXTENDER LA APP (1 min)
+================================================================================
+
+[PANTALLA: Ejemplos de extensión]
+
+🚀 Próximos pasos sugeridos:
+
+1. CONECTAR API REAL
+   📍 Archivo: lib/data/api/home_api.dart
+   
+   ```dart
+   class HomeApiImpl implements HomeApi {
+     final Dio dio = Dio(BaseOptions(
+       baseUrl: 'https://api.ejemplo.com',
+     ));
+
+     @override
+     Future<List<Item>> getAllHomes() async {
+       try {
+         final response = await dio.get('/properties');
+         return (response.data as List)
+             .map((json) => Item.fromJson(json))
+             .toList();
+       } catch (e) {
+       throw ServerException(e.toString());
+       }
+     }
+   }
+   ```
+
+2. AGREGAR PERSISTENCIA REAL
+   ```dart
+   // Usar Hive, Drift o Firebase
+   class FavoritesRepository {
+     final HiveInterface hive;
+     
+     Future<void> saveFavorite(Item item) async {
+       final box = await hive.openBox('favorites');
+       await box.put(item.id, item.toJson());
+     }
+   }
+   ```
+
+3. AGREGAR ANALYTICS
+   ```dart
+   class AnalyticsService {
+     final FirebaseAnalytics analytics;
+     
+     void trackEvent(String name, Map<String, dynamic> params) {
+       analytics.logEvent(name: name, parameters: params);
+     }
+   }
+   ```
+
+4. AGREGAR MAPAS
+   ```dart
+   // Usar google_maps_flutter o mapbox_gl
+   GoogleMap(
+     markers: properties.map((p) => Marker(
+       position: LatLng(p.lat, p.lng),
+     )).toSet(),
+   )
+   ```
+
+================================================================================
+SECCIÓN 14: COMANDOS ÚTILES (30 seg)
+================================================================================
+
+[PANTALLA: Terminal con comandos]
+
+📋 Comandos esenciales:
+
+```bash
+# Instalar dependencias
+flutter pub get
+
+# Generar código (Freezed, JSON)
+dart run build_runner build --delete-conflicting-outputs
+
+# Watch mode (regenera automáticamente)
+dart run build_runner watch
+
+# Generar localizaciones
+flutter gen-l10n
+
+# Ejecutar app
+flutter run
+
+# Ejecutar tests
+flutter test
+flutter test --coverage
+
+# Analizar código
+flutter analyze
+
+# Formatear código
+dart format lib/
+
+# Build para producción
+flutter build apk --release
+flutter build ios --release
+flutter build web --release
+```
+
+================================================================================
+SECCIÓN 15: CONCLUSIÓN Y RECAP (1 min)
+================================================================================
+
+[PANTALLA: App corriendo + diagrama de arquitectura]
+
+🎯 Recap de lo que cubrimos:
+
+✅ ARQUITECTURA
+   - Capas bien definidas (Presentation → Service → Repository → API)
+   - BLoC para gestión de estado predecible
+   - Dependency Injection con GetIt
+
+✅ FEATURES TÉCNICOS
+   - Modelos inmutables con Freezed
+   - Navegación declarativa con GoRouter
+   - Testing con bloc_test y mocktail
+   - Internacionalización automática
+
+✅ UI/UX
+   - Material Design 3
+   - Animaciones fluidas (Hero, Shimmer, AnimateDo)
+   - Modo oscuro completo
+   - Sistema de constantes para consistencia
+
+✅ MEJORES PRÁCTICAS
+   - Código limpio y mantenible
+   - Performance optimizado
+   - Preparado para escalar
+
+📚 Recursos adicionales:
+- README.md → Documentación completa
+- lib/core/constants/ → Sistema de constantes
+- test/ → Ejemplos de testing
+
+🔗 Enlaces útiles:
+- Flutter BLoC: https://bloclibrary.dev
+- Freezed: https://pub.dev/packages/freezed
+- GoRouter: https://pub.dev/packages/go_router
+- Material Design 3: https://m3.material.io
+
+================================================================================
+TIPS PARA GRABAR EL VIDEO
+================================================================================
+
+📹 CONFIGURACIÓN DE GRABACIÓN:
+- Resolución: 1920x1080 (Full HD)
+- FPS: 30 o 60
+- Micrófono de calidad
+- Fondo neutro en pantalla compartida
+
+🎬 ESTRUCTURA DE GRABACIÓN:
+1. Intro (30 seg) → Logo/nombre del proyecto
+2. Demo completa (3 min) → Mostrar todas las funcionalidades
+3. Deep dive técnico (10 min) → Explicar arquitectura y código
+4. Q&A anticipadas (2 min) → Responder preguntas comunes
+5. Outro (30 seg) → CTA y recursos
+
+💡 CONSEJOS:
+- Hablar claro y pausado
+- Usar VS Code con tema claro (mejor para video)
+- Zoom al código importante
+- Grabar secciones separadas y editar después
+- Agregar música de fondo suave
+- Incluir timestamps en la descripción
+
+📝 ESTRUCTURA DE TIMESTAMPS PARA DESCRIPCIÓN:
+00:00 - Introducción
+02:00 - Demo de funcionalidades
+05:00 - Arquitectura técnica
+09:00 - Gestión de estado BLoC
+12:00 - Modelos con Freezed
+14:00 - Testing
+15:30 - Mejores prácticas
+17:00 - Conclusión
+
+================================================================================
+PREGUNTAS FRECUENTES A ANTICIPAR
+================================================================================
+
+Q: ¿Por qué BLoC y no Provider o Riverpod?
+A: BLoC ofrece separación clara de lógica, es altamente testeable, 
+   y tiene excelente documentación. Es ideal para apps medianas/grandes.
+
+Q: ¿Por qué Freezed?
+A: Genera código boilerplate (copyWith, ==, hashCode) automáticamente,
+   asegura inmutabilidad, y facilita serialización JSON.
+
+Q: ¿Cómo manejar errores en producción?
+A: Implementar Sentry o Firebase Crashlytics en el BLoC:
+   ```dart
+   try {
+     // operación
+   } catch (e, stackTrace) {
+     Sentry.captureException(e, stackTrace: stackTrace);
+     emit(state.copyWith(error: e.toString()));
+   }
+   ```
+
+Q: ¿Cómo escalar esta arquitectura?
+A: Agregar más BLoCs por feature, usar repositories para cada fuente de datos,
+   implementar casos de uso (UseCases) si la lógica se vuelve compleja.
+
+================================================================================
+FIN DEL PLAN
+================================================================================
+
+✨ Este plan cubre todo lo necesario para un video técnico completo y profesional.
+   Ajusta los tiempos según tu ritmo de presentación.
+
+⏱️ Duración total estimada: 15-20 minutos
+📊 Nivel: Intermedio-Avanzado
+🎯 Objetivo: Demostrar arquitectura profesional Flutter
+
+¡Éxito con tu video! 🚀
+

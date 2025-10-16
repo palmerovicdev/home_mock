@@ -27,18 +27,20 @@ GoRouter createRouter() {
       final isSplash = state.matchedLocation == Routes.splash.path;
       final isLogin = state.matchedLocation == Routes.login.path;
       final isAuthenticated = authStatus == AuthStatus.authenticated;
-      final isChecking = authStatus == AuthStatus.checking || authStatus == AuthStatus.initial;
+      final isUnauthenticated = authStatus == AuthStatus.unauthenticated;
+      final isChecking =
+          authStatus == AuthStatus.checking || authStatus == AuthStatus.initial;
 
-      if (isChecking && !isSplash) {
+      if (authStatus == AuthStatus.initial && !isSplash) {
         return Routes.splash.path;
       }
 
-      if (isSplash && !isChecking) {
+      if (isSplash && !isChecking || isUnauthenticated) {
         return isAuthenticated ? Routes.home.path : Routes.login.path;
       }
 
       if (!isAuthenticated && !isLogin && !isSplash && !isChecking) {
-        return Routes.login.path;
+        return '${Routes.login.path}?redirect=true';
       }
 
       if (isAuthenticated && isLogin) {

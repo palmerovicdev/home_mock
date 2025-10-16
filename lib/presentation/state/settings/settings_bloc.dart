@@ -73,9 +73,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           avatarUrl: prefs.getString(_keyUserAvatar) ?? '',
           isLoggedIn: prefs.getBool(_keyUserLoggedIn) ?? false,
         );
-      } else {
-        user = User.mock();
-        await _saveUser(prefs, user);
       }
 
       final isDarkMode = _calculateIsDarkMode(themeMode);

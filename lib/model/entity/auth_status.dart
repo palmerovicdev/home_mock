@@ -4,4 +4,5 @@ enum AuthStatus {
   authenticated,
   unauthenticated,
   error,
+  failed,
 }

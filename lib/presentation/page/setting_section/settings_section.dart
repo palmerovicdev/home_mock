@@ -83,7 +83,10 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text(context.l10n.selectTheme, style: TextStyle(color: theme.text)),
+        title: Text(
+          context.l10n.selectTheme,
+          style: TextStyle(color: theme.text),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           spacing: 6,
@@ -94,8 +97,12 @@ class SettingsSection extends StatelessWidget {
               child: FilledButton(
                 style: FilledButton.styleFrom(
                   padding: EdgeInsets.zero,
-                  backgroundColor: currentTheme == mode ? theme.primary : theme.bgLight,
-                  shadowColor: currentTheme == mode ? theme.primary : theme.bgLight,
+                  backgroundColor: currentTheme == mode
+                      ? theme.primary
+                      : theme.bgLight,
+                  shadowColor: currentTheme == mode
+                      ? theme.primary
+                      : theme.bgLight,
                   shape: RoundedRectangleBorder(
                     borderRadius: AppRadius.borderLg,
                   ),
@@ -103,6 +110,21 @@ class SettingsSection extends StatelessWidget {
                 onPressed: click(() {
                   context.read<SettingsBloc>().add(SettingsChangeTheme(mode));
                   Navigator.pop(dialogContext);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        '${context.l10n.theme}: ${mode.displayName}',
+                        style: TextStyle(
+                          color: theme.sText,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: theme.primary,
+                    ),
+                  );
                 }),
                 child: Text(
                   mode.displayName,
@@ -125,7 +147,10 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text(context.l10n.selectLanguage, style: TextStyle(color: theme.text)),
+        title: Text(
+          context.l10n.selectLanguage,
+          style: TextStyle(color: theme.text),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: AppLanguage.values.map((lang) {
@@ -147,6 +172,21 @@ class SettingsSection extends StatelessWidget {
                     SettingsChangeLanguage(value),
                   );
                   Navigator.pop(dialogContext);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        '${context.l10n.language}: ${value.displayName}',
+                        style: TextStyle(
+                          color: theme.sText,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: theme.primary,
+                    ),
+                  );
                 }
               },
             );
@@ -161,7 +201,10 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text(context.l10n.selectCurrency, style: TextStyle(color: theme.text)),
+        title: Text(
+          context.l10n.selectCurrency,
+          style: TextStyle(color: theme.text),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: Currency.values.map((curr) {
@@ -185,6 +228,21 @@ class SettingsSection extends StatelessWidget {
                     SettingsChangeCurrency(value),
                   );
                   Navigator.pop(dialogContext);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        '${context.l10n.currency}: ${value.displayName}',
+                        style: TextStyle(
+                          color: theme.sText,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: theme.primary,
+                    ),
+                  );
                 }
               },
             );
@@ -199,7 +257,10 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text(context.l10n.clearCacheConfirmTitle, style: TextStyle(color: theme.text)),
+        title: Text(
+          context.l10n.clearCacheConfirmTitle,
+          style: TextStyle(color: theme.text),
+        ),
         content: Text(
           context.l10n.clearCacheConfirmMessage,
           style: TextStyle(color: theme.textMuted),
@@ -213,7 +274,10 @@ class SettingsSection extends StatelessWidget {
               overlayColor: theme.primary,
             ),
             onPressed: click(() => Navigator.pop(dialogContext)),
-            child: Text(context.l10n.cancel, style: TextStyle(color: theme.textMuted)),
+            child: Text(
+              context.l10n.cancel,
+              style: TextStyle(color: theme.textMuted),
+            ),
           ),
           TextButton(
             style: TextButton.styleFrom(

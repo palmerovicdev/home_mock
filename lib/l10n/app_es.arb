@@ -400,5 +400,49 @@
   "checkingAuth": "Verificando autenticación...",
   "@checkingAuth": {
     "description": "Mensaje en splash mientras verifica auth"
+  },
+  "loginRequired": "Debes iniciar sesión para continuar",
+  "@loginRequired": {
+    "description": "Mensaje cuando se intenta acceder a ruta protegida sin autenticación"
+  },
+  "sessionExpired": "Tu sesión ha expirado",
+  "@sessionExpired": {
+    "description": "Mensaje cuando la sesión expira"
+  },
+  "authenticationFailed": "Error de autenticación",
+  "@authenticationFailed": {
+    "description": "Mensaje genérico de error de autenticación"
+  },
+  "serverError": "Error del servidor, intenta de nuevo",
+  "@serverError": {
+    "description": "Error del servidor"
+  },
+  "networkError": "Error de conexión, verifica tu internet",
+  "@networkError": {
+    "description": "Error de red"
+  },
+  "unexpectedError": "Error inesperado, intenta más tarde",
+  "@unexpectedError": {
+    "description": "Error inesperado"
+  },
+  "purchaseInProgress": "Procesando compra...",
+  "@purchaseInProgress": {
+    "description": "Mensaje de compra en proceso"
+  },
+  "contactingOwner": "Contactando al propietario...",
+  "@contactingOwner": {
+    "description": "Mensaje al contactar propietario"
+  },
+  "filtersCleared": "Filtros limpiados",
+  "@filtersCleared": {
+    "description": "Mensaje cuando se limpian los filtros"
+  },
+  "loggedOutSuccessfully": "Sesión cerrada exitosamente",
+  "@loggedOutSuccessfully": {
+    "description": "Mensaje cuando se cierra sesión"
+  },
+  "noResultsForSearch": "No hay resultados para tu búsqueda",
+  "@noResultsForSearch": {
+    "description": "Mensaje cuando la búsqueda no da resultados"
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/presentation/widget/details/price_bottom_sheet.dart';
 
 import '../../../core/constants/app_radius.dart';
 import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 import '../../../model/entity/owner.dart';
 
 class OwnerCard extends StatelessWidget {
@@ -46,12 +48,42 @@ class OwnerCard extends StatelessWidget {
                   icon: Icons.chat_bubble_outline,
                   size: 52,
                   color: theme.primary,
+                  onTap: click(() {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          context.l10n.contactingOwner,
+                          style: TextStyle(
+                            color: theme.bgDark,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        duration: const Duration(seconds: 2),
+                        backgroundColor: theme.primary,
+                      ),
+                    );
+                  }),
                 ),
                 const SizedBox(width: 10),
                 CircleButton(
                   icon: Icons.call_outlined,
                   size: 52,
                   color: theme.primary,
+                  onTap: click(() {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          context.l10n.contactingOwner,
+                          style: TextStyle(
+                            color: theme.bgDark,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        duration: const Duration(seconds: 2),
+                        backgroundColor: theme.primary,
+                      ),
+                    );
+                  }),
                 ),
               ],
             ),

@@ -34,7 +34,8 @@ class HomeMockApp extends StatelessWidget {
           create: (context) => AuthBloc(authService)..add(AuthCheckSession()),
         ),
         BlocProvider(
-          create: (context) => HomesBloc(homeService)..add(HomesLoadInitialData()),
+          create: (context) =>
+              HomesBloc(homeService)..add(HomesLoadInitialData()),
         ),
         BlocProvider(
           create: (context) => SettingsBloc()..add(SettingsLoadPreferences()),
@@ -45,11 +46,18 @@ class HomeMockApp extends StatelessWidget {
           BlocListener<AuthBloc, auth.AuthState>(
             listener: (context, state) {
               app_router.authStateNotifier.value = state.status;
+
+              if (state.isAuthenticated && state.user != null) {
+                context.read<SettingsBloc>().add(
+                  SettingsUpdateUser(state.user!),
+                );
+              }
             },
           ),
         ],
         child: BlocBuilder<SettingsBloc, SettingsState>(
-          buildWhen: (p, c) => p.themeMode != c.themeMode || p.language != c.language,
+          buildWhen: (p, c) =>
+              p.themeMode != c.themeMode || p.language != c.language,
           builder: (context, settingsState) {
             return MaterialApp.router(
               debugShowCheckedModeBanner: false,

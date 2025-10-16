@@ -45,7 +45,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           status: AuthStatus.unauthenticated,
-          errorMessage: e.toString(),
+          errorMessage:
+              null,
         ),
       );
     }
@@ -66,13 +67,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           status: AuthStatus.authenticated,
           token: token,
           user: user,
+          errorMessage: null,
         ),
       );
     } catch (e) {
+      String errorType = 'UNEXPECTED_ERROR';
+      final errorString = e.toString();
+
+      if (errorString.contains('INVALID_CREDENTIALS')) {
+        errorType = 'INVALID_CREDENTIALS';
+      } else if (errorString.contains('SERVER_ERROR')) {
+        errorType = 'SERVER_ERROR';
+      } else if (errorString.contains('NETWORK_ERROR')) {
+        errorType = 'NETWORK_ERROR';
+      } else if (errorString.contains('UNEXPECTED_ERROR')) {
+        errorType = 'UNEXPECTED_ERROR';
+      }
+
       emit(
         state.copyWith(
           status: AuthStatus.error,
-          errorMessage: e.toString(),
+          errorMessage: errorType,
         ),
       );
     }

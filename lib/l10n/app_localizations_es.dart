@@ -328,4 +328,37 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get checkingAuth => 'Verificando autenticación...';
+
+  @override
+  String get loginRequired => 'Debes iniciar sesión para continuar';
+
+  @override
+  String get sessionExpired => 'Tu sesión ha expirado';
+
+  @override
+  String get authenticationFailed => 'Error de autenticación';
+
+  @override
+  String get serverError => 'Error del servidor, intenta de nuevo';
+
+  @override
+  String get networkError => 'Error de conexión, verifica tu internet';
+
+  @override
+  String get unexpectedError => 'Error inesperado, intenta más tarde';
+
+  @override
+  String get purchaseInProgress => 'Procesando compra...';
+
+  @override
+  String get contactingOwner => 'Contactando al propietario...';
+
+  @override
+  String get filtersCleared => 'Filtros limpiados';
+
+  @override
+  String get loggedOutSuccessfully => 'Sesión cerrada exitosamente';
+
+  @override
+  String get noResultsForSearch => 'No hay resultados para tu búsqueda';
 }

@@ -14,7 +14,11 @@ class HomesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomesBloc, HomesState>(
-      buildWhen: (a, b) => a.items != b.items || a.loading != b.loading || a.version != b.version || a.error != b.error,
+      buildWhen: (a, b) =>
+          a.items != b.items ||
+          a.loading != b.loading ||
+          a.version != b.version ||
+          a.error != b.error,
       builder: (context, state) {
         final items = state.items;
 
@@ -44,7 +48,10 @@ class HomesGrid extends StatelessWidget {
 
         if (!state.loading && items.isEmpty && state.initialLoadComplete) {
           return SliverToBoxAdapter(
-            child: EmptyState(hasActiveFilters: state.hasActiveFilters),
+            child: EmptyState(
+              hasActiveFilters: state.hasActiveFilters,
+              searchQuery: state.query,
+            ),
           );
         }
 

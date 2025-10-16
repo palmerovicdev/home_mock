@@ -30,18 +30,27 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthRepositoryImpl(this._storage);
 
+  static const String _testEmail = 'test@gmail.com';
+  static const String _testPassword = '123456';
+  static const String _testName = 'Test Tester';
+  static const String _testUserId = 'user_test_001';
+
   @override
   Future<AuthToken> login(String email, String password) async {
     await Future.delayed(const Duration(seconds: 2));
 
-    if (!email.contains('@') || password.length < 6) {
-      throw Exception('Invalid credentials');
+    if (!email.contains('@') || !email.contains('.') || password.length < 6) {
+      throw Exception('INVALID_CREDENTIALS');
+    }
+
+    if (email.trim().toLowerCase() != _testEmail || password != _testPassword) {
+      throw Exception('INVALID_CREDENTIALS');
     }
 
     final token = AuthToken(
       token: 'mock_token_${DateTime.now().millisecondsSinceEpoch}',
       role: 'user',
-      userId: 'user_${email.hashCode}',
+      userId: _testUserId,
       expiresAt: DateTime.now().add(const Duration(days: 30)),
     );
 
@@ -49,9 +58,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
     final user = User(
       id: token.userId,
-      email: email,
-      name: email.split('@').first,
-      avatarUrl: 'https://i.pravatar.cc/200?u=$email',
+      email: _testEmail,
+      name: _testName,
+      avatarUrl: 'https://i.pravatar.cc/200?u=$_testEmail',
       isLoggedIn: true,
       lastLogin: DateTime.now(),
     );

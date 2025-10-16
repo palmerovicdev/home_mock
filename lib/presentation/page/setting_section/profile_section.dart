@@ -118,9 +118,27 @@ class ProfileSection extends StatelessWidget {
           TextButton(
             onPressed: select(() {
               context.read<AuthBloc>().add(AuthLogout());
-
               context.read<SettingsBloc>().add(SettingsLogout());
               context.pop();
+
+              Future.delayed(const Duration(milliseconds: 100), () {
+                if(context.mounted) {
+                  final messenger = ScaffoldMessenger.of(context);
+                  messenger.showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        context.l10n.loggedOutSuccessfully,
+                        style: TextStyle(
+                          color: theme.bgDark,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: theme.primary,
+                    ),
+                  );
+                }
+              });
             }),
             style: TextButton.styleFrom(
               overlayColor: theme.primary,

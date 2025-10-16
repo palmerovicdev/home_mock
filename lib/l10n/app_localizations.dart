@@ -673,6 +673,72 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Verificando autenticación...'**
   String get checkingAuth;
+
+  /// Mensaje cuando se intenta acceder a ruta protegida sin autenticación
+  ///
+  /// In es, this message translates to:
+  /// **'Debes iniciar sesión para continuar'**
+  String get loginRequired;
+
+  /// Mensaje cuando la sesión expira
+  ///
+  /// In es, this message translates to:
+  /// **'Tu sesión ha expirado'**
+  String get sessionExpired;
+
+  /// Mensaje genérico de error de autenticación
+  ///
+  /// In es, this message translates to:
+  /// **'Error de autenticación'**
+  String get authenticationFailed;
+
+  /// Error del servidor
+  ///
+  /// In es, this message translates to:
+  /// **'Error del servidor, intenta de nuevo'**
+  String get serverError;
+
+  /// Error de red
+  ///
+  /// In es, this message translates to:
+  /// **'Error de conexión, verifica tu internet'**
+  String get networkError;
+
+  /// Error inesperado
+  ///
+  /// In es, this message translates to:
+  /// **'Error inesperado, intenta más tarde'**
+  String get unexpectedError;
+
+  /// Mensaje de compra en proceso
+  ///
+  /// In es, this message translates to:
+  /// **'Procesando compra...'**
+  String get purchaseInProgress;
+
+  /// Mensaje al contactar propietario
+  ///
+  /// In es, this message translates to:
+  /// **'Contactando al propietario...'**
+  String get contactingOwner;
+
+  /// Mensaje cuando se limpian los filtros
+  ///
+  /// In es, this message translates to:
+  /// **'Filtros limpiados'**
+  String get filtersCleared;
+
+  /// Mensaje cuando se cierra sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión cerrada exitosamente'**
+  String get loggedOutSuccessfully;
+
+  /// Mensaje cuando la búsqueda no da resultados
+  ///
+  /// In es, this message translates to:
+  /// **'No hay resultados para tu búsqueda'**
+  String get noResultsForSearch;
 }
 
 class _AppLocalizationsDelegate

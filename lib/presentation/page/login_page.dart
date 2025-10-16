@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_mock/core/constants/app_radius.dart';
+import 'package:flutter_motionly/widget/button/animated_state_button.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/constants/app_spacing.dart';
 import '../../core/localization/app_locale.dart';
 import '../../core/locator.dart';
-import '../../core/utils/feedback.dart';
 import '../state/auth/auth_bloc.dart';
 import '../state/auth/auth_event.dart';
 import '../state/auth/auth_state.dart';
+import 'login_section/demo_credentials_card.dart';
+import 'login_section/email_field.dart';
+import 'login_section/login_header.dart';
+import 'login_section/password_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,7 +25,38 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
+  bool _hasShownRedirectMessage = false;
+  final AnimatedStateButtonController _loginButtonController = AnimatedStateButtonController(
+    states: {
+      'success': ButtonState.success(color: theme.success),
+      'loading': ButtonState.loading(color: theme.primary),
+      'error': ButtonState.error(color: theme.primary),
+    },
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkRedirect();
+    });
+  }
+
+  void _checkRedirect() {
+    final uri = GoRouterState.of(context).uri;
+    final isRedirect = uri.queryParameters['redirect'] == 'true';
+
+    if (isRedirect && !_hasShownRedirectMessage) {
+      _hasShownRedirectMessage = true;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(context.l10n.loginRequired),
+          backgroundColor: theme.warning,
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -30,8 +65,26 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  String _getErrorMessage(String? errorMessage, BuildContext context) {
+    if (errorMessage == null) return context.l10n.authenticationFailed;
+
+    switch (errorMessage) {
+      case 'INVALID_CREDENTIALS':
+        return context.l10n.invalidCredentials;
+      case 'SERVER_ERROR':
+        return context.l10n.serverError;
+      case 'NETWORK_ERROR':
+        return context.l10n.networkError;
+      case 'UNEXPECTED_ERROR':
+        return context.l10n.unexpectedError;
+      default:
+        return context.l10n.authenticationFailed;
+    }
+  }
+
   void _handleLogin(BuildContext context) {
     if (_formKey.currentState?.validate() ?? false) {
+      _loginButtonController.changeState('loading');
       context.read<AuthBloc>().add(
         AuthLogin(_emailController.text.trim(), _passwordController.text),
       );
@@ -43,20 +96,39 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: theme.bgDark,
       body: BlocConsumer<AuthBloc, AuthState>(
+        listenWhen: (previous, current) {
+          return (current.hasError && current.errorMessage != null && previous.errorMessage != current.errorMessage) || (current.isAuthenticated && !previous.isAuthenticated);
+        },
+        buildWhen: (previous, current) {
+          return previous.isChecking != current.isChecking;
+        },
         listener: (context, state) {
+          if (state.isAuthenticated) {
+            _loginButtonController.changeState('success');
+            return;
+          }
+
           if (state.hasError && state.errorMessage != null) {
+            _loginButtonController.changeState('error');
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(context.l10n.invalidCredentials),
-                backgroundColor: theme.danger,
+                content: Text(
+                  _getErrorMessage(state.errorMessage, context),
+                  style: TextStyle(
+                    color: theme.sText,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                backgroundColor: theme.primary,
+                duration: const Duration(seconds: 2),
               ),
             );
+            _loginButtonController.changeState('init');
             context.read<AuthBloc>().add(AuthClearError());
           }
         },
         builder: (context, state) {
-          final isLoading = state.isChecking;
-
           return SafeArea(
             child: SingleChildScrollView(
               padding: AppSpacing.paddingExtraLarge,
@@ -65,267 +137,37 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AppSpacing.gapGiant,
-
-                    Center(
-                      child: Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: theme.bgLight,
-                          borderRadius: AppRadius.borderRounded,
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.home_rounded,
-                            size: 60,
-                            color: theme.primary,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    AppSpacing.gapGiant,
-
-                    Text(
-                      context.l10n.welcomeBack,
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: theme.text,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    AppSpacing.gapMd,
-
-                    Text(
-                      context.l10n.signInToContinue,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: theme.textMuted,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    AppSpacing.gapGiant,
-
-                    TextFormField(
+                    const LoginHeader(),
+                    EmailField(
                       controller: _emailController,
-                      enabled: !isLoading,
-                      keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(color: theme.text),
-                      cursorColor: theme.text,
-                      decoration: InputDecoration(
-                        labelText: context.l10n.email,
-                        hintText: context.l10n.enterEmail,
-                        prefixIcon: Icon(
-                          Icons.email_outlined,
-                          color: theme.primary,
-                        ),
-                        filled: true,
-                        fillColor: theme.bgLight,
-                        border: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide(
-                            color: theme.primary,
-                            width: 2,
-                          ),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide(color: theme.danger, width: 2),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide(color: theme.danger, width: 2),
-                        ),
-                        labelStyle: TextStyle(color: theme.textMuted),
-                        hintStyle: TextStyle(color: theme.textMuted),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          error(null);
-                          return context.l10n.emailRequired;
-                        }
-                        if (!value.contains('@')) {
-                          error(null);
-                          return context.l10n.emailInvalid;
-                        }
-                        return null;
-                      },
+                      enabled: !state.isChecking,
                     ),
-
                     AppSpacing.gapHuge,
-
-                    TextFormField(
+                    PasswordField(
                       controller: _passwordController,
-                      enabled: !isLoading,
-                      obscureText: _obscurePassword,
-                      obscuringCharacter: '⌂',
-                      style: TextStyle(
-                        color: _obscurePassword ? theme.primary : theme.text,
-                        letterSpacing: _obscurePassword ? 2.0 : 0.0,
-                      ),
-                      cursorColor: theme.text,
-                      decoration: InputDecoration(
-                        labelText: context.l10n.password,
-                        hintText: context.l10n.enterPassword,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
-                          color: theme.primary,
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                            color: _obscurePassword ? theme.primary : theme.textMuted,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
-                          },
-                        ),
-                        filled: true,
-                        fillColor: theme.bgLight,
-                        border: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide(
-                            color: theme.primary,
-                            width: 2,
-                          ),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide(color: theme.danger, width: 2),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: AppRadius.borderXxl,
-                          borderSide: BorderSide(color: theme.danger, width: 2),
-                        ),
-                        labelStyle: TextStyle(color: theme.textMuted),
-                        hintStyle: TextStyle(color: theme.textMuted),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          error(null);
-                          return context.l10n.passwordRequired;
-                        }
-                        if (value.length < 6) {
-                          error(null);
-                          return context.l10n.passwordTooShort;
-                        }
-                        return null;
-                      },
+                      enabled: !state.isChecking,
                     ),
-
-                    AppSpacing.gapGiant,
-
-                    SizedBox(
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: isLoading ? null : () => _handleLogin(context),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: theme.primary,
-                          disabledBackgroundColor: theme.primary.withValues(
-                            alpha: 0.5,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: AppRadius.borderXxl,
-                          ),
-                          elevation: 0,
-                        ),
-                        child: isLoading
-                            ? SizedBox(
-                                height: 24,
-                                width: 24,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation(
-                                    theme.text,
-                                  ),
-                                ),
-                              )
-                            : Text(
-                                context.l10n.login,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: theme.text,
-                                ),
-                              ),
-                      ),
-                    ),
-
-                    if (isLoading) ...[
-                      AppSpacing.gapHuge,
-                      Center(
-                        child: Text(
-                          context.l10n.loggingIn,
+                    AppSpacing.gapHuge,
+                    Center(
+                      child: AnimatedStateButton(
+                        controller: _loginButtonController,
+                        initColor: theme.primary,
+                        borderRadius: 12,
+                        compactSize: 56,
+                        height: 56,
+                        onPressed: () async => _handleLogin(context),
+                        initChild: Text(
+                          context.l10n.login,
                           style: TextStyle(
-                            color: theme.textMuted,
-                            fontSize: 14,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: theme.sText,
                           ),
                         ),
                       ),
-                    ],
-
-                    AppSpacing.gapGiant,
-
-                    Container(
-                      padding: AppSpacing.paddingXxl,
-                      decoration: BoxDecoration(
-                        color: theme.bgLight,
-                        borderRadius: AppRadius.borderXxl,
-                        border: Border.all(color: theme.border),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.info_outline,
-                                size: 20,
-                                color: theme.primary,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Demo Credentials',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: theme.text,
-                                ),
-                              ),
-                            ],
-                          ),
-                          AppSpacing.gapMd,
-                          Text(
-                            'Email: cualquier email con @\nPassword: 6+ caracteres',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: theme.textMuted,
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
+                    AppSpacing.gapHuge,
+                    const DemoCredentialsCard(),
                   ],
                 ),
               ),

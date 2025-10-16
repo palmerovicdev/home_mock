@@ -43,17 +43,18 @@ class SplashPage extends StatelessWidget {
               ),
             ),
 
-            AppSpacing.gapMega,
+            AppSpacing.gapHuge,
 
             SizedBox(
               width: 100,
               height: 100,
               child: CircularProgressIndicator(
-                strokeWidth: 4,
+                strokeWidth: 6,
                 valueColor: AlwaysStoppedAnimation(theme.primary),
               ),
             ),
 
+            AppSpacing.gapHuge,
             AppSpacing.gapHuge,
 
             Text(
