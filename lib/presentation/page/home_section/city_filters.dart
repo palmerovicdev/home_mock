@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -26,7 +27,7 @@ class _CityFiltersState extends State<CityFilters> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Filtrar por ciudad',
+                context.l10n.filterByCity,
                 style: TextStyle(
                   color: theme.text,
                   fontSize: 16,

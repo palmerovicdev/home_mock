@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -19,7 +20,7 @@ class PriceRangeFilter extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Rango de precio',
+                context.l10n.priceRange,
                 style: TextStyle(
                   color: theme.text,
                   fontSize: 16,

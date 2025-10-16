@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../../core/router/routes.dart';
@@ -32,7 +34,7 @@ class HomeHeader extends StatelessWidget {
                         onTap: () => context.pushNamed(Routes.settings.name),
                         child: CircleAvatar(
                           radius: isCompact ? 20.0 : 24.0,
-                          backgroundImage: NetworkImage(
+                          backgroundImage: CachedNetworkImageProvider(
                             user?.avatarUrl ?? 'https://i.pravatar.cc/100',
                           ),
                         ),
@@ -44,7 +46,7 @@ class HomeHeader extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Hola, ${user?.name ?? "Usuario"}',
+                              context.l10n.hello(user?.name ?? "Usuario"),
                               style: TextStyle(
                                 fontSize: isCompact ? 14.0 : 16.0,
                                 fontWeight: FontWeight.w600,
@@ -94,14 +96,14 @@ class HomeHeader extends StatelessWidget {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Buy Your\n',
+                            text: context.l10n.buyYour,
                             style: TextStyle(
                               fontSize: 28.0,
                               color: theme.sTextMuted,
                             ),
                           ),
                           TextSpan(
-                            text: 'Perfect Home 🏠',
+                            text: '\n${context.l10n.perfectHome}',
                             style: TextStyle(
                               fontSize: 32.0,
                               fontWeight: FontWeight.w700,

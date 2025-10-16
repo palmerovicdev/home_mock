@@ -1,0 +1,348 @@
+{
+  "@@locale": "es",
+  "appTitle": "Home Mock",
+  "@appTitle": {
+    "description": "Título de la aplicación"
+  },
+  "home": "Inicio",
+  "@home": {
+    "description": "Pantalla de inicio"
+  },
+  "settings": "Ajustes",
+  "@settings": {
+    "description": "Pantalla de ajustes"
+  },
+  "search": "Buscar",
+  "@search": {
+    "description": "Acción de búsqueda"
+  },
+  "searchHomes": "Buscar casas...",
+  "@searchHomes": {
+    "description": "Placeholder del buscador de casas"
+  },
+  "filters": "Filtros",
+  "@filters": {
+    "description": "Filtros de búsqueda"
+  },
+  "clearFilters": "Limpiar filtros",
+  "@clearFilters": {
+    "description": "Acción de limpiar filtros"
+  },
+  "sortBy": "Ordenar por",
+  "@sortBy": {
+    "description": "Ordenar resultados"
+  },
+  "priceAscending": "Precio: Ascendente",
+  "@priceAscending": {
+    "description": "Ordenar por precio ascendente"
+  },
+  "priceDescending": "Precio: Descendente",
+  "@priceDescending": {
+    "description": "Ordenar por precio descendente"
+  },
+  "sortByCity": "Por Ciudad",
+  "@sortByCity": {
+    "description": "Ordenar por ciudad"
+  },
+  "city": "Ciudad",
+  "@city": {
+    "description": "Ciudad"
+  },
+  "priceRange": "Rango de precio",
+  "@priceRange": {
+    "description": "Rango de precio"
+  },
+  "noResultsFound": "No se encontraron resultados",
+  "@noResultsFound": {
+    "description": "No hay resultados"
+  },
+  "tryAdjustingFilters": "Intenta ajustar los filtros para encontrar más opciones",
+  "@tryAdjustingFilters": {
+    "description": "Sugerencia cuando no hay resultados"
+  },
+  "errorLoadingData": "Error al cargar datos",
+  "@errorLoadingData": {
+    "description": "Error al cargar datos"
+  },
+  "retry": "Reintentar",
+  "@retry": {
+    "description": "Reintentar acción"
+  },
+  "loading": "Cargando",
+  "@loading": {
+    "description": "Cargando datos"
+  },
+  "loadingMessage1": "Buscando tu hogar ideal...",
+  "@loadingMessage1": {
+    "description": "Mensaje de carga 1"
+  },
+  "loadingMessage2": "Preparando las mejores opciones...",
+  "@loadingMessage2": {
+    "description": "Mensaje de carga 2"
+  },
+  "loadingMessage3": "Explorando propiedades increíbles...",
+  "@loadingMessage3": {
+    "description": "Mensaje de carga 3"
+  },
+  "loadingMessage4": "Casi listos para mostrarte lo mejor...",
+  "@loadingMessage4": {
+    "description": "Mensaje de carga 4"
+  },
+  "justAMoment": "Solo tomará un momento",
+  "@justAMoment": {
+    "description": "Mensaje de espera"
+  },
+  "all": "Todos",
+  "@all": {
+    "description": "Todos los elementos"
+  },
+  "house": "Casa",
+  "@house": {
+    "description": "Categoría casa"
+  },
+  "apartment": "Apartamento",
+  "@apartment": {
+    "description": "Categoría apartamento"
+  },
+  "villa": "Villa",
+  "@villa": {
+    "description": "Categoría villa"
+  },
+  "profile": "Perfil",
+  "@profile": {
+    "description": "Perfil de usuario"
+  },
+  "logout": "Cerrar sesión",
+  "@logout": {
+    "description": "Cerrar sesión"
+  },
+  "logoutConfirmTitle": "¿Cerrar sesión?",
+  "@logoutConfirmTitle": {
+    "description": "Título de confirmación de cierre de sesión"
+  },
+  "logoutConfirmMessage": "Se perderán los datos no guardados",
+  "@logoutConfirmMessage": {
+    "description": "Mensaje de confirmación de cierre de sesión"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Cancelar acción"
+  },
+  "appearance": "Apariencia",
+  "@appearance": {
+    "description": "Apariencia de la app"
+  },
+  "theme": "Tema",
+  "@theme": {
+    "description": "Tema de la app"
+  },
+  "themeSystem": "Sistema",
+  "@themeSystem": {
+    "description": "Tema del sistema"
+  },
+  "themeLight": "Claro",
+  "@themeLight": {
+    "description": "Tema claro"
+  },
+  "themeDark": "Oscuro",
+  "@themeDark": {
+    "description": "Tema oscuro"
+  },
+  "selectTheme": "Seleccionar tema",
+  "@selectTheme": {
+    "description": "Seleccionar tema"
+  },
+  "localization": "Localización",
+  "@localization": {
+    "description": "Configuración de localización"
+  },
+  "language": "Idioma",
+  "@language": {
+    "description": "Idioma de la app"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Idioma español"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Idioma inglés"
+  },
+  "selectLanguage": "Seleccionar idioma",
+  "@selectLanguage": {
+    "description": "Seleccionar idioma"
+  },
+  "currency": "Moneda",
+  "@currency": {
+    "description": "Moneda"
+  },
+  "currencyUSD": "USD - Dólar",
+  "@currencyUSD": {
+    "description": "Dólar estadounidense"
+  },
+  "currencyEUR": "EUR - Euro",
+  "@currencyEUR": {
+    "description": "Euro"
+  },
+  "selectCurrency": "Seleccionar moneda",
+  "@selectCurrency": {
+    "description": "Seleccionar moneda"
+  },
+  "data": "Datos",
+  "@data": {
+    "description": "Datos de la app"
+  },
+  "clearCache": "Limpiar caché",
+  "@clearCache": {
+    "description": "Limpiar caché"
+  },
+  "clearCacheDescription": "Liberar espacio de almacenamiento",
+  "@clearCacheDescription": {
+    "description": "Descripción de limpiar caché"
+  },
+  "clearCacheConfirmTitle": "Limpiar caché",
+  "@clearCacheConfirmTitle": {
+    "description": "Título de confirmación de limpieza de caché"
+  },
+  "clearCacheConfirmMessage": "¿Estás seguro de que quieres limpiar el caché? Esta acción no se puede deshacer.",
+  "@clearCacheConfirmMessage": {
+    "description": "Mensaje de confirmación de limpieza de caché"
+  },
+  "clear": "Limpiar",
+  "@clear": {
+    "description": "Limpiar"
+  },
+  "cacheClearedSuccess": "Caché limpiado exitosamente",
+  "@cacheClearedSuccess": {
+    "description": "Mensaje de éxito al limpiar caché"
+  },
+  "details": "Detalles",
+  "@details": {
+    "description": "Detalles de la propiedad"
+  },
+  "description": "Descripción",
+  "@description": {
+    "description": "Descripción de la propiedad"
+  },
+  "location": "Ubicación",
+  "@location": {
+    "description": "Ubicación de la propiedad"
+  },
+  "owner": "Propietario",
+  "@owner": {
+    "description": "Propietario de la propiedad"
+  },
+  "contact": "Contactar",
+  "@contact": {
+    "description": "Contactar al propietario"
+  },
+  "pricePerMonth": "Precio por mes",
+  "@pricePerMonth": {
+    "description": "Precio mensual"
+  },
+  "perMonth": "/mes",
+  "@perMonth": {
+    "description": "Sufijo por mes"
+  },
+  "bedrooms": "Habitaciones",
+  "@bedrooms": {
+    "description": "Número de habitaciones"
+  },
+  "bathrooms": "Baños",
+  "@bathrooms": {
+    "description": "Número de baños"
+  },
+  "area": "Área",
+  "@area": {
+    "description": "Área de la propiedad"
+  },
+  "version": "Versión",
+  "@version": {
+    "description": "Versión de la aplicación"
+  },
+  "activeFiltersCount": "{count} {count, plural, =1{filtro activo} other{filtros activos}}",
+  "@activeFiltersCount": {
+    "description": "Número de filtros activos",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "itemsFound": "{count} {count, plural, =0{propiedades} =1{propiedad} other{propiedades}} encontradas",
+  "@itemsFound": {
+    "description": "Número de propiedades encontradas",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "fromNextMonth": "Desde el próximo mes",
+  "@fromNextMonth": {
+    "description": "Disponible desde el próximo mes"
+  },
+  "hello": "Hola, {name}",
+  "@hello": {
+    "description": "Mensaje de saludo con nombre de usuario",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "user": "Usuario",
+  "@user": {
+    "description": "Nombre de usuario predeterminado"
+  },
+  "buyYour": "Compra Tu",
+  "@buyYour": {
+    "description": "Primera parte del título de la página de inicio"
+  },
+  "perfectHome": "Hogar Perfecto 🏠",
+  "@perfectHome": {
+    "description": "Segunda parte del título de la página de inicio con emoji de casa"
+  },
+  "findYourNextHome": "Encuentra tu próximo hogar",
+  "@findYourNextHome": {
+    "description": "Texto del placeholder de la barra de búsqueda"
+  },
+  "oopsSomethingWentWrong": "¡Oops! Algo salió mal",
+  "@oopsSomethingWentWrong": {
+    "description": "Título del mensaje de error"
+  },
+  "couldNotLoadProperties": "No pudimos cargar las propiedades",
+  "@couldNotLoadProperties": {
+    "description": "Mensaje de descripción del error"
+  },
+  "thereAreNoPropertiesRightNow": "No hay propiedades disponibles en este momento",
+  "@thereAreNoPropertiesRightNow": {
+    "description": "Mensaje de estado vacío cuando no existen propiedades"
+  },
+  "filterByCity": "Filtrar por Ciudad",
+  "@filterByCity": {
+    "description": "Encabezado de la sección de filtro de ciudad"
+  },
+  "priceRangeFilter": "Rango de precio",
+  "@priceRangeFilter": {
+    "description": "Encabezado de la sección de filtro de rango de precio"
+  },
+  "price": "Precio",
+  "@price": {
+    "description": "Etiqueta de precio"
+  },
+  "buyNow": "Comprar Ahora",
+  "@buyNow": {
+    "description": "Etiqueta del botón de comprar ahora"
+  },
+  "reviews": "reseñas",
+  "@reviews": {
+    "description": "Número de reseñas"
+  },
+  "properties": "propiedades",
+  "@properties": {
+    "description": "Número de propiedades"
+  }
+}

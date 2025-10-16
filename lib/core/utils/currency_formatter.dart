@@ -4,7 +4,7 @@ import '../../model/entity/settings.dart';
 
 class CurrencyFormatter {
   static String format(
-    int amount, {
+    double amount, {
     required Currency currency,
     bool compact = false,
   }) {
@@ -26,7 +26,7 @@ class CurrencyFormatter {
   }
 
   static String formatWithSuffix(
-    int amount, {
+    double amount, {
     required Currency currency,
     String suffix = '/m',
   }) {

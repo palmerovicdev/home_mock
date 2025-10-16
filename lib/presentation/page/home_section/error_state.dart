@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/pulsating_button.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/locator.dart';
@@ -26,7 +27,7 @@ class ErrorState extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            '¡Oops! Algo salió mal',
+            context.l10n.oopsSomethingWentWrong,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -36,7 +37,7 @@ class ErrorState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'No pudimos cargar las propiedades',
+            context.l10n.couldNotLoadProperties,
             style: TextStyle(
               color: theme.textMuted,
               fontSize: 14,
@@ -55,7 +56,7 @@ class ErrorState extends StatelessWidget {
                 context.read<HomesBloc>().add(HomesRetryLoad());
               },
               child: Text(
-                'Reintentar',
+                context.l10n.retry,
                 style: TextStyle(
                   color: theme.bgLight,
                   fontWeight: FontWeight.w600,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/presentation/page/setting_section/profile_section.dart';
 import 'package:home_mock/presentation/page/setting_section/settings_section.dart';
 
@@ -25,7 +26,7 @@ class SettingsPage extends StatelessWidget {
               onPressed: () => context.pop(),
             ),
             title: Text(
-              'Configuración',
+              context.l10n.settings,
               style: TextStyle(
                 color: theme.text,
                 fontSize: 20,

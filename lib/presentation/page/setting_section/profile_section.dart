@@ -1,13 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../state/settings/settings_bloc.dart';
 import '../../state/settings/settings_event.dart';
 
 class ProfileSection extends StatelessWidget {
-  const ProfileSection({required this.user});
+  const ProfileSection({super.key, required this.user});
 
   final dynamic user;
 
@@ -28,7 +30,7 @@ class ProfileSection extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(user.avatarUrl),
+            backgroundImage: CachedNetworkImageProvider(user.avatarUrl),
           ),
           const SizedBox(height: 16),
           Text(
@@ -69,7 +71,7 @@ class ProfileSection extends StatelessWidget {
               color: theme.sText,
             ),
             label: Text(
-              'Cerrar sesión',
+              context.l10n.logout,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -88,20 +90,20 @@ class ProfileSection extends StatelessWidget {
       builder: (context) => AlertDialog(
         backgroundColor: theme.bgLight,
         title: Text(
-          '¿Cerrar sesión?',
+          context.l10n.logoutConfirmTitle,
           style: TextStyle(color: theme.text),
         ),
         content: Text(
-          'Se perderán los datos no guardados',
+          context.l10n.logoutConfirmMessage,
           style: TextStyle(color: theme.textMuted),
         ),
         actions: [
           TextButton(
             onPressed: () => context.pop(),
-            child: Text('Cancelar', style: TextStyle(color: theme.textMuted)),
             style: TextButton.styleFrom(
               overlayColor: theme.primary,
             ),
+            child: Text(context.l10n.cancel, style: TextStyle(color: theme.textMuted)),
           ),
           TextButton(
             onPressed: () {
@@ -113,7 +115,7 @@ class ProfileSection extends StatelessWidget {
               overlayColor: theme.primary,
             ),
             child: Text(
-              'Cerrar sesión',
+              context.l10n.logout,
               style: TextStyle(color: theme.primary),
             ),
           ),

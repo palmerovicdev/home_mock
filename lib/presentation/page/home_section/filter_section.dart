@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -23,7 +24,7 @@ class FilterSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                '${state.items.length} propiedades',
+                '${state.items.length} ${context.l10n.properties}',
                 style: TextStyle(
                   color: theme.textMuted,
                   fontSize: 14,
@@ -38,7 +39,7 @@ class FilterSection extends StatelessWidget {
                   },
                   icon: Icon(Icons.clear, size: 16, color: theme.primary),
                   label: Text(
-                    'Limpiar',
+                    context.l10n.clear,
                     style: TextStyle(color: theme.primary),
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../core/locator.dart';
 
@@ -43,13 +44,12 @@ class CachedImage extends StatelessWidget {
             ),
           ),
       errorWidget: (context, url, error) {
-        debugPrint('❌ CachedImage error: $url - Error: $error');
         return errorWidget ??
             Container(
               width: width,
               height: height,
               color: Colors.grey.shade800,
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
@@ -59,7 +59,7 @@ class CachedImage extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Error loading image',
+                    context.l10n.errorLoadingData,
                     style: TextStyle(
                       color: Colors.white38,
                       fontSize: 10,

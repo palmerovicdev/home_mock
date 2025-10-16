@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 
@@ -18,7 +19,7 @@ class PropertyDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Description',
+            context.l10n.description,
             style: TextStyle(
               color: theme.text,
               fontWeight: FontWeight.bold,

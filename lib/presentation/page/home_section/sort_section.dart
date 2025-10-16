@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/model/entity/settings.dart';
+import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -14,13 +17,14 @@ class SortSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomesBloc, HomesState>(
       builder: (context, state) {
+        var isEn = context.read<SettingsBloc>().state.language == AppLanguage.en;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Ordenar por',
+                context.l10n.sortBy,
                 style: TextStyle(
                   color: theme.text,
                   fontSize: 16,
@@ -33,8 +37,8 @@ class SortSection extends StatelessWidget {
                 runSpacing: 8,
                 children: [
                   _SortButton(
-                    width: 160,
-                    label: 'Precio: Menor',
+                    width: isEn ? 165 : 190,
+                    label: context.l10n.priceAscending,
                     icon: Icons.arrow_upward,
                     isSelected: state.sortBy == SortBy.priceAsc,
                     onPressed: () {
@@ -46,8 +50,8 @@ class SortSection extends StatelessWidget {
                     },
                   ),
                   _SortButton(
-                    width: 160,
-                    label: 'Precio: Mayor',
+                    width: isEn ? 175 : 190,
+                    label: context.l10n.priceDescending,
                     icon: Icons.arrow_downward,
                     isSelected: state.sortBy == SortBy.priceDesc,
                     onPressed: () {
@@ -59,8 +63,8 @@ class SortSection extends StatelessWidget {
                     },
                   ),
                   _SortButton(
-                    width: 120,
-                    label: 'Ciudad',
+                    width: isEn ? 90 : 110,
+                    label: context.l10n.city,
                     icon: Icons.location_city,
                     isSelected: state.sortBy == SortBy.city,
                     separation: 14,
@@ -111,7 +115,7 @@ class _SortButton extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 13,
                 color: theme.sText,
                 fontWeight: FontWeight.w600,
               ),
@@ -120,7 +124,7 @@ class _SortButton extends StatelessWidget {
             Icon(
               icon,
               color: theme.sText,
-              size: 18,
+              size: 16,
             ),
           ],
         ),
@@ -129,7 +133,7 @@ class _SortButton extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 13,
                 color: theme.text,
                 fontWeight: FontWeight.w600,
               ),
@@ -138,7 +142,7 @@ class _SortButton extends StatelessWidget {
             Icon(
               icon,
               color: theme.text,
-              size: 18,
+              size: 16,
             ),
           ],
         ),

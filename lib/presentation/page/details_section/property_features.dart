@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../model/entity/item.dart';
 import '../../widget/details/feature_card.dart';
@@ -28,12 +29,12 @@ class PropertyFeatures extends StatelessWidget {
           FeatureCard(
             icon: '🛌',
             value: "${item.bedrooms}",
-            label: "Bedrooms",
+            label: context.l10n.bedrooms,
           ),
           FeatureCard(
             icon: '🛁',
             value: "${item.bathrooms}",
-            label: "Bathrooms",
+            label: context.l10n.bathrooms,
           ),
         ],
       ),

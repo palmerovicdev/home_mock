@@ -25,7 +25,7 @@ class HomeCard extends StatelessWidget {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, settingsState) {
         final price = CurrencyFormatter.formatWithSuffix(
-          item.price,
+          item.price.toDouble(),
           currency: settingsState.currency,
         );
         return ClipRRect(

@@ -1,0 +1,348 @@
+{
+  "@@locale": "en",
+  "appTitle": "Home Mock",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home page tab label"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page tab label"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search button label"
+  },
+  "searchHomes": "Search homes...",
+  "@searchHomes": {
+    "description": "Search input placeholder text"
+  },
+  "filters": "Filters",
+  "@filters": {
+    "description": "Filters button label"
+  },
+  "clearFilters": "Clear filters",
+  "@clearFilters": {
+    "description": "Clear all filters button"
+  },
+  "sortBy": "Sort by",
+  "@sortBy": {
+    "description": "Sort section header"
+  },
+  "priceAscending": "Price: Ascending",
+  "@priceAscending": {
+    "description": "Sort by price ascending option"
+  },
+  "priceDescending": "Price: Descending",
+  "@priceDescending": {
+    "description": "Sort by price descending option"
+  },
+  "sortByCity": "By City",
+  "@sortByCity": {
+    "description": "Sort by city alphabetically option"
+  },
+  "city": "City",
+  "@city": {
+    "description": "City filter label"
+  },
+  "priceRange": "Price range",
+  "@priceRange": {
+    "description": "Price range filter label"
+  },
+  "noResultsFound": "No results found",
+  "@noResultsFound": {
+    "description": "Message when no search results"
+  },
+  "tryAdjustingFilters": "Try adjusting your filters to find more options",
+  "@tryAdjustingFilters": {
+    "description": "Suggestion to adjust filters when no results"
+  },
+  "errorLoadingData": "Error loading data",
+  "@errorLoadingData": {
+    "description": "Error message when data fails to load"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button label"
+  },
+  "loading": "Loading",
+  "@loading": {
+    "description": "Generic loading message"
+  },
+  "loadingMessage1": "Finding your ideal home...",
+  "@loadingMessage1": {
+    "description": "First loading animation message"
+  },
+  "loadingMessage2": "Preparing the best options...",
+  "@loadingMessage2": {
+    "description": "Second loading animation message"
+  },
+  "loadingMessage3": "Exploring amazing properties...",
+  "@loadingMessage3": {
+    "description": "Third loading animation message"
+  },
+  "loadingMessage4": "Almost ready to show you the best...",
+  "@loadingMessage4": {
+    "description": "Fourth loading animation message"
+  },
+  "justAMoment": "Just a moment",
+  "@justAMoment": {
+    "description": "Brief loading message"
+  },
+  "all": "All",
+  "@all": {
+    "description": "All categories option"
+  },
+  "house": "House",
+  "@house": {
+    "description": "House category label"
+  },
+  "apartment": "Apartment",
+  "@apartment": {
+    "description": "Apartment category label"
+  },
+  "villa": "Villa",
+  "@villa": {
+    "description": "Villa category label"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "User profile section"
+  },
+  "logout": "Log out",
+  "@logout": {
+    "description": "Logout button label"
+  },
+  "logoutConfirmTitle": "Log out?",
+  "@logoutConfirmTitle": {
+    "description": "Logout confirmation dialog title"
+  },
+  "logoutConfirmMessage": "Unsaved data will be lost",
+  "@logoutConfirmMessage": {
+    "description": "Logout confirmation warning message"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Appearance settings section header"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "System theme option"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme option"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme option"
+  },
+  "selectTheme": "Select theme",
+  "@selectTheme": {
+    "description": "Theme selector dialog title"
+  },
+  "localization": "Localization",
+  "@localization": {
+    "description": "Localization settings section header"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Spanish language option"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language option"
+  },
+  "selectLanguage": "Select language",
+  "@selectLanguage": {
+    "description": "Language selector dialog title"
+  },
+  "currency": "Currency",
+  "@currency": {
+    "description": "Currency setting label"
+  },
+  "currencyUSD": "USD - Dollar",
+  "@currencyUSD": {
+    "description": "US Dollar currency option"
+  },
+  "currencyEUR": "EUR - Euro",
+  "@currencyEUR": {
+    "description": "Euro currency option"
+  },
+  "selectCurrency": "Select currency",
+  "@selectCurrency": {
+    "description": "Currency selector dialog title"
+  },
+  "data": "Data",
+  "@data": {
+    "description": "Data settings section header"
+  },
+  "clearCache": "Clear cache",
+  "@clearCache": {
+    "description": "Clear cache option label"
+  },
+  "clearCacheDescription": "Free up storage space",
+  "@clearCacheDescription": {
+    "description": "Clear cache option description"
+  },
+  "clearCacheConfirmTitle": "Clear cache",
+  "@clearCacheConfirmTitle": {
+    "description": "Clear cache confirmation dialog title"
+  },
+  "clearCacheConfirmMessage": "Are you sure you want to clear the cache? This action cannot be undone.",
+  "@clearCacheConfirmMessage": {
+    "description": "Clear cache confirmation warning message"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "Clear button label"
+  },
+  "cacheClearedSuccess": "Cache cleared successfully",
+  "@cacheClearedSuccess": {
+    "description": "Success message after clearing cache"
+  },
+  "details": "Details",
+  "@details": {
+    "description": "Details page title"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Property description section header"
+  },
+  "location": "Location",
+  "@location": {
+    "description": "Property location label"
+  },
+  "owner": "Owner",
+  "@owner": {
+    "description": "Property owner section header"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "Contact button label"
+  },
+  "pricePerMonth": "Price per month",
+  "@pricePerMonth": {
+    "description": "Monthly price label"
+  },
+  "perMonth": "/month",
+  "@perMonth": {
+    "description": "Per month suffix"
+  },
+  "bedrooms": "Bedrooms",
+  "@bedrooms": {
+    "description": "Number of bedrooms label"
+  },
+  "bathrooms": "Bathrooms",
+  "@bathrooms": {
+    "description": "Number of bathrooms label"
+  },
+  "area": "Area",
+  "@area": {
+    "description": "Property area/size label"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "App version label in settings"
+  },
+  "activeFiltersCount": "{count} {count, plural, =1{active filter} other{active filters}}",
+  "@activeFiltersCount": {
+    "description": "Number of active filters message",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "itemsFound": "{count} {count, plural, =0{properties} =1{property} other{properties}} found",
+  "@itemsFound": {
+    "description": "Number of properties found message",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "fromNextMonth": "From next month",
+  "@fromNextMonth": {
+    "description": "Available from next month"
+  },
+  "hello": "Hello, {name}",
+  "@hello": {
+    "description": "Greeting message with user name",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "user": "User",
+  "@user": {
+    "description": "Default user name placeholder"
+  },
+  "buyYour": "Buy Your",
+  "@buyYour": {
+    "description": "First part of home page title"
+  },
+  "perfectHome": "Perfect Home 🏠",
+  "@perfectHome": {
+    "description": "Second part of home page title with house emoji"
+  },
+  "findYourNextHome": "Find your next home",
+  "@findYourNextHome": {
+    "description": "Search bar placeholder text"
+  },
+  "oopsSomethingWentWrong": "Oops! Something went wrong",
+  "@oopsSomethingWentWrong": {
+    "description": "Error state title message"
+  },
+  "couldNotLoadProperties": "We couldn't load the properties",
+  "@couldNotLoadProperties": {
+    "description": "Error state description message"
+  },
+  "thereAreNoPropertiesRightNow": "There are no properties available right now",
+  "@thereAreNoPropertiesRightNow": {
+    "description": "Empty state message when no properties exist"
+  },
+  "filterByCity": "Filter by City",
+  "@filterByCity": {
+    "description": "City filter section header"
+  },
+  "priceRangeFilter": "Price range",
+  "@priceRangeFilter": {
+    "description": "Price range filter section header"
+  },
+  "price": "Price",
+  "@price": {
+    "description": "Price label"
+  },
+  "buyNow": "Buy Now",
+  "@buyNow": {
+    "description": "Buy now button label"
+  },
+  "reviews": "reviews",
+  "@reviews": {
+    "description": "Number of reviews label"
+  },
+  "properties": "properties",
+  "@properties": {
+    "description": "Number of properties label"
+  }
+}

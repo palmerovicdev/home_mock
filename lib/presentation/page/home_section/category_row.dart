@@ -2,6 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/model/entity/settings.dart';
+import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
 import '../../../core/locator.dart';
 import '../../../model/entity/item.dart';
@@ -18,9 +21,9 @@ class CategoryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final entries = const [
-      (Category.apartment, '🏢', 'Apartment'),
-      (Category.house, '🏠', 'House'),
+    final entries = [
+      (Category.apartment, '🏢', context.l10n.apartment),
+      (Category.house, '🏠', context.l10n.house),
     ];
     final bloc = context.read<HomesBloc>();
 
@@ -36,6 +39,7 @@ class CategoryRow extends StatelessWidget {
               active: selected == Category.apartment,
               icon: entries[0].$2,
               label: entries[0].$3,
+              width: context.read<SettingsBloc>().state.language == AppLanguage.en ? 100 : 120,
               onTap: () => bloc.add(HomesChangeCategory(Category.apartment)),
               onDeselect: () => bloc.add(HomesChangeCategory(Category.all)),
             ),
@@ -72,7 +76,7 @@ class CategoryRow extends StatelessWidget {
                   ),
                   onPressed: () => bloc.add(HomesChangeCategory(Category.all)),
                   child: Text(
-                    'All',
+                    context.l10n.all,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: theme.textMuted,
@@ -96,6 +100,7 @@ class _CategoryChip extends StatelessWidget {
     required this.label,
     required this.onTap,
     required this.onDeselect,
+    this.width = 100,
   });
 
   final bool active;
@@ -103,13 +108,14 @@ class _CategoryChip extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
   final VoidCallback onDeselect;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: SizedBox(
-        width: 100,
+        width: width,
         height: 140,
         child: RippleRevealButton(
           height: 140,
@@ -124,7 +130,7 @@ class _CategoryChip extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: theme.sBgDark.withOpacity(0.25),
+                        color: theme.sBgDark.withOpacity(0.3),
                         blurRadius: 16,
                         offset: const Offset(0, 12),
                       ),

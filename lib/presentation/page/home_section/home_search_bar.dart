@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/presentation/page/home_section/price_range_filter.dart';
 import 'package:home_mock/presentation/page/home_section/sort_section.dart';
 
@@ -36,13 +37,14 @@ class HomeSearchBar extends StatelessWidget {
           enableSuggestions: false,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-            hintText: 'Find your next home',
-            hintStyle: TextStyle(color: theme.textMuted),
+            hintText: context.l10n.findYourNextHome,
+            hintStyle: TextStyle(color: theme.sTextMuted),
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Icon(
                 Icons.search,
-                color: theme.textMuted,
+                color: theme.sTextMuted,
+                size: 20,
               ),
             ),
             suffixIcon: IconButton(
@@ -55,9 +57,9 @@ class HomeSearchBar extends StatelessWidget {
                 );
               },
               icon: Icon(
-                Icons.filter_list_alt,
-                size: 18,
-                color: theme.textMuted,
+                Icons.filter_list_outlined,
+                size: 24,
+                color: theme.sTextMuted,
               ),
             ),
             filled: true,
@@ -145,7 +147,7 @@ class _FiltersBottomSheet extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Filtros',
+                      context.l10n.filters,
                       style: TextStyle(
                         color: theme.text,
                         fontSize: 22,

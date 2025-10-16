@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/currency_formatter.dart';
 import '../../state/home/home_bloc.dart';
 
 class PriceBottomSheet extends StatelessWidget {
@@ -43,14 +46,14 @@ class PriceBottomSheet extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Price',
+                context.l10n.price,
                 style: TextStyle(
                   color: theme.text,
                   fontSize: 14,
                 ),
               ),
               Text(
-                "\$$price/m",
+                CurrencyFormatter.formatWithSuffix(price.toDouble(), currency: context.read<SettingsBloc>().state.currency),
                 style: TextStyle(
                   color: theme.text,
                   fontWeight: FontWeight.bold,
@@ -72,8 +75,8 @@ class PriceBottomSheet extends StatelessWidget {
               ),
             ),
             onPressed: () {},
-            child: const Text(
-              'Buy Now',
+            child: Text(
+              context.l10n.buyNow,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../../model/entity/item.dart';
@@ -61,7 +62,7 @@ class PropertyTitleSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  "From next month",
+                  context.l10n.fromNextMonth,
                   style: TextStyle(color: theme.primary),
                 ),
               ),
@@ -70,7 +71,7 @@ class PropertyTitleSection extends StatelessWidget {
                   Icon(Icons.star, color: theme.warning, size: 18),
                   const SizedBox(width: 4),
                   Text(
-                    "5.0 (18 reviews)",
+                    "5.0 (18 ${context.l10n.reviews})",
                     style: TextStyle(color: theme.textMuted),
                   ),
                 ],

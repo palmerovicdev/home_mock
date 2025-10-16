@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
 import '../../../model/entity/settings.dart';
@@ -22,51 +23,43 @@ class SettingsSection extends StatelessWidget {
     return Column(
       children: [
         SettingsGroup(
-          title: 'Apariencia',
+          title: context.l10n.appearance,
           children: [
             SettingsTile(
               icon: Icons.palette_outlined,
-              title: 'Tema',
+              title: context.l10n.theme,
               subtitle: state.themeMode.displayName,
               onTap: () => _showThemeDialog(context, state.themeMode),
             ),
           ],
         ),
         SettingsGroup(
-          title: 'Localización',
+          title: context.l10n.localization,
           children: [
             SettingsTile(
               icon: Icons.language_outlined,
-              title: 'Idioma',
+              title: context.l10n.language,
               subtitle: state.language.displayName,
               onTap: () => _showLanguageDialog(context, state.language),
             ),
             SettingsTile(
               icon: Icons.attach_money_outlined,
-              title: 'Moneda',
+              title: context.l10n.currency,
               subtitle: state.currency.displayName,
               onTap: () => _showCurrencyDialog(context, state.currency),
             ),
           ],
         ),
         SettingsGroup(
-          title: 'Datos',
+          title: context.l10n.data,
           children: [
             SettingsTile(
               icon: Icons.cleaning_services_outlined,
-              title: 'Limpiar caché',
-              subtitle: 'Liberar espacio de almacenamiento',
+              title: context.l10n.clearCache,
+              subtitle: context.l10n.clearCacheDescription,
               onTap: () => _showClearCacheDialog(context),
             ),
           ],
-        ),
-        const SizedBox(height: 32),
-        Text(
-          'Home Mock v1.0.0',
-          style: TextStyle(
-            color: theme.textMuted,
-            fontSize: 12,
-          ),
         ),
         const SizedBox(height: 32),
       ],
@@ -78,7 +71,7 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text('Seleccionar tema', style: TextStyle(color: theme.text)),
+        title: Text(context.l10n.selectTheme, style: TextStyle(color: theme.text)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           spacing: 6,
@@ -120,7 +113,7 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text('Seleccionar idioma', style: TextStyle(color: theme.text)),
+        title: Text(context.l10n.selectLanguage, style: TextStyle(color: theme.text)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: AppLanguage.values.map((lang) {
@@ -155,11 +148,13 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text('Seleccionar moneda', style: TextStyle(color: theme.text)),
+        title: Text(context.l10n.selectCurrency, style: TextStyle(color: theme.text)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: Currency.values.map((curr) {
             return RadioListTile<Currency>(
+              overlayColor: WidgetStateProperty.all(theme.primary),
+              splashRadius: 24,
               title: Text(
                 curr.displayName,
                 style: TextStyle(
@@ -190,24 +185,36 @@ class SettingsSection extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.bgLight,
-        title: Text('Limpiar caché', style: TextStyle(color: theme.text)),
+        title: Text(context.l10n.clearCacheConfirmTitle, style: TextStyle(color: theme.text)),
         content: Text(
-          '¿Estás seguro de que deseas limpiar el caché? Esta acción no se puede deshacer.',
+          context.l10n.clearCacheConfirmMessage,
           style: TextStyle(color: theme.textMuted),
         ),
         actions: [
           TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              overlayColor: theme.primary,
+            ),
             onPressed: () => Navigator.pop(dialogContext),
-            child: Text('Cancelar', style: TextStyle(color: theme.textMuted)),
+            child: Text(context.l10n.cancel, style: TextStyle(color: theme.textMuted)),
           ),
           TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              overlayColor: theme.primary,
+            ),
             onPressed: () {
               context.read<SettingsBloc>().add(SettingsClearCache());
               Navigator.pop(dialogContext);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    'Caché limpiado correctamente',
+                    context.l10n.cacheClearedSuccess,
                     style: TextStyle(
                       color: theme.bgDark,
                       fontWeight: FontWeight.w600,
@@ -220,7 +227,7 @@ class SettingsSection extends StatelessWidget {
               );
             },
             child: Text(
-              'Limpiar',
+              context.l10n.clear,
               style: TextStyle(
                 color: theme.primary,
               ),

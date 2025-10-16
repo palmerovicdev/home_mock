@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/pulsating_button.dart';
+import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/locator.dart';
@@ -29,7 +30,7 @@ class EmptyState extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'No encontramos resultados',
+          context.l10n.noResultsFound,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -38,13 +39,16 @@ class EmptyState extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
-        Text(
-          hasActiveFilters ? 'Intenta ajustar tus filtros' : 'No hay propiedades disponibles',
-          style: TextStyle(
-            color: theme.textMuted,
-            fontSize: 14,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: Text(
+            hasActiveFilters ? context.l10n.tryAdjustingFilters : context.l10n.thereAreNoPropertiesRightNow,
+            style: TextStyle(
+              color: theme.textMuted,
+              fontSize: 14,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
         if (hasActiveFilters) ...[
           const SizedBox(height: 12),
@@ -65,7 +69,7 @@ class EmptyState extends StatelessWidget {
                   children: [
                     Icon(Icons.clear_all, color: theme.bgDark),
                     Text(
-                      'Limpiar filtros',
+                      context.l10n.clearFilters,
                       style: TextStyle(
                         color: theme.bgDark,
                         fontWeight: FontWeight.w600,
