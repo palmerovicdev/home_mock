@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../l10n/app_localizations.dart';
 
 /// Helper class para acceder fácilmente a las traducciones
@@ -8,8 +9,6 @@ class AppLocale {
   }
 
   static String get currentLanguageCode {
-    // Obtener el idioma actual desde el contexto si es posible
-    // Por defecto devolvemos español
     return 'es';
   }
 }

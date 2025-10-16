@@ -4,8 +4,11 @@ import '../model/entity/user.dart';
 
 abstract class AuthService {
   Future<AuthToken> login(String email, String password);
+
   Future<void> logout();
+
   Future<AuthToken?> checkSession();
+
   Future<User?> getCurrentUser();
 }
 

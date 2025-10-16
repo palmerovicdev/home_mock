@@ -30,7 +30,9 @@ class Theme {
   Color get highlight => isDark ? const Color(0xFF655F66) : const Color(0xFFFFFFFF);
 
   Color get sBgDark => const Color(0xFF1F1B1C);
+
   Color get sText => const Color(0xFFEEEDE4);
+
   Color get sTextMuted => const Color(0xFF9A968D);
 
   Color get primary => const Color(0xFFD3493C);

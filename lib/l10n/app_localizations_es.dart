@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -51,8 +52,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noResultsFound => 'No se encontraron resultados';
 
   @override
-  String get tryAdjustingFilters =>
-      'Intenta ajustar los filtros para encontrar más opciones';
+  String get tryAdjustingFilters => 'Intenta ajustar los filtros para encontrar más opciones';
 
   @override
   String get errorLoadingData => 'Error al cargar datos';
@@ -163,8 +163,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get clearCacheConfirmTitle => 'Limpiar caché';
 
   @override
-  String get clearCacheConfirmMessage =>
-      '¿Estás seguro de que quieres limpiar el caché? Esta acción no se puede deshacer.';
+  String get clearCacheConfirmMessage => '¿Estás seguro de que quieres limpiar el caché? Esta acción no se puede deshacer.';
 
   @override
   String get clear => 'Limpiar';
@@ -265,8 +264,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get couldNotLoadProperties => 'No pudimos cargar las propiedades';
 
   @override
-  String get thereAreNoPropertiesRightNow =>
-      'No hay propiedades disponibles en este momento';
+  String get thereAreNoPropertiesRightNow => 'No hay propiedades disponibles en este momento';
 
   @override
   String get filterByCity => 'Filtrar por Ciudad';
@@ -311,8 +309,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get passwordRequired => 'La contraseña es requerida';
 
   @override
-  String get passwordTooShort =>
-      'La contraseña debe tener al menos 6 caracteres';
+  String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres';
 
   @override
   String get invalidCredentials => 'Credenciales inválidas';

@@ -16,13 +16,11 @@ Future<void> setUpLocator() async {
     locator.registerSingleton<ScreenRadius>(value);
   });
 
-  // Secure Storage
   const secureStorage = FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
   locator.registerSingleton<FlutterSecureStorage>(secureStorage);
 
-  // Auth
   locator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(locator<FlutterSecureStorage>()),
   );
@@ -30,7 +28,6 @@ Future<void> setUpLocator() async {
     () => AuthServiceImpl(locator<AuthRepository>()),
   );
 
-  // Home
   locator.registerLazySingleton<HomeApi>(() => HomeApiImpl());
   locator.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(locator<HomeApi>()),

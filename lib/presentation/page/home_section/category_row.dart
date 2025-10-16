@@ -41,8 +41,8 @@ class CategoryRow extends StatelessWidget {
               icon: entries[0].$2,
               label: entries[0].$3,
               width: context.read<SettingsBloc>().state.language == AppLanguage.en ? 100 : 120,
-              onTap:()=> select(() => bloc.add(HomesChangeCategory(Category.apartment))),
-              onDeselect:()=> click(() => bloc.add(HomesChangeCategory(Category.all))),
+              onTap: () => select(() => bloc.add(HomesChangeCategory(Category.apartment))),
+              onDeselect: () => click(() => bloc.add(HomesChangeCategory(Category.all))),
             ),
           ),
           FadeInLeft(

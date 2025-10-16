@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                         onRefresh: () async {
                           context.read<HomesBloc>().add(HomesRetryLoad());
                           await context.read<HomesBloc>().stream.firstWhere(
-                                (state) => !state.loading,
+                            (state) => !state.loading,
                           );
                         },
                         color: theme.primary,

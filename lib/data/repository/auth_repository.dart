@@ -1,14 +1,21 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import '../../model/entity/auth_token.dart';
 import '../../model/entity/user.dart';
 
 abstract class AuthRepository {
   Future<AuthToken> login(String email, String password);
+
   Future<void> logout();
+
   Future<AuthToken?> getStoredToken();
+
   Future<User?> getCurrentUser();
+
   Future<void> saveToken(AuthToken token);
+
   Future<void> saveUser(User user);
+
   Future<void> clearAll();
 }
 
@@ -25,15 +32,12 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<AuthToken> login(String email, String password) async {
-    // Simular delay de red
     await Future.delayed(const Duration(seconds: 2));
 
-    // Validación mock: email debe tener @ y password >= 6 caracteres
     if (!email.contains('@') || password.length < 6) {
       throw Exception('Invalid credentials');
     }
 
-    // Crear token mock
     final token = AuthToken(
       token: 'mock_token_${DateTime.now().millisecondsSinceEpoch}',
       role: 'user',
@@ -41,10 +45,8 @@ class AuthRepositoryImpl implements AuthRepository {
       expiresAt: DateTime.now().add(const Duration(days: 30)),
     );
 
-    // Guardar token
     await saveToken(token);
 
-    // Crear y guardar usuario mock
     final user = User(
       id: token.userId,
       email: email,

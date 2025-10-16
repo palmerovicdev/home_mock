@@ -15,44 +15,49 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Owner {
 
- String get name; String get avatarUrl; String get city;
-/// Create a copy of Owner
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$OwnerCopyWith<Owner> get copyWith => _$OwnerCopyWithImpl<Owner>(this as Owner, _$identity);
+  String get name;
+
+  String get avatarUrl;
+
+  String get city;
+
+  /// Create a copy of Owner
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $OwnerCopyWith<Owner> get copyWith => _$OwnerCopyWithImpl<Owner>(this as Owner, _$identity);
 
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType && other is Owner && (identical(other.name, name) || other.name == name) &&
+        (identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl) && (identical(other.city, city) || other.city == city));
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Owner&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.city, city) || other.city == city));
-}
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, avatarUrl, city);
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,name,avatarUrl,city);
-
-@override
-String toString() {
-  return 'Owner(name: $name, avatarUrl: $avatarUrl, city: $city)';
-}
+  @override
+  String toString() {
+    return 'Owner(name: $name, avatarUrl: $avatarUrl, city: $city)';
+  }
 
 
 }
 
 /// @nodoc
-abstract mixin class $OwnerCopyWith<$Res>  {
+abstract mixin class $OwnerCopyWith<$Res> {
   factory $OwnerCopyWith(Owner value, $Res Function(Owner) _then) = _$OwnerCopyWithImpl;
-@useResult
-$Res call({
- String name, String avatarUrl, String city
-});
 
-
+  @useResult
+  $Res call({
+    String name, String avatarUrl, String city
+  });
 
 
 }
+
 /// @nodoc
 class _$OwnerCopyWithImpl<$Res>
     implements $OwnerCopyWith<$Res> {
@@ -61,39 +66,68 @@ class _$OwnerCopyWithImpl<$Res>
   final Owner _self;
   final $Res Function(Owner) _then;
 
-/// Create a copy of Owner
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? avatarUrl = null,Object? city = null,}) {
-  return _then(Owner(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
+  /// Create a copy of Owner
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? name = null, Object? avatarUrl = null, Object? city = null,}) {
+    return _then(Owner(
+      name: null == name ? _self.name : name
+      as String, avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl
+    as String, city: null == city ? _self.city : city
+    as String,
+    ));
+  }
 
 }
 
 
 /// Adds pattern-matching-related methods to [Owner].
 extension OwnerPatterns on Owner {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+  @optionalTypeArgs TResult maybeMap
+
+  <
+
+  TResult
+
+  extends
+
+  Object?
+
+  >
+
+  (
+
+  {
+
+  required
+
+  TResult
+
+  orElse
+
+  (
+
+  )
+
+  ,
+}){
 final _that = this;
 switch (_that) {
 case _:
-  return orElse();
+return orElse();
 
 }
 }
@@ -110,14 +144,15 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
-final _that = this;
-switch (_that) {
-case _:
-  throw StateError('Unexpected subclass');
+@optionalTypeArgs
+TResult map<TResult extends Object?>() {
+  final _that = this;
+  switch (_that) {
+    case _:
+      throw StateError('Unexpected subclass');
+  }
+}
 
-}
-}
 /// A variant of `map` that fallback to returning `null`.
 ///
 /// It is equivalent to doing:
@@ -130,14 +165,15 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
-final _that = this;
-switch (_that) {
-case _:
-  return null;
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>() {
+  final _that = this;
+  switch (_that) {
+    case _:
+      return null;
+  }
+}
 
-}
-}
 /// A variant of `when` that fallback to an `orElse` callback.
 ///
 /// It is equivalent to doing:
@@ -150,10 +186,16 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen
+<
+TResult extends Object?>(
+{
+required
+TResult
+orElse(),}) {final _that = this;
 switch (_that) {
 case _:
-  return orElse();
+return orElse();
 
 }
 }
@@ -173,7 +215,7 @@ case _:
 @optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
 switch (_that) {
 case _:
-  throw StateError('Unexpected subclass');
+throw StateError('Unexpected subclass');
 
 }
 }
@@ -192,7 +234,7 @@ case _:
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
 switch (_that) {
 case _:
-  return null;
+return null;
 
 }
 }

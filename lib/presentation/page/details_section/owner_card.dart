@@ -40,9 +40,17 @@ class OwnerCard extends StatelessWidget {
             ),
             Row(
               children: [
-                CircleButton(icon: Icons.chat_bubble_outline, size: 52,color: theme.primary,),
+                CircleButton(
+                  icon: Icons.chat_bubble_outline,
+                  size: 52,
+                  color: theme.primary,
+                ),
                 const SizedBox(width: 10),
-                CircleButton(icon: Icons.call_outlined, size: 52, color: theme.primary,),
+                CircleButton(
+                  icon: Icons.call_outlined,
+                  size: 52,
+                  color: theme.primary,
+                ),
               ],
             ),
           ],

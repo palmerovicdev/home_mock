@@ -47,7 +47,7 @@ class _CityFiltersState extends State<CityFilters> {
                     child: RippleRevealButton(
                       selected: isSelected,
                       border: isSelected ? Border.all(color: theme.primary, width: 1.8) : Border.all(color: theme.border, width: 1.5),
-                      onPressed:()=> click(() {
+                      onPressed: () => click(() {
                         context.read<HomesBloc>().add(
                           HomesToggleCityFilter(city),
                         );

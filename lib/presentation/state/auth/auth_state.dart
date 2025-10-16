@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../../../model/entity/auth_status.dart';
 import '../../../model/entity/auth_token.dart';
 import '../../../model/entity/user.dart';
@@ -17,8 +18,11 @@ class AuthState extends Equatable {
   });
 
   bool get isAuthenticated => status == AuthStatus.authenticated;
+
   bool get isUnauthenticated => status == AuthStatus.unauthenticated;
+
   bool get isChecking => status == AuthStatus.checking;
+
   bool get hasError => status == AuthStatus.error;
 
   @override

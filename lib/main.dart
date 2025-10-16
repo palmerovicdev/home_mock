@@ -34,8 +34,7 @@ class HomeMockApp extends StatelessWidget {
           create: (context) => AuthBloc(authService)..add(AuthCheckSession()),
         ),
         BlocProvider(
-          create: (context) =>
-              HomesBloc(homeService)..add(HomesLoadInitialData()),
+          create: (context) => HomesBloc(homeService)..add(HomesLoadInitialData()),
         ),
         BlocProvider(
           create: (context) => SettingsBloc()..add(SettingsLoadPreferences()),
@@ -50,8 +49,7 @@ class HomeMockApp extends StatelessWidget {
           ),
         ],
         child: BlocBuilder<SettingsBloc, SettingsState>(
-          buildWhen: (p, c) =>
-              p.themeMode != c.themeMode || p.language != c.language,
+          buildWhen: (p, c) => p.themeMode != c.themeMode || p.language != c.language,
           builder: (context, settingsState) {
             return MaterialApp.router(
               debugShowCheckedModeBanner: false,

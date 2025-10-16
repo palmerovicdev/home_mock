@@ -12,9 +12,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
   name: json['name'] as String,
   avatarUrl: json['avatarUrl'] as String? ?? '',
   isLoggedIn: json['isLoggedIn'] as bool? ?? false,
-  lastLogin: json['lastLogin'] == null
-      ? null
-      : DateTime.parse(json['lastLogin'] as String),
+  lastLogin: json['lastLogin'] == null ? null : DateTime.parse(json['lastLogin'] as String),
 );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
