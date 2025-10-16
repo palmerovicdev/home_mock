@@ -66,35 +66,35 @@ class HomeSearchBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(32),
               borderSide: BorderSide(
                 color: theme.borderMuted,
-                width: 1,
+                width: 0.5,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),
               borderSide: BorderSide(
                 color: theme.borderMuted,
-                width: 1,
+                width: 0.5,
               ),
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),
               borderSide: BorderSide(
                 color: theme.borderMuted,
-                width: 1,
+                width: 0.5,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),
               borderSide: BorderSide(
                 color: theme.borderMuted,
-                width: 1,
+                width: 0.5,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),
               borderSide: BorderSide(
                 color: theme.borderMuted,
-                width: 1,
+                width: 0.5,
               ),
             ),
             contentPadding: const EdgeInsets.symmetric(vertical: 16),

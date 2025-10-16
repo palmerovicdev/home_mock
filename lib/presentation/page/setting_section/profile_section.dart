@@ -48,12 +48,12 @@ class ProfileSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          ElevatedButton.icon(
+          TextButton.icon(
             onPressed: () {
               _showLogoutDialog(context);
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.bgDark,
+            style: TextButton.styleFrom(
+              backgroundColor: theme.primary,
               foregroundColor: theme.text,
               padding: const EdgeInsets.symmetric(
                 horizontal: 24,
@@ -63,8 +63,19 @@ class ProfileSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            icon: const Icon(Icons.logout, size: 18),
-            label: const Text('Cerrar sesión'),
+            icon: Icon(
+              Icons.logout,
+              size: 18,
+              color: theme.sText,
+            ),
+            label: Text(
+              'Cerrar sesión',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: theme.sText,
+              ),
+            ),
           ),
         ],
       ),
@@ -88,6 +99,9 @@ class ProfileSection extends StatelessWidget {
           TextButton(
             onPressed: () => context.pop(),
             child: Text('Cancelar', style: TextStyle(color: theme.textMuted)),
+            style: TextButton.styleFrom(
+              overlayColor: theme.primary,
+            ),
           ),
           TextButton(
             onPressed: () {
@@ -95,6 +109,9 @@ class ProfileSection extends StatelessWidget {
               context.pop();
               context.pop();
             },
+            style: TextButton.styleFrom(
+              overlayColor: theme.primary,
+            ),
             child: Text(
               'Cerrar sesión',
               style: TextStyle(color: theme.primary),
