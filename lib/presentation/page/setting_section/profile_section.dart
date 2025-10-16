@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
+import '../../state/auth/auth_bloc.dart';
+import '../../state/auth/auth_event.dart';
 import '../../state/settings/settings_bloc.dart';
 import '../../state/settings/settings_event.dart';
 
@@ -103,12 +105,17 @@ class ProfileSection extends StatelessWidget {
             style: TextButton.styleFrom(
               overlayColor: theme.primary,
             ),
-            child: Text(context.l10n.cancel, style: TextStyle(color: theme.textMuted)),
+            child: Text(
+              context.l10n.cancel,
+              style: TextStyle(color: theme.textMuted),
+            ),
           ),
           TextButton(
             onPressed: () {
+
+              context.read<AuthBloc>().add(AuthLogout());
+
               context.read<SettingsBloc>().add(SettingsLogout());
-              context.pop();
               context.pop();
             },
             style: TextButton.styleFrom(

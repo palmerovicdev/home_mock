@@ -344,5 +344,61 @@
   "properties": "properties",
   "@properties": {
     "description": "Number of properties label"
+  },
+  "login": "Log in",
+  "@login": {
+    "description": "Login button label"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field label"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field label"
+  },
+  "enterEmail": "Enter your email",
+  "@enterEmail": {
+    "description": "Email field placeholder"
+  },
+  "enterPassword": "Enter your password",
+  "@enterPassword": {
+    "description": "Password field placeholder"
+  },
+  "emailRequired": "Email is required",
+  "@emailRequired": {
+    "description": "Error when email is empty"
+  },
+  "emailInvalid": "Enter a valid email",
+  "@emailInvalid": {
+    "description": "Error when email is invalid"
+  },
+  "passwordRequired": "Password is required",
+  "@passwordRequired": {
+    "description": "Error when password is empty"
+  },
+  "passwordTooShort": "Password must be at least 6 characters",
+  "@passwordTooShort": {
+    "description": "Error when password is too short"
+  },
+  "invalidCredentials": "Invalid credentials",
+  "@invalidCredentials": {
+    "description": "Login error message"
+  },
+  "welcomeBack": "Welcome back!",
+  "@welcomeBack": {
+    "description": "Welcome message on login screen"
+  },
+  "signInToContinue": "Sign in to continue",
+  "@signInToContinue": {
+    "description": "Login screen subtitle"
+  },
+  "loggingIn": "Logging in...",
+  "@loggingIn": {
+    "description": "Message while logging in"
+  },
+  "checkingAuth": "Checking authentication...",
+  "@checkingAuth": {
+    "description": "Message in splash while checking auth"
   }
 }

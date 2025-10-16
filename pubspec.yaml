@@ -28,7 +28,6 @@ dependencies:
   animate_do: ^4.2.0
   cached_network_image: ^3.4.1
   flutter_native_splash: ^2.4.6
-
   # libreria actualmente en desarrollo por mí 😁
   flutter_motionly: ^0.0.7
   lottie: ^3.3.2
@@ -36,6 +35,7 @@ dependencies:
   shared_preferences: ^2.5.3
   screen_corner_radius: ^3.0.0
   intl: ^0.20.2
+  flutter_secure_storage: ^9.2.2
 
 dev_dependencies:
   flutter_test:
@@ -63,10 +63,10 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/image.png"
 
 flutter_native_splash:
   color: "#040301"
-  image: assets/icon.png
+  image: assets/image.png
   android_12:
-    image: assets/icon.png
+    image: assets/image.png

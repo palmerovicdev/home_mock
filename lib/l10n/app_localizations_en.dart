@@ -285,4 +285,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get properties => 'properties';
+
+  @override
+  String get login => 'Log in';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get emailInvalid => 'Enter a valid email';
+
+  @override
+  String get passwordRequired => 'Password is required';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get invalidCredentials => 'Invalid credentials';
+
+  @override
+  String get welcomeBack => 'Welcome back!';
+
+  @override
+  String get signInToContinue => 'Sign in to continue';
+
+  @override
+  String get loggingIn => 'Logging in...';
+
+  @override
+  String get checkingAuth => 'Checking authentication...';
 }

@@ -344,5 +344,61 @@
   "properties": "propiedades",
   "@properties": {
     "description": "Número de propiedades"
+  },
+  "login": "Iniciar sesión",
+  "@login": {
+    "description": "Botón de inicio de sesión"
+  },
+  "email": "Correo electrónico",
+  "@email": {
+    "description": "Campo de correo electrónico"
+  },
+  "password": "Contraseña",
+  "@password": {
+    "description": "Campo de contraseña"
+  },
+  "enterEmail": "Ingresa tu correo",
+  "@enterEmail": {
+    "description": "Placeholder del campo de correo"
+  },
+  "enterPassword": "Ingresa tu contraseña",
+  "@enterPassword": {
+    "description": "Placeholder del campo de contraseña"
+  },
+  "emailRequired": "El correo es requerido",
+  "@emailRequired": {
+    "description": "Error cuando el correo está vacío"
+  },
+  "emailInvalid": "Ingresa un correo válido",
+  "@emailInvalid": {
+    "description": "Error cuando el correo no es válido"
+  },
+  "passwordRequired": "La contraseña es requerida",
+  "@passwordRequired": {
+    "description": "Error cuando la contraseña está vacía"
+  },
+  "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+  "@passwordTooShort": {
+    "description": "Error cuando la contraseña es muy corta"
+  },
+  "invalidCredentials": "Credenciales inválidas",
+  "@invalidCredentials": {
+    "description": "Error de login"
+  },
+  "welcomeBack": "¡Bienvenido de nuevo!",
+  "@welcomeBack": {
+    "description": "Mensaje de bienvenida en login"
+  },
+  "signInToContinue": "Inicia sesión para continuar",
+  "@signInToContinue": {
+    "description": "Subtítulo en login"
+  },
+  "loggingIn": "Iniciando sesión...",
+  "@loggingIn": {
+    "description": "Mensaje mientras se inicia sesión"
+  },
+  "checkingAuth": "Verificando autenticación...",
+  "@checkingAuth": {
+    "description": "Mensaje en splash mientras verifica auth"
   }
 }

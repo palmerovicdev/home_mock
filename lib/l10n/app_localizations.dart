@@ -589,6 +589,90 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'propiedades'**
   String get properties;
+
+  /// Botón de inicio de sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar sesión'**
+  String get login;
+
+  /// Campo de correo electrónico
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico'**
+  String get email;
+
+  /// Campo de contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña'**
+  String get password;
+
+  /// Placeholder del campo de correo
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu correo'**
+  String get enterEmail;
+
+  /// Placeholder del campo de contraseña
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu contraseña'**
+  String get enterPassword;
+
+  /// Error cuando el correo está vacío
+  ///
+  /// In es, this message translates to:
+  /// **'El correo es requerido'**
+  String get emailRequired;
+
+  /// Error cuando el correo no es válido
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa un correo válido'**
+  String get emailInvalid;
+
+  /// Error cuando la contraseña está vacía
+  ///
+  /// In es, this message translates to:
+  /// **'La contraseña es requerida'**
+  String get passwordRequired;
+
+  /// Error cuando la contraseña es muy corta
+  ///
+  /// In es, this message translates to:
+  /// **'La contraseña debe tener al menos 6 caracteres'**
+  String get passwordTooShort;
+
+  /// Error de login
+  ///
+  /// In es, this message translates to:
+  /// **'Credenciales inválidas'**
+  String get invalidCredentials;
+
+  /// Mensaje de bienvenida en login
+  ///
+  /// In es, this message translates to:
+  /// **'¡Bienvenido de nuevo!'**
+  String get welcomeBack;
+
+  /// Subtítulo en login
+  ///
+  /// In es, this message translates to:
+  /// **'Inicia sesión para continuar'**
+  String get signInToContinue;
+
+  /// Mensaje mientras se inicia sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciando sesión...'**
+  String get loggingIn;
+
+  /// Mensaje en splash mientras verifica auth
+  ///
+  /// In es, this message translates to:
+  /// **'Verificando autenticación...'**
+  String get checkingAuth;
 }
 
 class _AppLocalizationsDelegate

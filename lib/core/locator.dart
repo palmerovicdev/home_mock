@@ -1,7 +1,10 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_mock/core/theme.dart';
 import 'package:home_mock/data/api/home_api.dart';
+import 'package:home_mock/data/repository/auth_repository.dart';
 import 'package:home_mock/data/repository/home_repository.dart';
+import 'package:home_mock/service/auth_service.dart';
 import 'package:home_mock/service/home_service.dart';
 import 'package:screen_corner_radius/screen_corner_radius.dart';
 
@@ -13,11 +16,25 @@ Future<void> setUpLocator() async {
     locator.registerSingleton<ScreenRadius>(value);
   });
 
+  // Secure Storage
+  const secureStorage = FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  );
+  locator.registerSingleton<FlutterSecureStorage>(secureStorage);
+
+  // Auth
+  locator.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(locator<FlutterSecureStorage>()),
+  );
+  locator.registerLazySingleton<AuthService>(
+    () => AuthServiceImpl(locator<AuthRepository>()),
+  );
+
+  // Home
   locator.registerLazySingleton<HomeApi>(() => HomeApiImpl());
   locator.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(locator<HomeApi>()),
   );
-
   locator.registerLazySingleton<HomeService>(
     () => HomeServiceImpl(locator<HomeRepository>()),
   );
@@ -34,3 +51,7 @@ HomeApi get homeApi => locator.get<HomeApi>();
 HomeRepository get homeRepository => locator.get<HomeRepository>();
 
 HomeService get homeService => locator.get<HomeService>();
+
+AuthRepository get authRepository => locator.get<AuthRepository>();
+
+AuthService get authService => locator.get<AuthService>();

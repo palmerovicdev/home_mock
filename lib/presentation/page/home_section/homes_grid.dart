@@ -80,12 +80,7 @@ class HomesGrid extends StatelessWidget {
                   childAspectRatio: childAspect,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  (context, i) => FadeInUp(
-                    from: 30,
-                    delay: Duration(milliseconds: i * 40),
-                    duration: const Duration(milliseconds: 100),
-                    child: HomeCard(item: items[i]),
-                  ),
+                  (context, i) => HomeCard(item: items[i]),
                   childCount: items.length,
                 ),
               );
