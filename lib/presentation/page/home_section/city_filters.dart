@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/core/utils/feedback.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -46,11 +47,11 @@ class _CityFiltersState extends State<CityFilters> {
                     child: RippleRevealButton(
                       selected: isSelected,
                       border: isSelected ? Border.all(color: theme.primary, width: 1.8) : Border.all(color: theme.border, width: 1.5),
-                      onPressed: () {
+                      onPressed:()=> click(() {
                         context.read<HomesBloc>().add(
                           HomesToggleCityFilter(city),
                         );
-                      },
+                      }),
                       radius: 12,
                       widgetA: Text(
                         city,

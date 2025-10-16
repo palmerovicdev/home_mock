@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/core/utils/feedback.dart';
 
 import '../../../core/locator.dart';
 import '../../../core/router/routes.dart';
@@ -31,7 +32,7 @@ class HomeHeader extends StatelessWidget {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () => context.pushNamed(Routes.settings.name),
+                        onTap: click(() => context.pushNamed(Routes.settings.name)),
                         child: CircleAvatar(
                           radius: isCompact ? 20.0 : 24.0,
                           backgroundImage: CachedNetworkImageProvider(
@@ -81,7 +82,7 @@ class HomeHeader extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () => context.pushNamed(Routes.settings.name),
+                        onPressed: click(() => context.pushNamed(Routes.settings.name)),
                         icon: Icon(
                           Icons.settings_outlined,
                           color: theme.sText,

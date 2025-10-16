@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/utils/currency_formatter.dart';
+import '../../../core/utils/feedback.dart';
 import '../../../model/entity/item.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/settings/settings_bloc.dart';
@@ -31,7 +33,10 @@ class HomeCard extends StatelessWidget {
         return ClipRRect(
           borderRadius: BorderRadius.circular(18),
           child: GestureDetector(
-            onTap: () => context.pushNamed(Routes.details.name, extra: item.id),
+            onTap: click(() {
+              HapticFeedback.lightImpact();
+              context.pushNamed(Routes.details.name, extra: item.id);
+            }),
             child: Stack(
               fit: StackFit.expand,
               children: [

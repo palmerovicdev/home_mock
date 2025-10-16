@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/core/utils/feedback.dart';
 import 'package:home_mock/model/entity/settings.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
@@ -40,8 +41,8 @@ class CategoryRow extends StatelessWidget {
               icon: entries[0].$2,
               label: entries[0].$3,
               width: context.read<SettingsBloc>().state.language == AppLanguage.en ? 100 : 120,
-              onTap: () => bloc.add(HomesChangeCategory(Category.apartment)),
-              onDeselect: () => bloc.add(HomesChangeCategory(Category.all)),
+              onTap:()=> select(() => bloc.add(HomesChangeCategory(Category.apartment))),
+              onDeselect:()=> click(() => bloc.add(HomesChangeCategory(Category.all))),
             ),
           ),
           FadeInLeft(
@@ -51,8 +52,8 @@ class CategoryRow extends StatelessWidget {
               active: selected == Category.house,
               icon: entries[1].$2,
               label: entries[1].$3,
-              onTap: () => bloc.add(HomesChangeCategory(Category.house)),
-              onDeselect: () => bloc.add(HomesChangeCategory(Category.all)),
+              onTap: () => select(() => bloc.add(HomesChangeCategory(Category.house))),
+              onDeselect: () => click(() => bloc.add(HomesChangeCategory(Category.all))),
             ),
           ),
           FadeInLeft(
@@ -74,7 +75,7 @@ class CategoryRow extends StatelessWidget {
                       borderRadius: BorderRadius.circular(24),
                     ),
                   ),
-                  onPressed: () => bloc.add(HomesChangeCategory(Category.all)),
+                  onPressed: select(() => bloc.add(HomesChangeCategory(Category.all))),
                   child: Text(
                     context.l10n.all,
                     style: TextStyle(

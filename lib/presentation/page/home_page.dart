@@ -111,24 +111,35 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       flex: gridFlex,
-                      child: CustomScrollView(
-                        controller: _scroll,
-                        slivers: [
-                          if (!(!state.loading && state.items.isEmpty && state.initialLoadComplete))
-                            SliverToBoxAdapter(
-                              child: CategoryRow(selected: state.category),
-                            ),
-                          if (state.initialLoadComplete) ...[
-                            SliverToBoxAdapter(
-                              child: FilterSection(
-                                showFilters: _showFilters,
+                      child: RefreshIndicator(
+                        onRefresh: () async {
+                          context.read<HomesBloc>().add(HomesRetryLoad());
+                          await context.read<HomesBloc>().stream.firstWhere(
+                                (state) => !state.loading,
+                          );
+                        },
+                        color: theme.primary,
+                        backgroundColor: theme.bgDark,
+                        strokeWidth: 3.0,
+                        child: CustomScrollView(
+                          controller: _scroll,
+                          slivers: [
+                            if (!(!state.loading && state.items.isEmpty && state.initialLoadComplete))
+                              SliverToBoxAdapter(
+                                child: CategoryRow(selected: state.category),
                               ),
-                            ),
+                            if (state.initialLoadComplete) ...[
+                              SliverToBoxAdapter(
+                                child: FilterSection(
+                                  showFilters: _showFilters,
+                                ),
+                              ),
+                            ],
+                            const SliverPadding(padding: EdgeInsets.only(top: 8)),
+                            const HomesGrid(),
+                            const SliverPadding(padding: EdgeInsets.only(bottom: 90)),
                           ],
-                          const SliverPadding(padding: EdgeInsets.only(top: 8)),
-                          const HomesGrid(),
-                          const SliverPadding(padding: EdgeInsets.only(bottom: 90)),
-                        ],
+                        ),
                       ),
                     ),
                   ],

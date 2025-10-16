@@ -5,6 +5,7 @@ import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 import '../../../gen/assets.gen.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
@@ -59,9 +60,9 @@ class EmptyState extends StatelessWidget {
               child: PulsatingButton(
                 height: 40,
                 width: 160,
-                onClick: () {
+                onClick: select(() {
                   context.read<HomesBloc>().add(HomesClearFilters());
-                },
+                }),
                 color: theme.primary,
                 borderRadius: BorderRadius.circular(12),
                 child: Row(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 import '../../../model/entity/settings.dart';
 import '../../state/settings/settings_bloc.dart';
 import '../../state/settings/settings_event.dart';
@@ -29,7 +30,9 @@ class SettingsSection extends StatelessWidget {
               icon: Icons.palette_outlined,
               title: context.l10n.theme,
               subtitle: state.themeMode.displayName,
-              onTap: () => _showThemeDialog(context, state.themeMode),
+              onTap: click(() {
+                _showThemeDialog(context, state.themeMode);
+              }),
             ),
           ],
         ),
@@ -40,13 +43,17 @@ class SettingsSection extends StatelessWidget {
               icon: Icons.language_outlined,
               title: context.l10n.language,
               subtitle: state.language.displayName,
-              onTap: () => _showLanguageDialog(context, state.language),
+              onTap: click(() {
+                _showLanguageDialog(context, state.language);
+              }),
             ),
             SettingsTile(
               icon: Icons.attach_money_outlined,
               title: context.l10n.currency,
               subtitle: state.currency.displayName,
-              onTap: () => _showCurrencyDialog(context, state.currency),
+              onTap: click(() {
+                _showCurrencyDialog(context, state.currency);
+              }),
             ),
           ],
         ),
@@ -57,7 +64,9 @@ class SettingsSection extends StatelessWidget {
               icon: Icons.cleaning_services_outlined,
               title: context.l10n.clearCache,
               subtitle: context.l10n.clearCacheDescription,
-              onTap: () => _showClearCacheDialog(context),
+              onTap: click(() {
+                _showClearCacheDialog(context);
+              }),
             ),
           ],
         ),
@@ -88,10 +97,10 @@ class SettingsSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: () {
+                onPressed: click(() {
                   context.read<SettingsBloc>().add(SettingsChangeTheme(mode));
                   Navigator.pop(dialogContext);
-                },
+                }),
                 child: Text(
                   mode.displayName,
                   style: TextStyle(
@@ -130,6 +139,7 @@ class SettingsSection extends StatelessWidget {
               activeColor: theme.primary,
               onChanged: (value) {
                 if (value != null) {
+                  select(null);
                   context.read<SettingsBloc>().add(
                     SettingsChangeLanguage(value),
                   );
@@ -167,6 +177,7 @@ class SettingsSection extends StatelessWidget {
               activeColor: theme.primary,
               onChanged: (value) {
                 if (value != null) {
+                  select(null);
                   context.read<SettingsBloc>().add(
                     SettingsChangeCurrency(value),
                   );
@@ -198,7 +209,7 @@ class SettingsSection extends StatelessWidget {
               ),
               overlayColor: theme.primary,
             ),
-            onPressed: () => Navigator.pop(dialogContext),
+            onPressed: click(() => Navigator.pop(dialogContext)),
             child: Text(context.l10n.cancel, style: TextStyle(color: theme.textMuted)),
           ),
           TextButton(
@@ -211,6 +222,7 @@ class SettingsSection extends StatelessWidget {
             onPressed: () {
               context.read<SettingsBloc>().add(SettingsClearCache());
               Navigator.pop(dialogContext);
+              success(null);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(

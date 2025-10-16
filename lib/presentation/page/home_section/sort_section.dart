@@ -6,6 +6,7 @@ import 'package:home_mock/model/entity/settings.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
 import '../../state/home/home_state.dart';
@@ -41,26 +42,26 @@ class SortSection extends StatelessWidget {
                     label: context.l10n.priceAscending,
                     icon: Icons.arrow_upward,
                     isSelected: state.sortBy == SortBy.priceAsc,
-                    onPressed: () {
+                    onPressed: click(() {
                       context.read<HomesBloc>().add(
                         HomesChangeSortBy(
                           state.sortBy == SortBy.priceAsc ? null : SortBy.priceAsc,
                         ),
                       );
-                    },
+                    }),
                   ),
                   _SortButton(
                     width: isEn ? 175 : 190,
                     label: context.l10n.priceDescending,
                     icon: Icons.arrow_downward,
                     isSelected: state.sortBy == SortBy.priceDesc,
-                    onPressed: () {
+                    onPressed: click(() {
                       context.read<HomesBloc>().add(
                         HomesChangeSortBy(
                           state.sortBy == SortBy.priceDesc ? null : SortBy.priceDesc,
                         ),
                       );
-                    },
+                    }),
                   ),
                   _SortButton(
                     width: isEn ? 90 : 110,
@@ -68,13 +69,13 @@ class SortSection extends StatelessWidget {
                     icon: Icons.location_city,
                     isSelected: state.sortBy == SortBy.city,
                     separation: 14,
-                    onPressed: () {
+                    onPressed: click(() {
                       context.read<HomesBloc>().add(
                         HomesChangeSortBy(
                           state.sortBy == SortBy.city ? null : SortBy.city,
                         ),
                       );
-                    },
+                    }),
                   ),
                 ],
               ),

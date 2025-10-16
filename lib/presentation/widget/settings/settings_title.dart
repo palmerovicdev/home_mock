@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 
 class SettingsTile extends StatelessWidget {
   const SettingsTile({
@@ -32,7 +34,10 @@ class SettingsTile extends StatelessWidget {
         style: TextStyle(color: theme.textMuted, fontSize: 13),
       ),
       trailing: Icon(Icons.chevron_right, color: theme.textMuted),
-      onTap: onTap,
+      onTap: select(() {
+        HapticFeedback.selectionClick();
+        onTap.call();
+      }),
     );
   }
 }

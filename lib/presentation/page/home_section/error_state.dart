@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/pulsating_button.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/core/utils/feedback.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/locator.dart';
@@ -52,9 +53,9 @@ class ErrorState extends StatelessWidget {
               height: 40,
               width: 160,
               color: theme.primary,
-              onClick: () {
+              onClick: select(() {
                 context.read<HomesBloc>().add(HomesRetryLoad());
-              },
+              }),
               child: Text(
                 context.l10n.retry,
                 style: TextStyle(

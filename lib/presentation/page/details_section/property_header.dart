@@ -3,6 +3,7 @@ import 'package:home_mock/core/locator.dart';
 import 'package:home_mock/presentation/widget/details/price_bottom_sheet.dart';
 import 'package:screen_corner_radius/screen_corner_radius.dart';
 
+import '../../../core/utils/feedback.dart';
 import '../../../model/entity/item.dart';
 import '../../widget/cached_image.dart';
 import '../../widget/like_button.dart';
@@ -54,7 +55,7 @@ class PropertyHeader extends StatelessWidget {
               children: [
                 CircleButton(
                   icon: Icons.arrow_back_ios_new_rounded,
-                  onTap: () => Navigator.pop(context),
+                  onTap: click(() => Navigator.pop(context)),
                 ),
                 const Expanded(child: SizedBox()),
                 SizedBox(

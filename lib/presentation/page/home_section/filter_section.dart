@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/core/utils/feedback.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -34,9 +35,9 @@ class FilterSection extends StatelessWidget {
               const Spacer(),
               if (state.hasActiveFilters)
                 TextButton.icon(
-                  onPressed: () {
+                  onPressed: click(() {
                     context.read<HomesBloc>().add(HomesClearFilters());
-                  },
+                  }),
                   icon: Icon(Icons.clear, size: 16, color: theme.primary),
                   label: Text(
                     context.l10n.clear,

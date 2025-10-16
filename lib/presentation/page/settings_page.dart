@@ -6,6 +6,7 @@ import 'package:home_mock/presentation/page/setting_section/profile_section.dart
 import 'package:home_mock/presentation/page/setting_section/settings_section.dart';
 
 import '../../core/locator.dart';
+import '../../core/utils/feedback.dart';
 import '../state/settings/settings_bloc.dart';
 import '../state/settings/settings_state.dart';
 
@@ -23,7 +24,9 @@ class SettingsPage extends StatelessWidget {
             elevation: 0,
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: theme.text),
-              onPressed: () => context.pop(),
+              onPressed: click(() {
+                context.pop();
+              }),
             ),
             title: Text(
               context.l10n.settings,

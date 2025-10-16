@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/localization/app_locale.dart';
 import '../../core/locator.dart';
+import '../../core/utils/feedback.dart';
 import '../state/auth/auth_bloc.dart';
 import '../state/auth/auth_event.dart';
 import '../state/auth/auth_state.dart';
@@ -150,9 +151,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
+                          error(null);
                           return context.l10n.emailRequired;
                         }
                         if (!value.contains('@')) {
+                          error(null);
                           return context.l10n.emailInvalid;
                         }
                         return null;
@@ -219,9 +222,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
+                          error(null);
                           return context.l10n.passwordRequired;
                         }
                         if (value.length < 6) {
+                          error(null);
                           return context.l10n.passwordTooShort;
                         }
                         return null;

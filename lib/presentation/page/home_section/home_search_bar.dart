@@ -5,6 +5,7 @@ import 'package:home_mock/presentation/page/home_section/price_range_filter.dart
 import 'package:home_mock/presentation/page/home_section/sort_section.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
 import 'city_filters.dart';
@@ -48,14 +49,14 @@ class HomeSearchBar extends StatelessWidget {
               ),
             ),
             suffixIcon: IconButton(
-              onPressed: () {
+              onPressed: click(() {
                 showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
                   builder: (context) => _FiltersBottomSheet(),
                 );
-              },
+              }),
               icon: Icon(
                 Icons.filter_list_outlined,
                 size: 24,
@@ -156,7 +157,7 @@ class _FiltersBottomSheet extends StatelessWidget {
                     ),
                     const Spacer(),
                     IconButton(
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: click(() => Navigator.pop(context)),
                       icon: Icon(
                         Icons.close,
                         color: theme.text,

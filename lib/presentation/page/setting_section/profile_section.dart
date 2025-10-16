@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
+import 'package:home_mock/core/utils/feedback.dart';
 
 import '../../../core/locator.dart';
 import '../../state/auth/auth_bloc.dart';
@@ -53,9 +54,9 @@ class ProfileSection extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TextButton.icon(
-            onPressed: () {
+            onPressed: click(() {
               _showLogoutDialog(context);
-            },
+            }),
             style: TextButton.styleFrom(
               backgroundColor: theme.primary,
               foregroundColor: theme.text,
@@ -101,7 +102,9 @@ class ProfileSection extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => context.pop(),
+            onPressed: click(() {
+              context.pop();
+            }),
             style: TextButton.styleFrom(
               overlayColor: theme.primary,
             ),
@@ -111,13 +114,12 @@ class ProfileSection extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {
-
+            onPressed: select(() {
               context.read<AuthBloc>().add(AuthLogout());
 
               context.read<SettingsBloc>().add(SettingsLogout());
               context.pop();
-            },
+            }),
             style: TextButton.styleFrom(
               overlayColor: theme.primary,
             ),

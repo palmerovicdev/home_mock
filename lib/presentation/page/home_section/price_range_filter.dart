@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
 import '../../state/home/home_state.dart';
@@ -58,6 +59,7 @@ class PriceRangeFilter extends StatelessWidget {
                 activeColor: theme.primary,
                 inactiveColor: theme.bgLight,
                 onChanged: (values) {
+                  click(() {});
                   context.read<HomesBloc>().add(
                     HomesChangePriceRange(values.start, values.end),
                   );

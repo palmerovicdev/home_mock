@@ -6,6 +6,7 @@ import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
 import '../../../core/locator.dart';
 import '../../../core/utils/currency_formatter.dart';
+import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
 
 class PriceBottomSheet extends StatelessWidget {
@@ -74,7 +75,7 @@ class PriceBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
               ),
             ),
-            onPressed: () {},
+            onPressed: click(() {}),
             child: Text(
               context.l10n.buyNow,
               style: TextStyle(
@@ -90,13 +91,7 @@ class PriceBottomSheet extends StatelessWidget {
 }
 
 class CircleButton extends StatelessWidget {
-  const CircleButton({
-    super.key,
-    required this.icon,
-    this.onTap,
-    this.color,
-    this.size = 36
-  });
+  const CircleButton({super.key, required this.icon, this.onTap, this.color, this.size = 36});
 
   final IconData icon;
   final VoidCallback? onTap;
