@@ -24,7 +24,7 @@ class PriceBottomSheet extends StatelessWidget {
       ),
       height: 90,
       decoration: BoxDecoration(
-        color: theme.bgLight,
+        color: theme.bgDark,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(24),
         ),
@@ -92,19 +92,21 @@ class CircleButton extends StatelessWidget {
     required this.icon,
     this.onTap,
     this.color,
+    this.size = 36
   });
 
   final IconData icon;
   final VoidCallback? onTap;
   final Color? color;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     final isDark = context.read<HomesBloc>().state.isDarkMode;
 
     return SizedBox(
-      width: 36,
-      height: 36,
+      width: size,
+      height: size,
       child: RippleRevealButton(
         widgetA: Center(
           child: Icon(icon, color: color ?? theme.text, size: 18),

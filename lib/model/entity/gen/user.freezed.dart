@@ -15,65 +15,44 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
-  String get id;
-
-  String get email;
-
-  String get name;
-
-  String get avatarUrl;
-
-  bool get isLoggedIn;
-
-  DateTime? get lastLogin;
-
-  /// Create a copy of User
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
+ String get id; String get email; String get name; String get avatarUrl; bool get isLoggedIn; DateTime? get lastLogin;
+/// Create a copy of User
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
 
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is User && (identical(other.id, id) || other.id == id) && (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) && (identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl) &&
-            (identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn) && (identical(other.lastLogin, lastLogin) || other.lastLogin == lastLogin));
-  }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(
-          runtimeType,
-          id,
-          email,
-          name,
-          avatarUrl,
-          isLoggedIn,
-          lastLogin);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.lastLogin, lastLogin) || other.lastLogin == lastLogin));
+}
 
-  @override
-  String toString() {
-    return 'User(id: $id, email: $email, name: $name, avatarUrl: $avatarUrl, isLoggedIn: $isLoggedIn, lastLogin: $lastLogin)';
-  }
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,email,name,avatarUrl,isLoggedIn,lastLogin);
+
+@override
+String toString() {
+  return 'User(id: $id, email: $email, name: $name, avatarUrl: $avatarUrl, isLoggedIn: $isLoggedIn, lastLogin: $lastLogin)';
+}
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserCopyWith<$Res> {
+abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
+@useResult
+$Res call({
+ String id, String email, String name, String avatarUrl, bool isLoggedIn, DateTime? lastLogin
+});
 
-  @useResult
-  $Res call({
-    String id, String email, String name, String avatarUrl, bool isLoggedIn, DateTime? lastLogin
-  });
+
 
 
 }
-
 /// @nodoc
 class _$UserCopyWithImpl<$Res>
     implements $UserCopyWith<$Res> {
@@ -82,76 +61,42 @@ class _$UserCopyWithImpl<$Res>
   final User _self;
   final $Res Function(User) _then;
 
-  /// Create a copy of User
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? id = null, Object? email = null, Object? name = null, Object? avatarUrl = null, Object? isLoggedIn = null, Object? lastLogin = freezed,}) {
-    return _then(User(
-      id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-      as String,
-      email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-      as String,
-      name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-      as String,
-      avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-      as String,
-      isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
-      as bool,
-      lastLogin: freezed == lastLogin ? _self.lastLogin : lastLogin // ignore: cast_nullable_to_non_nullable
-      as DateTime?,
-    ));
-  }
+/// Create a copy of User
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = null,Object? name = null,Object? avatarUrl = null,Object? isLoggedIn = null,Object? lastLogin = freezed,}) {
+  return _then(User(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as String,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
+as bool,lastLogin: freezed == lastLogin ? _self.lastLogin : lastLogin // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
 
 }
 
 
 /// Adds pattern-matching-related methods to [User].
 extension UserPatterns on User {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  @optionalTypeArgs TResult maybeMap
-
-  <
-
-  TResult
-
-  extends
-
-  Object?
-
-  >
-
-  (
-
-  {
-
-  required
-
-  TResult
-
-  orElse
-
-  (
-
-  )
-
-  ,
-}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _:
-return orElse();
+  return orElse();
 
 }
 }
@@ -168,15 +113,14 @@ return orElse();
 /// }
 /// ```
 
-@optionalTypeArgs
-TResult map<TResult extends Object?>() {
-  final _that = this;
-  switch (_that) {
-    case _:
-      throw StateError('Unexpected subclass');
-  }
-}
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
 
+}
+}
 /// A variant of `map` that fallback to returning `null`.
 ///
 /// It is equivalent to doing:
@@ -189,15 +133,14 @@ TResult map<TResult extends Object?>() {
 /// }
 /// ```
 
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>() {
-  final _that = this;
-  switch (_that) {
-    case _:
-      return null;
-  }
-}
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
 
+}
+}
 /// A variant of `when` that fallback to an `orElse` callback.
 ///
 /// It is equivalent to doing:
@@ -210,16 +153,10 @@ TResult? mapOrNull<TResult extends Object?>() {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen
-<
-TResult extends Object?>(
-{
-required
-TResult
-orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _:
-return orElse();
+  return orElse();
 
 }
 }
@@ -239,7 +176,7 @@ return orElse();
 @optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
 switch (_that) {
 case _:
-throw StateError('Unexpected subclass');
+  throw StateError('Unexpected subclass');
 
 }
 }
@@ -258,7 +195,7 @@ throw StateError('Unexpected subclass');
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
 switch (_that) {
 case _:
-return null;
+  return null;
 
 }
 }

@@ -10,7 +10,7 @@ class FeatureCard extends StatelessWidget {
     required this.label,
   });
 
-  final IconData icon;
+  final String icon;
   final String value;
   final String label;
 
@@ -20,12 +20,26 @@ class FeatureCard extends StatelessWidget {
       width: 95,
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        color: theme.bgLight,
+        color: theme.bg,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         children: [
-          Icon(icon, color: theme.text, size: 24),
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: theme.sBgDark.withOpacity(0.2),
+                  blurRadius: 20,
+                  offset: const Offset(0, 12),
+                ),
+              ],
+            ),
+            child: Text(
+              icon,
+              style: const TextStyle(fontSize: 28),
+            ),
+          ),
           const SizedBox(height: 6),
           Text(
             value,

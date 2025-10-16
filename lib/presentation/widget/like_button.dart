@@ -22,41 +22,41 @@ class _LikeButtonState extends State<LikeButton> {
   @override
   Widget build(BuildContext context) {
     return RippleRevealButton(
-      widgetB: Center(
-        child: Icon(
-          widget.item.isFavorite ? Icons.favorite : Icons.favorite_border,
-          size: 18,
-          color: widget.item.isFavorite ? Colors.redAccent : theme.textMuted,
-        ),
-      ),
-      widgetA: Center(
-        child: Lottie.asset(
-          Assets.animations.like,
-          animate: true,
-          repeat: false,
-          width: 50,
-          height: 50,
-          frameRate: FrameRate(140),
-        ),
-      ),
-      height: 36,
-      padding: EdgeInsets.zero,
-      selected: widget.item.isFavorite,
-      backgroundColorA: !context.read<HomesBloc>().state.isDarkMode ? theme.bgDark : theme.bgDark.withAlpha(220),
-      backgroundColorB: !context.read<HomesBloc>().state.isDarkMode ? theme.bgDark.withAlpha(254) : theme.bgDark.withAlpha(121),
-      rippleColorA: theme.warning.withAlpha(300),
-      rippleColorB: theme.bgDark.withAlpha(31),
-      radius: 32,
-      duration: const Duration(milliseconds: 200),
-      onPressed: () {
-        context.read<HomesBloc>().add(
-          HomesChangeFavorite(
-            widget.item.copyWith(
-              isFavorite: !widget.item.isFavorite,
+            widgetB: Center(
+              child: Icon(
+                widget.item.isFavorite ? Icons.favorite : Icons.favorite_border,
+                size: 18,
+                color: widget.item.isFavorite ? Colors.redAccent : theme.textMuted,
+              ),
             ),
-          ),
-        );
-      },
-    );
+            widgetA: Center(
+              child: Lottie.asset(
+                Assets.animations.like,
+                animate: true,
+                repeat: false,
+                width: 50,
+                height: 50,
+                frameRate: FrameRate(140),
+              ),
+            ),
+            height: 36,
+            padding: EdgeInsets.zero,
+            selected: widget.item.isFavorite,
+            backgroundColorA: theme.bgDark.withAlpha(150),
+            backgroundColorB: theme.bgDark.withAlpha(151),
+            rippleColorA: theme.warning.withAlpha(300),
+            rippleColorB: theme.bgDark.withAlpha(31),
+            radius: 32,
+            duration: const Duration(milliseconds: 200),
+            onPressed: () {
+              context.read<HomesBloc>().add(
+                HomesChangeFavorite(
+                  widget.item.copyWith(
+                    isFavorite: !widget.item.isFavorite,
+                  ),
+                ),
+              );
+            },
+          );
   }
 }

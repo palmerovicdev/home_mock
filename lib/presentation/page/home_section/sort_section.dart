@@ -112,14 +112,14 @@ class _SortButton extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: 14,
-                color: theme.bgDark,
+                color: theme.sText,
                 fontWeight: FontWeight.w600,
               ),
             ),
             SizedBox(width: separation),
             Icon(
               icon,
-              color: theme.bgDark,
+              color: theme.sText,
               size: 18,
             ),
           ],

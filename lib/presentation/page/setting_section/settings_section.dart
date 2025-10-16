@@ -10,7 +10,10 @@ import '../../widget/settings/settings_group.dart';
 import '../../widget/settings/settings_title.dart';
 
 class SettingsSection extends StatelessWidget {
-  const SettingsSection({required this.state});
+  const SettingsSection({
+    super.key,
+    required this.state,
+  });
 
   final SettingsState state;
 
@@ -78,21 +81,33 @@ class SettingsSection extends StatelessWidget {
         title: Text('Seleccionar tema', style: TextStyle(color: theme.text)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          spacing: 6,
           children: AppThemeMode.values.map((mode) {
-            return RadioListTile<AppThemeMode>(
-              title: Text(
-                mode.displayName,
-                style: TextStyle(color: theme.text),
-              ),
-              value: mode,
-              groupValue: currentTheme,
-              activeColor: theme.primary,
-              onChanged: (value) {
-                if (value != null) {
-                  context.read<SettingsBloc>().add(SettingsChangeTheme(value));
+            return SizedBox(
+              width: 200,
+              height: 40,
+              child: FilledButton(
+                style: FilledButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  backgroundColor: currentTheme == mode ? theme.primary : theme.bgLight,
+                  shadowColor: currentTheme == mode ? theme.primary : theme.bgLight,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  context.read<SettingsBloc>().add(SettingsChangeTheme(mode));
                   Navigator.pop(dialogContext);
-                }
-              },
+                },
+                child: Text(
+                  mode.displayName,
+                  style: TextStyle(
+                    color: currentTheme == mode ? theme.sText : theme.textMuted,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
             );
           }).toList(),
         ),
@@ -112,7 +127,10 @@ class SettingsSection extends StatelessWidget {
             return RadioListTile<AppLanguage>(
               title: Text(
                 lang.displayName,
-                style: TextStyle(color: theme.text),
+                style: TextStyle(
+                  color: theme.textMuted,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               value: lang,
               groupValue: currentLanguage,
@@ -144,7 +162,10 @@ class SettingsSection extends StatelessWidget {
             return RadioListTile<Currency>(
               title: Text(
                 curr.displayName,
-                style: TextStyle(color: theme.text),
+                style: TextStyle(
+                  color: theme.textMuted,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               value: curr,
               groupValue: currentCurrency,
@@ -193,6 +214,7 @@ class SettingsSection extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
+                  duration: const Duration(milliseconds: 400),
                   backgroundColor: theme.primary,
                 ),
               );

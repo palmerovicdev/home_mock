@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/locator.dart';
 import 'package:home_mock/presentation/widget/details/price_bottom_sheet.dart';
+import 'package:screen_corner_radius/screen_corner_radius.dart';
 
 import '../../../model/entity/item.dart';
 import '../../widget/cached_image.dart';
@@ -17,15 +19,31 @@ class PropertyHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Hero(
-          tag: 'home_${item.id}',
-          child: CachedImage(
-            imageUrl: item.imageUrl,
-            height: 350,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            borderRadius: const BorderRadius.vertical(
-              bottom: Radius.circular(32),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(locator.get<ScreenRadius>().topLeft - 4),
+                topRight: Radius.circular(locator.get<ScreenRadius>().topRight - 4),
+                bottomLeft: Radius.circular(locator.get<ScreenRadius>().bottomLeft - 24),
+                bottomRight: Radius.circular(locator.get<ScreenRadius>().bottomRight - 24),
+              ),
+            ),
+            child: Hero(
+              tag: 'home_${item.id}',
+              child: CachedImage(
+                imageUrl: item.imageUrl,
+                height: 380,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(locator.get<ScreenRadius>().topLeft - 4),
+                  topRight: Radius.circular(locator.get<ScreenRadius>().topRight - 4),
+                  bottomLeft: Radius.circular(locator.get<ScreenRadius>().bottomLeft - 24),
+                  bottomRight: Radius.circular(locator.get<ScreenRadius>().bottomRight - 24),
+                ),
+              ),
             ),
           ),
         ),

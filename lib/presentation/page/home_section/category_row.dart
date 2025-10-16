@@ -19,13 +19,13 @@ class CategoryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final entries = const [
-      (Category.apartment, Icons.apartment, 'Apartment'),
-      (Category.house, Icons.house_rounded, 'House'),
+      (Category.apartment, '🏢', 'Apartment'),
+      (Category.house, '🏠', 'House'),
     ];
     final bloc = context.read<HomesBloc>();
 
     return SizedBox(
-      height: 60,
+      height: 140,
       child: ListView(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
@@ -56,13 +56,28 @@ class CategoryRow extends StatelessWidget {
             duration: const Duration(milliseconds: 400),
             child: Padding(
               padding: const EdgeInsets.only(left: 4),
-              child: TextButton(
-                onPressed: () => bloc.add(HomesChangeCategory(Category.all)),
-                child: Text(
-                  'All',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: theme.textMuted,
+              child: Container(
+                width: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  color: theme.bg,
+                ),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    overlayColor: theme.primary,
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                  onPressed: () => bloc.add(HomesChangeCategory(Category.all)),
+                  child: Text(
+                    'All',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: theme.textMuted,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -84,7 +99,7 @@ class _CategoryChip extends StatelessWidget {
   });
 
   final bool active;
-  final IconData icon;
+  final String icon;
   final String label;
   final VoidCallback onTap;
   final VoidCallback onDeselect;
@@ -94,41 +109,78 @@ class _CategoryChip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: SizedBox(
-        width: 140,
+        width: 100,
+        height: 140,
         child: RippleRevealButton(
+          height: 140,
           duration: Duration(milliseconds: 300),
-          height: 60,
           alignment: AlignmentGeometry.center,
-          widgetA: Row(
-            spacing: 8,
-            children: [
-              Icon(icon, color: theme.text),
-              Text(
-                label,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: theme.text,
+          widgetA: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: theme.sBgDark.withOpacity(0.25),
+                        blurRadius: 16,
+                        offset: const Offset(0, 12),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    icon,
+                    style: const TextStyle(fontSize: 42),
+                  ),
                 ),
-              ),
-            ],
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: theme.text,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
           ),
-          widgetB: Row(
-            spacing: 8,
-            children: [
-              Icon(icon, color: theme.bgDark),
-              Text(
-                label,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: theme.bgDark,
+          widgetB: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: theme.sBgDark.withOpacity(0.25),
+                        blurRadius: 16,
+                        offset: const Offset(0, 12),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    icon,
+                    style: const TextStyle(fontSize: 42),
+                  ),
                 ),
-              ),
-            ],
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: theme.sText,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
           ),
           backgroundColorA: theme.primary,
-          backgroundColorB: theme.bgDark,
+          backgroundColorB: theme.bg,
           radius: 24,
-          rippleColorA: theme.bgDark,
+          rippleColorA: theme.bg,
           rippleColorB: theme.primary,
           selected: !active,
           onPressed: () {

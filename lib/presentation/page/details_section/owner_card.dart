@@ -18,10 +18,10 @@ class OwnerCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         decoration: BoxDecoration(
-          color: theme.bgLight,
-          borderRadius: BorderRadius.circular(16),
+          color: theme.bg,
+          borderRadius: BorderRadius.circular(32),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: Row(
           children: [
             CircleAvatar(
@@ -40,9 +40,9 @@ class OwnerCard extends StatelessWidget {
             ),
             Row(
               children: [
-                CircleButton(icon: Icons.chat_bubble_outline),
+                CircleButton(icon: Icons.chat_bubble_outline, size: 52,color: theme.primary,),
                 const SizedBox(width: 10),
-                CircleButton(icon: Icons.call_outlined),
+                CircleButton(icon: Icons.call_outlined, size: 52, color: theme.primary,),
               ],
             ),
           ],

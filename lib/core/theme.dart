@@ -1,149 +1,47 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-
-enum ColorScheme {
-  purple,
-  blue,
-  pink,
-}
+import 'package:flutter/material.dart';
 
 class Theme {
   bool isDark;
-  ColorScheme colorScheme;
-  _ColorPalette? _cachedPalette;
 
-  Theme(this.isDark, {this.colorScheme = ColorScheme.purple});
+  Theme(this.isDark);
 
-  Future<void> load() async {
-    _cachedPalette = await _loadPalette();
-  }
-
-  Future<void> reload() async {
-    _cachedPalette = await _loadPalette();
-  }
-
-  Future<void> toggleDarkMode() async {
+  void toggleDarkMode() {
     isDark = !isDark;
-    await reload();
   }
 
-  Future<void> setDarkMode(bool darkMode) async {
+  void setDarkMode(bool darkMode) {
     isDark = darkMode;
-    await reload();
   }
 
-  Future<void> changeColorScheme(ColorScheme newScheme) async {
-    colorScheme = newScheme;
-    await reload();
-  }
+  Color get bgDark => isDark ? const Color(0xFF191718) : const Color(0xFFEBE6DC);
 
-  Future<_ColorPalette> _loadPalette() async {
-    final schemeName = colorScheme.name;
-    final brightness = isDark ? 'dark' : 'light';
-    final path = 'assets/themes/${schemeName}_$brightness.json';
+  Color get bg => isDark ? const Color(0xFF242122) : const Color(0xFFF3EEE5);
 
-    final jsonString = await rootBundle.loadString(path);
-    final Map<String, dynamic> json = jsonDecode(jsonString);
+  Color get bgLight => isDark ? const Color(0xFF161418) : const Color(0xFFFFFFFF);
 
-    return _ColorPalette.fromJson(json);
-  }
+  Color get text => isDark ? const Color(0xFFEEEDE4) : const Color(0xFF23201F);
 
-  _ColorPalette get _palette {
-    if (_cachedPalette == null) {
-      throw StateError('Theme not loaded. Call load() first.');
-    }
-    return _cachedPalette!;
-  }
+  Color get textMuted => isDark ? const Color(0xFF888586) : const Color(0xFF575249);
 
-  Color get bgDark => _palette.bgDark.toColor();
+  Color get border => isDark ? const Color(0xFF2C292A) : const Color(0xFF918D84);
 
-  Color get bg => _palette.bg.toColor();
+  Color get borderMuted => isDark ? const Color(0xFF302F34) : const Color(0xFFA39BA8);
 
-  Color get bgLight => _palette.bgLight.toColor();
+  Color get highlight => isDark ? const Color(0xFF655F66) : const Color(0xFFFFFFFF);
 
-  Color get text => _palette.text.toColor();
+  Color get sBgDark => const Color(0xFF1F1B1C);
+  Color get sText => const Color(0xFFEEEDE4);
+  Color get sTextMuted => const Color(0xFF9A968D);
 
-  Color get textMuted => _palette.textMuted.toColor();
+  Color get primary => const Color(0xFFD3493C);
 
-  Color get highlight => _palette.highlight.toColor();
+  Color get secondary => const Color(0xFF90A959);
 
-  Color get border => _palette.border.toColor();
+  Color get danger => const Color(0xFFAC8A8C);
 
-  Color get borderMuted => _palette.borderMuted.toColor();
+  Color get warning => const Color(0xFF8F8770);
 
-  Color get primary => _palette.primary.toColor();
+  Color get success => const Color(0xFF75958A);
 
-  Color get secondary => _palette.secondary.toColor();
-
-  Color get danger => _palette.danger.toColor();
-
-  Color get warning => _palette.warning.toColor();
-
-  Color get success => _palette.success.toColor();
-
-  Color get info => _palette.info.toColor();
-}
-
-class _ColorPalette {
-  final HSLColor bgDark;
-  final HSLColor bg;
-  final HSLColor bgLight;
-  final HSLColor text;
-  final HSLColor textMuted;
-  final HSLColor highlight;
-  final HSLColor border;
-  final HSLColor borderMuted;
-  final HSLColor primary;
-  final HSLColor secondary;
-  final HSLColor danger;
-  final HSLColor warning;
-  final HSLColor success;
-  final HSLColor info;
-
-  _ColorPalette({
-    required this.bgDark,
-    required this.bg,
-    required this.bgLight,
-    required this.text,
-    required this.textMuted,
-    required this.highlight,
-    required this.border,
-    required this.borderMuted,
-    required this.primary,
-    required this.secondary,
-    required this.danger,
-    required this.warning,
-    required this.success,
-    required this.info,
-  });
-
-  factory _ColorPalette.fromJson(Map<String, dynamic> json) {
-    HSLColor parseColor(Map<String, dynamic> colorJson) {
-      return HSLColor.fromAHSL(
-        1.0,
-        (colorJson['h'] as num).toDouble(),
-        (colorJson['s'] as num).toDouble(),
-        (colorJson['l'] as num).toDouble(),
-      );
-    }
-
-    return _ColorPalette(
-      bgDark: parseColor(json['bgDark']),
-      bg: parseColor(json['bg']),
-      bgLight: parseColor(json['bgLight']),
-      text: parseColor(json['text']),
-      textMuted: parseColor(json['textMuted']),
-      highlight: parseColor(json['highlight']),
-      border: parseColor(json['border']),
-      borderMuted: parseColor(json['borderMuted']),
-      primary: parseColor(json['primary']),
-      secondary: parseColor(json['secondary']),
-      danger: parseColor(json['danger']),
-      warning: parseColor(json['warning']),
-      success: parseColor(json['success']),
-      info: parseColor(json['info']),
-    );
-  }
+  Color get info => const Color(0xFF6F95B4);
 }

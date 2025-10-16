@@ -213,8 +213,8 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
   FutureOr<void> _onToggleTheme(
     HomesToggleTheme event,
     Emitter<HomesState> emit,
-  ) async {
-    await theme.toggleDarkMode();
+  ) {
+    theme.toggleDarkMode();
     emit(state.copyWith(isDarkMode: !state.isDarkMode));
   }
 }

@@ -28,14 +28,15 @@ class SettingsGroup extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: FontWeight.w600,
                 color: theme.textMuted,
-                letterSpacing: 0.5,
+                letterSpacing: 0.7,
               ),
             ),
           ),
           ...children,
+          const SizedBox(height: 4),
         ],
       ),
     );

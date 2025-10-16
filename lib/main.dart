@@ -4,7 +4,6 @@ import 'package:home_mock/core/locator.dart';
 import 'package:home_mock/model/entity/settings.dart';
 import 'package:home_mock/presentation/state/home/home_bloc.dart';
 import 'package:home_mock/presentation/state/home/home_event.dart';
-import 'package:home_mock/presentation/state/home/home_state.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 import 'package:home_mock/presentation/state/settings/settings_event.dart';
 import 'package:home_mock/presentation/state/settings/settings_state.dart';
@@ -31,21 +30,17 @@ class HomeMockApp extends StatelessWidget {
           create: (context) => SettingsBloc()..add(SettingsLoadPreferences()),
         ),
       ],
-      child: BlocBuilder<HomesBloc, HomesState>(
-        buildWhen: (p, c) => p.version != c.version,
-        builder: (context, homesState) {
-          return BlocBuilder<SettingsBloc, SettingsState>(
-            builder: (context, settingsState) {
-              return MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                themeMode: _getThemeMode(settingsState.themeMode),
-                darkTheme: ThemeData(
-                  useMaterial3: true,
-                  colorScheme: ColorScheme.fromSeed(seedColor: theme.bgDark),
-                ),
-                routerConfig: router,
-              );
-            },
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        buildWhen: (p, c) => p.themeMode != c.themeMode,
+        builder: (context, settingsState) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            themeMode: _getThemeMode(settingsState.themeMode),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(seedColor: theme.bgDark),
+            ),
+            routerConfig: router,
           );
         },
       ),

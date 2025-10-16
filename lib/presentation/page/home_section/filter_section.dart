@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
@@ -11,11 +10,9 @@ class FilterSection extends StatelessWidget {
   const FilterSection({
     super.key,
     required this.showFilters,
-    required this.onToggleFilters,
   });
 
   final bool showFilters;
-  final VoidCallback onToggleFilters;
 
   @override
   Widget build(BuildContext context) {
@@ -45,28 +42,6 @@ class FilterSection extends StatelessWidget {
                     style: TextStyle(color: theme.primary),
                   ),
                 ),
-
-              SizedBox(
-                height: 32,
-                width: 60,
-                child: RippleRevealButton(
-                  onPressed: onToggleFilters,
-                  radius: 12,
-                  widgetA: Icon(
-                    showFilters ? Icons.filter_list_off : Icons.filter_list,
-                    color: showFilters ? theme.bgDark : theme.textMuted,
-                  ),
-                  widgetB: Icon(
-                    showFilters ? Icons.filter_list_off : Icons.filter_list,
-                    color: showFilters ? theme.bgDark : theme.textMuted,
-                  ),
-                  duration: const Duration(milliseconds: 300),
-                  backgroundColorA: theme.bgDark,
-                  backgroundColorB: theme.primary,
-                  rippleColorA: theme.primary,
-                  rippleColorB: theme.bgDark,
-                ),
-              ),
             ],
           ),
         );

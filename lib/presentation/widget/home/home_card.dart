@@ -55,27 +55,6 @@ class HomeCard extends StatelessWidget {
                       )
                     : const SizedBox.shrink(),
                 Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: !context.read<HomesBloc>().state.isDarkMode ? theme.bgDark : theme.bg.withAlpha(200),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      item.category.name[0].toUpperCase() + item.category.name.substring(1),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: theme.text,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
                   left: 8,
                   right: 8,
                   bottom: 12,
@@ -117,7 +96,7 @@ class HomeCardInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
       decoration: BoxDecoration(
-        color: context.read<HomesBloc>().state.isDarkMode ? theme.bgLight.withAlpha(120) : theme.bgDark,
+        color: context.read<HomesBloc>().state.isDarkMode ? theme.bgLight.withAlpha(180) : theme.bgDark,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

@@ -43,45 +43,12 @@ class $AssetsAnimationsGen {
   ];
 }
 
-class $AssetsThemesGen {
-  const $AssetsThemesGen();
-
-  /// File path: assets/themes/blue_dark.json
-  String get blueDark => 'assets/themes/blue_dark.json';
-
-  /// File path: assets/themes/blue_light.json
-  String get blueLight => 'assets/themes/blue_light.json';
-
-  /// File path: assets/themes/pink_dark.json
-  String get pinkDark => 'assets/themes/pink_dark.json';
-
-  /// File path: assets/themes/pink_light.json
-  String get pinkLight => 'assets/themes/pink_light.json';
-
-  /// File path: assets/themes/purple_dark.json
-  String get purpleDark => 'assets/themes/purple_dark.json';
-
-  /// File path: assets/themes/purple_light.json
-  String get purpleLight => 'assets/themes/purple_light.json';
-
-  /// List of all assets
-  List<String> get values => [
-    blueDark,
-    blueLight,
-    pinkDark,
-    pinkLight,
-    purpleDark,
-    purpleLight,
-  ];
-}
-
 class Assets {
   const Assets._();
 
   static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
   static const AssetGenImage image = AssetGenImage('assets/image.png');
-  static const $AssetsThemesGen themes = $AssetsThemesGen();
 
   /// List of all assets
   static List<AssetGenImage> get values => [icon, image];

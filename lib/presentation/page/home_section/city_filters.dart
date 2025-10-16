@@ -54,7 +54,7 @@ class _CityFiltersState extends State<CityFilters> {
                       widgetA: Text(
                         city,
                         style: TextStyle(
-                          color: theme.bgDark,
+                          color: theme.sText,
                         ),
                       ),
                       widgetB: Text(

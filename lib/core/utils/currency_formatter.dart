@@ -33,12 +33,11 @@ class CurrencyFormatter {
     return '${format(amount, currency: currency)}$suffix';
   }
 
-  // Conversión de USD a EUR (tipo de cambio aproximado)
   static int convert(int amountUsd, Currency targetCurrency) {
     if (targetCurrency == Currency.usd) {
       return amountUsd;
     }
-    // Conversión aproximada: 1 USD = 0.92 EUR
+
     return (amountUsd * 0.92).round();
   }
 }

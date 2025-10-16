@@ -80,7 +80,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
       final isDarkMode = _calculateIsDarkMode(themeMode);
 
-      await theme.setDarkMode(isDarkMode);
+      theme.setDarkMode(isDarkMode);
 
       emit(
         state.copyWith(
@@ -110,7 +110,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     await prefs.setString(_keyThemeMode, event.themeMode.name);
 
     final isDarkMode = _calculateIsDarkMode(event.themeMode);
-    await theme.setDarkMode(isDarkMode);
+    theme.setDarkMode(isDarkMode);
 
     emit(
       state.copyWith(
@@ -149,16 +149,13 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     try {
       final prefs = await SharedPreferences.getInstance();
 
-      // Guardar configuraciones actuales
-      final currentTheme = state.themeMode.name;
-      final currentLanguage = state.language.code;
-      final currentCurrency = state.currency.code;
+      final currentTheme = AppThemeMode.system.name;
+      final currentLanguage = AppLanguage.es.code;
+      final currentCurrency = Currency.usd.code;
       final currentUser = state.user;
 
-      // Limpiar todo
       await prefs.clear();
 
-      // Restaurar configuraciones
       await prefs.setString(_keyThemeMode, currentTheme);
       await prefs.setString(_keyLanguage, currentLanguage);
       await prefs.setString(_keyCurrency, currentCurrency);
@@ -167,7 +164,17 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         await _saveUser(prefs, currentUser);
       }
 
-      emit(state.copyWith(isLoading: false));
+      final isDarkMode = _calculateIsDarkMode(AppThemeMode.system);
+      theme.setDarkMode(isDarkMode);
+
+      emit(
+        state.copyWith(
+          isLoading: false,
+          themeMode: AppThemeMode.system,
+          currency: Currency.usd,
+          language: AppLanguage.es,
+        ),
+      );
     } catch (e) {
       emit(
         state.copyWith(
@@ -217,7 +224,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       case AppThemeMode.dark:
         return true;
       case AppThemeMode.system:
-        // Obtener el tema del sistema
         final brightness = ui.PlatformDispatcher.instance.platformBrightness;
         return brightness == ui.Brightness.dark;
     }

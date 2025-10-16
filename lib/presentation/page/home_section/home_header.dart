@@ -15,66 +15,107 @@ class HomeHeader extends StatelessWidget {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, settingsState) {
         final user = settingsState.user;
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final isCompact = constraints.maxHeight < 140;
+
+            return Padding(
+              padding: EdgeInsets.all(isCompact ? 12.0 : 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(
-                    onTap: () => context.pushNamed(Routes.settings.name),
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundImage: NetworkImage(
-                        user?.avatarUrl ?? 'https://i.pravatar.cc/100',
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => context.pushNamed(Routes.settings.name),
+                        child: CircleAvatar(
+                          radius: isCompact ? 20.0 : 24.0,
+                          backgroundImage: NetworkImage(
+                            user?.avatarUrl ?? 'https://i.pravatar.cc/100',
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      'Hola, ${user?.name ?? "Usuario"}',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: theme.text,
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Hola, ${user?.name ?? "Usuario"}',
+                              style: TextStyle(
+                                fontSize: isCompact ? 14.0 : 16.0,
+                                fontWeight: FontWeight.w600,
+                                color: theme.sText,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            if (!isCompact)
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.mail,
+                                    size: 14,
+                                    color: theme.sTextMuted,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Flexible(
+                                    child: Text(
+                                      user?.email ?? 'testing@gmail.com',
+                                      style: TextStyle(
+                                        fontSize: 13.0,
+                                        color: theme.sTextMuted,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => context.pushNamed(Routes.settings.name),
-                    icon: Icon(
-                      Icons.settings_outlined,
-                      color: theme.text,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Buy Your\n',
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: theme.textMuted,
+                      IconButton(
+                        onPressed: () => context.pushNamed(Routes.settings.name),
+                        icon: Icon(
+                          Icons.settings_outlined,
+                          color: theme.sText,
+                          size: 22,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: 'Perfect Home 🏠',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
-                        color: theme.text,
+                    ],
+                  ),
+                  if (!isCompact) ...[
+                    const SizedBox(height: 8),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Buy Your\n',
+                            style: TextStyle(
+                              fontSize: 28.0,
+                              color: theme.sTextMuted,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'Perfect Home 🏠',
+                            style: TextStyle(
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.w700,
+                              color: theme.sText,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
-                ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

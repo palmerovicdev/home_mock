@@ -21,17 +21,17 @@ class PropertyFeatures extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           FeatureCard(
-            icon: Icons.square_foot_rounded,
+            icon: '📐',
             value: sizeData[0],
             label: sizeData[1],
           ),
           FeatureCard(
-            icon: Icons.bed_rounded,
+            icon: '🛌',
             value: "${item.bedrooms}",
             label: "Bedrooms",
           ),
           FeatureCard(
-            icon: Icons.bathtub_rounded,
+            icon: '🛁',
             value: "${item.bathrooms}",
             label: "Bathrooms",
           ),
