@@ -295,7 +295,7 @@ class SettingsSection extends StatelessWidget {
                   content: Text(
                     context.l10n.cacheClearedSuccess,
                     style: TextStyle(
-                      color: theme.bgDark,
+                      color: theme.sText,
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
