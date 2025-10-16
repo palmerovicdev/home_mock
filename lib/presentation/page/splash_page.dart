@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/constants/app_radius.dart';
+import 'package:home_mock/core/constants/app_spacing.dart';
 
 import '../../core/localization/app_locale.dart';
 import '../../core/locator.dart';
@@ -19,7 +21,7 @@ class SplashPage extends StatelessWidget {
               height: 150,
               decoration: BoxDecoration(
                 color: theme.bgLight,
-                borderRadius: BorderRadius.circular(40),
+                borderRadius: AppRadius.borderExtraLarge,
               ),
               child: Center(
                 child: Icon(
@@ -30,7 +32,7 @@ class SplashPage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 40),
+            AppSpacing.gapGiant,
 
             Text(
               context.l10n.appTitle,
@@ -41,7 +43,7 @@ class SplashPage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 60),
+            AppSpacing.gapMega,
 
             SizedBox(
               width: 100,
@@ -52,7 +54,7 @@ class SplashPage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
+            AppSpacing.gapHuge,
 
             Text(
               context.l10n.checkingAuth,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/constants/app_spacing.dart';
 import '../../core/locator.dart';
 import '../state/home/home_bloc.dart';
 import '../state/home/home_state.dart';
@@ -34,15 +35,16 @@ class DetailsPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 20),
+                      AppSpacing.gapHuge,
                       PropertyTitleSection(item: item),
-                      const SizedBox(height: 20),
+                      AppSpacing.gapHuge,
                       PropertyFeatures(item: item),
-                      const SizedBox(height: 24),
+                      AppSpacing.gapExtraLarge,
                       OwnerCard(owner: item.owner),
-                      const SizedBox(height: 24),
+                      AppSpacing.gapExtraLarge,
                       PropertyDescription(description: item.description),
-                      const SizedBox(height: 110),
+                      AppSpacing.gapMega,
+                      AppSpacing.gapGiant,
                     ],
                   ),
                 ),

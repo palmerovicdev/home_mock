@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_mock/core/constants/app_radius.dart';
+import 'package:home_mock/core/constants/app_spacing.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
+import '../../../core/constants/app_durations.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/feedback.dart';
 import '../../../model/entity/settings.dart';
@@ -70,7 +73,7 @@ class SettingsSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 32),
+        AppSpacing.gapMassive,
       ],
     );
   }
@@ -94,7 +97,7 @@ class SettingsSection extends StatelessWidget {
                   backgroundColor: currentTheme == mode ? theme.primary : theme.bgLight,
                   shadowColor: currentTheme == mode ? theme.primary : theme.bgLight,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: AppRadius.borderLg,
                   ),
                 ),
                 onPressed: click(() {
@@ -164,7 +167,7 @@ class SettingsSection extends StatelessWidget {
           children: Currency.values.map((curr) {
             return RadioListTile<Currency>(
               overlayColor: WidgetStateProperty.all(theme.primary),
-              splashRadius: 24,
+              splashRadius: AppRadius.huge,
               title: Text(
                 curr.displayName,
                 style: TextStyle(
@@ -205,7 +208,7 @@ class SettingsSection extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: AppRadius.borderMd,
               ),
               overlayColor: theme.primary,
             ),
@@ -215,7 +218,7 @@ class SettingsSection extends StatelessWidget {
           TextButton(
             style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: AppRadius.borderMd,
               ),
               overlayColor: theme.primary,
             ),
@@ -233,7 +236,7 @@ class SettingsSection extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-                  duration: const Duration(milliseconds: 400),
+                  duration: AppDurations.slow,
                   backgroundColor: theme.primary,
                 ),
               );

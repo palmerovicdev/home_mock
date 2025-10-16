@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import '../../core/constants/constants.dart';
 import '../../model/entity/item.dart';
 import '../../model/entity/owner.dart';
 
@@ -12,7 +13,7 @@ class HomeApiImpl implements HomeApi {
 
   @override
   Future<List<Item>> getAllHomes() async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await Future.delayed(AppDurations.apiSimulatedDelay);
 
     final randomGenerator = Random(42);
     final List<Item> allItems = List.generate(_totalItems, (index) {
@@ -32,13 +33,16 @@ class HomeApiImpl implements HomeApi {
       ];
 
       final imageUrlsByCategory = {
-        Category.apartment: 'https://picsum.photos/id/$globalItemIndex/1200/1200',
+        Category.apartment:
+            'https://picsum.photos/id/$globalItemIndex/1200/1200',
         Category.house: 'https://picsum.photos/id/$globalItemIndex/1200/1200',
       };
 
       final descriptionsByCategory = {
-        Category.apartment: 'A nice apartment located in the city center with all amenities nearby.',
-        Category.house: 'A beautiful house with a garden and spacious rooms, perfect for families.',
+        Category.apartment:
+            'A nice apartment located in the city center with all amenities nearby.',
+        Category.house:
+            'A beautiful house with a garden and spacious rooms, perfect for families.',
       };
 
       final ownerNames = [

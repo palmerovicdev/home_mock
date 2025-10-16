@@ -131,7 +131,6 @@ HomesState createTestHomesState({
     category: category,
     error: error,
     version: version,
-    isDarkMode: isDarkMode,
     selectedCities: selectedCities ?? [],
     availableCities: availableCities ?? [],
     minPriceFilter: minPriceFilter ?? 0,

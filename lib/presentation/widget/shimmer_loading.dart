@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/constants.dart';
 import '../../core/locator.dart';
 
 class ShimmerLoading extends StatefulWidget {
@@ -16,7 +17,8 @@ class ShimmerLoading extends StatefulWidget {
   State<ShimmerLoading> createState() => _ShimmerLoadingState();
 }
 
-class _ShimmerLoadingState extends State<ShimmerLoading> with SingleTickerProviderStateMixin {
+class _ShimmerLoadingState extends State<ShimmerLoading>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -24,7 +26,7 @@ class _ShimmerLoadingState extends State<ShimmerLoading> with SingleTickerProvid
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: AppDurations.shimmerAnimation,
     )..repeat();
   }
 
@@ -75,7 +77,7 @@ class HomeCardSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerLoading(
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: AppRadius.borderXxxl,
         child: Container(
           color: theme.bgLight,
           child: Stack(
@@ -90,7 +92,7 @@ class HomeCardSkeleton extends StatelessWidget {
                   height: 28,
                   decoration: BoxDecoration(
                     color: theme.border,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: AppRadius.borderLg,
                   ),
                 ),
               ),
@@ -117,7 +119,7 @@ class HomeCardSkeleton extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: theme.borderMuted,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: AppRadius.borderLg,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,25 +130,25 @@ class HomeCardSkeleton extends StatelessWidget {
                         height: 14,
                         decoration: BoxDecoration(
                           color: theme.border,
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: AppRadius.borderSm,
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      AppSpacing.gapSm,
                       Container(
                         width: 100,
                         height: 12,
                         decoration: BoxDecoration(
                           color: theme.border,
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: AppRadius.borderSm,
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      AppSpacing.gapSm,
                       Container(
                         width: 60,
                         height: 14,
                         decoration: BoxDecoration(
                           color: theme.border,
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: AppRadius.borderSm,
                         ),
                       ),
                     ],

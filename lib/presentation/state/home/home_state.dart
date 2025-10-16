@@ -13,7 +13,6 @@ class HomesState extends Equatable {
   final Category? category;
   final String? error;
   final int version;
-  final bool isDarkMode;
 
   final List<String> selectedCities;
   final List<String> availableCities;
@@ -33,7 +32,6 @@ class HomesState extends Equatable {
     this.category,
     this.error,
     this.version = 0,
-    this.isDarkMode = true,
     this.selectedCities = const [],
     this.availableCities = const [],
     this.minPriceFilter = 0,
@@ -53,7 +51,6 @@ class HomesState extends Equatable {
     category,
     error,
     version,
-    isDarkMode,
     selectedCities,
     availableCities,
     minPriceFilter,
@@ -89,7 +86,6 @@ class HomesState extends Equatable {
     category: category ?? this.category,
     error: error,
     version: version ?? this.version + 1,
-    isDarkMode: isDarkMode ?? this.isDarkMode,
     selectedCities: selectedCities ?? this.selectedCities,
     availableCities: availableCities ?? this.availableCities,
     minPriceFilter: minPriceFilter ?? this.minPriceFilter,

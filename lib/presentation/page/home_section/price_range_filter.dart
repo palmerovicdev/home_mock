@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
@@ -28,7 +29,7 @@ class PriceRangeFilter extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 8),
+              AppSpacing.gapMd,
               Row(
                 children: [
                   Text(

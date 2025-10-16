@@ -143,13 +143,6 @@ void main() {
       );
     });
 
-    test('should toggle dark mode', () async {
-      // Nota: Este test requiere que Theme esté inicializado en GetIt
-      // En un ambiente de prueba real, se debería mockear Theme
-      // Por ahora solo verificamos que el estado inicial sea correcto
-      expect(homesBloc.state.isDarkMode, equals(true));
-    });
-
     test('hasActiveFilters should work correctly', () async {
       homesBloc.add(HomesLoadInitialData());
       await Future.delayed(const Duration(milliseconds: 100));

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/locator.dart';
+import '../../../core/constants/constants.dart';
+
 
 class SettingsGroup extends StatelessWidget {
   const SettingsGroup({
@@ -18,7 +20,7 @@ class SettingsGroup extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
         color: theme.bgLight,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: AppRadius.borderXxl,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +38,7 @@ class SettingsGroup extends StatelessWidget {
             ),
           ),
           ...children,
-          const SizedBox(height: 4),
+          AppSpacing.gapXs,
         ],
       ),
     );

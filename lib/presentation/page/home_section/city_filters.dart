@@ -4,6 +4,8 @@ import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/core/utils/feedback.dart';
 
+import '../../../core/constants/app_durations.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../state/home/home_bloc.dart';
 import '../../state/home/home_event.dart';
@@ -35,7 +37,7 @@ class _CityFiltersState extends State<CityFilters> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 8),
+              AppSpacing.gapMd,
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -51,7 +53,7 @@ class _CityFiltersState extends State<CityFilters> {
                         context.read<HomesBloc>().add(
                           HomesToggleCityFilter(city),
                         );
-                      }),
+                      }).call(),
                       radius: 12,
                       widgetA: Text(
                         city,
@@ -65,7 +67,7 @@ class _CityFiltersState extends State<CityFilters> {
                           color: theme.text,
                         ),
                       ),
-                      duration: const Duration(milliseconds: 300),
+                      duration: AppDurations.medium,
                       backgroundColorA: theme.bgDark,
                       backgroundColorB: theme.primary,
                       rippleColorA: theme.primary,

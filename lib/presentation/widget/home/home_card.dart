@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../../core/utils/feedback.dart';
 import '../../../model/entity/item.dart';
-import '../../state/home/home_bloc.dart';
 import '../../state/settings/settings_bloc.dart';
 import '../../state/settings/settings_state.dart';
 import '../cached_image.dart';
@@ -31,7 +31,7 @@ class HomeCard extends StatelessWidget {
           currency: settingsState.currency,
         );
         return ClipRRect(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: AppRadius.borderXxxl,
           child: GestureDetector(
             onTap: click(() {
               HapticFeedback.lightImpact();
@@ -47,7 +47,7 @@ class HomeCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                context.read<HomesBloc>().state.isDarkMode
+                context.read<SettingsBloc>().state.isDarkMode
                     ? DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -101,8 +101,10 @@ class HomeCardInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
       decoration: BoxDecoration(
-        color: context.read<HomesBloc>().state.isDarkMode ? theme.bgLight.withAlpha(180) : theme.bgDark,
-        borderRadius: BorderRadius.circular(12),
+        color: context.read<SettingsBloc>().state.isDarkMode
+            ? theme.bgLight.withAlpha(180)
+            : theme.bgDark,
+        borderRadius: AppRadius.borderLg,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

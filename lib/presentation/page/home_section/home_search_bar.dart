@@ -4,6 +4,7 @@ import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/presentation/page/home_section/price_range_filter.dart';
 import 'package:home_mock/presentation/page/home_section/sort_section.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
@@ -24,7 +25,7 @@ class HomeSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<HomesBloc>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: AppSpacing.horizontalHuge,
       child: SizedBox(
         height: 52,
         child: TextField(
@@ -66,41 +67,41 @@ class HomeSearchBar extends StatelessWidget {
             filled: true,
             fillColor: theme.sBgDark,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: AppRadius.borderCircular,
               borderSide: BorderSide(
                 color: theme.borderMuted,
                 width: 0.5,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: AppRadius.borderCircular,
               borderSide: BorderSide(
                 color: theme.borderMuted,
                 width: 0.5,
               ),
             ),
             disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: AppRadius.borderCircular,
               borderSide: BorderSide(
                 color: theme.borderMuted,
                 width: 0.5,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: AppRadius.borderCircular,
               borderSide: BorderSide(
                 color: theme.borderMuted,
                 width: 0.5,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: AppRadius.borderCircular,
               borderSide: BorderSide(
                 color: theme.borderMuted,
                 width: 0.5,
               ),
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+            contentPadding: AppSpacing.verticalXxl,
           ),
         ),
       ),
@@ -144,7 +145,10 @@ class _FiltersBottomSheet extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
                 child: Row(
                   children: [
                     Text(
@@ -177,11 +181,12 @@ class _FiltersBottomSheet extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   children: const [
                     SortSection(),
-                    SizedBox(height: 14),
+                    AppSpacing.gapXl,
                     CityFilters(),
-                    SizedBox(height: 14),
+                    AppSpacing.gapXl,
                     PriceRangeFilter(),
-                    SizedBox(height: 80),
+                    AppSpacing.gapGiant,
+                    AppSpacing.gapGiant,
                   ],
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../core/constants/constants.dart';
 import '../../core/locator.dart';
 import '../../core/utils/feedback.dart';
 import '../../gen/assets.gen.dart';
@@ -47,8 +48,8 @@ class _LikeButtonState extends State<LikeButton> {
       backgroundColorB: theme.bgDark.withAlpha(151),
       rippleColorA: theme.warning.withAlpha(300),
       rippleColorB: theme.bgDark.withAlpha(31),
-      radius: 32,
-      duration: const Duration(milliseconds: 200),
+      radius: AppRadius.circular,
+      duration: AppDurations.fast,
       onPressed: click(
         () {
           context.read<HomesBloc>().add(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 
 class PropertyDescription extends StatelessWidget {
@@ -14,7 +15,7 @@ class PropertyDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: AppSpacing.horizontalHuge,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +27,7 @@ class PropertyDescription extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          const SizedBox(height: 8),
+          AppSpacing.gapMd,
           Text(
             description,
             style: TextStyle(

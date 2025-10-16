@@ -5,6 +5,7 @@ import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/presentation/page/setting_section/profile_section.dart';
 import 'package:home_mock/presentation/page/setting_section/settings_section.dart';
 
+import '../../core/constants/app_spacing.dart';
 import '../../core/locator.dart';
 import '../../core/utils/feedback.dart';
 import '../state/settings/settings_bloc.dart';
@@ -41,7 +42,7 @@ class SettingsPage extends StatelessWidget {
             child: Column(
               children: [
                 ProfileSection(user: state.user),
-                const SizedBox(height: 16),
+                AppSpacing.gapXxl,
                 SettingsSection(state: state),
               ],
             ),

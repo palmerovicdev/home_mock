@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/constants/constants.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
 import '../../core/locator.dart';
@@ -55,7 +56,7 @@ class CachedImage extends StatelessWidget {
                   Icon(
                     Icons.broken_image_outlined,
                     color: Colors.white38,
-                    size: 48,
+                    size: AppUI.iconSizeExtraLarge,
                   ),
                   SizedBox(height: 8),
                   Text(

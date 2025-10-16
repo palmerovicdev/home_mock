@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
+import '../../../core/constants/app_radius.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../model/entity/item.dart';
 
@@ -15,7 +17,7 @@ class PropertyTitleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: AppSpacing.horizontalHuge,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +33,7 @@ class PropertyTitleSection extends StatelessWidget {
                   fontSize: 22,
                 ),
               ),
-              const SizedBox(height: 6),
+              AppSpacing.gapSm,
               Row(
                 children: [
                   Icon(
@@ -59,7 +61,7 @@ class PropertyTitleSection extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: theme.primary.withAlpha(51),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: AppRadius.borderMd,
                 ),
                 child: Text(
                   context.l10n.fromNextMonth,

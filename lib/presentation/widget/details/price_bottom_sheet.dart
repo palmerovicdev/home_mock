@@ -4,6 +4,7 @@ import 'package:flutter_motionly/widget/button/ripple_reveal_button.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
+import '../../../core/constants/app_radius.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../../core/utils/feedback.dart';
@@ -100,7 +101,7 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = context.read<HomesBloc>().state.isDarkMode;
+    final isDark = context.read<SettingsBloc>().state.isDarkMode;
 
     return SizedBox(
       width: size,
@@ -118,7 +119,7 @@ class CircleButton extends StatelessWidget {
         backgroundColorB: !isDark ? theme.bgDark.withAlpha(254) : theme.bgDark.withAlpha(121),
         rippleColorA: theme.warning.withAlpha(300),
         rippleColorB: theme.bgDark.withAlpha(31),
-        radius: 32,
+        radius: AppRadius.circular,
         duration: const Duration(milliseconds: 200),
         onPressed: onTap ?? () {},
       ),

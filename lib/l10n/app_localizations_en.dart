@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -52,7 +51,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noResultsFound => 'No results found';
 
   @override
-  String get tryAdjustingFilters => 'Try adjusting your filters to find more options';
+  String get tryAdjustingFilters =>
+      'Try adjusting your filters to find more options';
 
   @override
   String get errorLoadingData => 'Error loading data';
@@ -163,7 +163,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get clearCacheConfirmTitle => 'Clear cache';
 
   @override
-  String get clearCacheConfirmMessage => 'Are you sure you want to clear the cache? This action cannot be undone.';
+  String get clearCacheConfirmMessage =>
+      'Are you sure you want to clear the cache? This action cannot be undone.';
 
   @override
   String get clear => 'Clear';
@@ -264,7 +265,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get couldNotLoadProperties => 'We couldn\'t load the properties';
 
   @override
-  String get thereAreNoPropertiesRightNow => 'There are no properties available right now';
+  String get thereAreNoPropertiesRightNow =>
+      'There are no properties available right now';
 
   @override
   String get filterByCity => 'Filter by City';

@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/core/utils/feedback.dart';
 
+import '../../../core/constants/app_radius.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../state/auth/auth_bloc.dart';
 import '../../state/auth/auth_event.dart';
@@ -23,11 +25,11 @@ class ProfileSection extends StatelessWidget {
     }
 
     return Container(
-      margin: const EdgeInsets.all(20),
-      padding: const EdgeInsets.all(20),
+      margin: AppSpacing.paddingHuge,
+      padding: AppSpacing.paddingHuge,
       decoration: BoxDecoration(
         color: theme.bgLight,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: AppRadius.borderXxl,
       ),
       child: Column(
         children: [
@@ -35,7 +37,7 @@ class ProfileSection extends StatelessWidget {
             radius: 40,
             backgroundImage: CachedNetworkImageProvider(user.avatarUrl),
           ),
-          const SizedBox(height: 16),
+          AppSpacing.gapXxl,
           Text(
             user.name,
             style: TextStyle(
@@ -44,7 +46,7 @@ class ProfileSection extends StatelessWidget {
               color: theme.text,
             ),
           ),
-          const SizedBox(height: 4),
+          AppSpacing.gapXs,
           Text(
             user.email,
             style: TextStyle(
@@ -52,7 +54,7 @@ class ProfileSection extends StatelessWidget {
               color: theme.textMuted,
             ),
           ),
-          const SizedBox(height: 16),
+          AppSpacing.gapXxl,
           TextButton.icon(
             onPressed: click(() {
               _showLogoutDialog(context);
@@ -65,7 +67,7 @@ class ProfileSection extends StatelessWidget {
                 vertical: 12,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: AppRadius.borderLg,
               ),
             ),
             icon: Icon(

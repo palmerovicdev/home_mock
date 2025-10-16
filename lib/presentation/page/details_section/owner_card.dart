@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:home_mock/presentation/widget/details/price_bottom_sheet.dart';
 
+import '../../../core/constants/app_radius.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../model/entity/owner.dart';
 
@@ -15,11 +17,11 @@ class OwnerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: AppSpacing.horizontalHuge,
       child: Container(
         decoration: BoxDecoration(
           color: theme.bg,
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: AppRadius.borderCircular,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         child: Row(

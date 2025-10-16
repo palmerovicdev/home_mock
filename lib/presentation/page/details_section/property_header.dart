@@ -3,6 +3,7 @@ import 'package:home_mock/core/locator.dart';
 import 'package:home_mock/presentation/widget/details/price_bottom_sheet.dart';
 import 'package:screen_corner_radius/screen_corner_radius.dart';
 
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/utils/feedback.dart';
 import '../../../model/entity/item.dart';
 import '../../widget/cached_image.dart';
@@ -21,7 +22,7 @@ class PropertyHeader extends StatelessWidget {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: AppSpacing.paddingXs,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -50,7 +51,7 @@ class PropertyHeader extends StatelessWidget {
         ),
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: AppSpacing.horizontalExtraLarge,
             child: Row(
               children: [
                 CircleButton(

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:home_mock/core/locator.dart';
+import 'package:home_mock/core/constants/constants.dart';
 
 import '../../../model/entity/item.dart';
 import '../../../service/home_service.dart';
@@ -20,7 +20,6 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     on<HomesClearFilters>(_onClearFilters);
     on<HomesRetryLoad>(_onRetryLoad);
     on<HomesChangeFavorite>(_onChangeFavorite);
-    on<HomesToggleTheme>(_onToggleTheme);
   }
 
   final HomeService service;
@@ -74,7 +73,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     Emitter<HomesState> emit,
   ) async {
     emit(state.copyWith(loading: true, query: e.query));
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(AppDurations.searchDebounce);
     _applyFilters(emit);
   }
 
@@ -83,7 +82,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     Emitter<HomesState> emit,
   ) async {
     emit(state.copyWith(loading: true, category: e.category));
-    await Future.delayed(const Duration(milliseconds: 400));
+    await Future.delayed(AppDurations.filterDebounce);
     _applyFilters(emit);
   }
 
@@ -100,7 +99,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     }
 
     emit(state.copyWith(loading: true, selectedCities: currentCities));
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(AppDurations.quickDebounce);
     _applyFilters(emit);
   }
 
@@ -115,7 +114,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
         maxPriceFilter: e.max,
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(AppDurations.quickDebounce);
     _applyFilters(emit);
   }
 
@@ -124,9 +123,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     Emitter<HomesState> emit,
   ) async {
     emit(state.copyWith(loading: true, sortBy: e.sortBy));
-    await Future.delayed(
-      const Duration(milliseconds: 200),
-    );
+    await Future.delayed(AppDurations.quickDebounce);
     _applyFilters(emit);
   }
 
@@ -146,7 +143,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
       ),
     );
     searchController.clear();
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(AppDurations.quickDebounce);
     _applyFilters(emit);
   }
 
@@ -156,20 +153,26 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     if (state.query.isNotEmpty) {
       final query = state.query.toLowerCase();
       filtered = filtered.where((item) {
-        return item.title.toLowerCase().contains(query) || item.city.toLowerCase().contains(query);
+        return item.title.toLowerCase().contains(query) ||
+            item.city.toLowerCase().contains(query);
       }).toList();
     }
 
     if (state.category != null && state.category != Category.all) {
-      filtered = filtered.where((item) => item.category == state.category).toList();
+      filtered = filtered
+          .where((item) => item.category == state.category)
+          .toList();
     }
 
     if (state.selectedCities.isNotEmpty) {
-      filtered = filtered.where((item) => state.selectedCities.contains(item.city)).toList();
+      filtered = filtered
+          .where((item) => state.selectedCities.contains(item.city))
+          .toList();
     }
 
     filtered = filtered.where((item) {
-      return item.price >= state.minPriceFilter && item.price <= state.maxPriceFilter;
+      return item.price >= state.minPriceFilter &&
+          item.price <= state.maxPriceFilter;
     }).toList();
 
     if (state.sortBy != null) {
@@ -208,13 +211,5 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
         version: state.version + 1,
       ),
     );
-  }
-
-  FutureOr<void> _onToggleTheme(
-    HomesToggleTheme event,
-    Emitter<HomesState> emit,
-  ) {
-    theme.toggleDarkMode();
-    emit(state.copyWith(isDarkMode: !state.isDarkMode));
   }
 }

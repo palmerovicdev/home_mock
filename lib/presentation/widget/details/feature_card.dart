@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:home_mock/core/constants/app_spacing.dart';
 
+import '../../../core/constants/app_radius.dart';
 import '../../../core/locator.dart';
 
 class FeatureCard extends StatelessWidget {
@@ -18,10 +20,10 @@ class FeatureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 95,
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      padding: AppSpacing.verticalXl,
       decoration: BoxDecoration(
         color: theme.bg,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: AppRadius.borderXxl,
       ),
       child: Column(
         children: [
@@ -40,7 +42,7 @@ class FeatureCard extends StatelessWidget {
               style: const TextStyle(fontSize: 28),
             ),
           ),
-          const SizedBox(height: 6),
+          AppSpacing.gapSm,
           Text(
             value,
             style: TextStyle(

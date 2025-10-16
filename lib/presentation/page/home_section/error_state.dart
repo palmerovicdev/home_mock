@@ -5,6 +5,7 @@ import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/core/utils/feedback.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../gen/assets.gen.dart';
 import '../../state/home/home_bloc.dart';
@@ -26,7 +27,7 @@ class ErrorState extends StatelessWidget {
             fit: BoxFit.cover,
             repeat: true,
           ),
-          const SizedBox(height: 12),
+          AppSpacing.gapLg,
           Text(
             context.l10n.oopsSomethingWentWrong,
             style: TextStyle(
@@ -36,7 +37,7 @@ class ErrorState extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          AppSpacing.gapMd,
           Text(
             context.l10n.couldNotLoadProperties,
             style: TextStyle(
@@ -45,7 +46,7 @@ class ErrorState extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
+          AppSpacing.gapExtraLarge,
           SizedBox(
             height: 50,
             width: 180,

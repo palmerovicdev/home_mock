@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/core/utils/feedback.dart';
 
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../state/settings/settings_bloc.dart';
@@ -92,7 +93,7 @@ class HomeHeader extends StatelessWidget {
                     ],
                   ),
                   if (!isCompact) ...[
-                    const SizedBox(height: 8),
+                    AppSpacing.gapMd,
                     Text.rich(
                       TextSpan(
                         children: [

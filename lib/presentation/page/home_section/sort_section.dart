@@ -5,6 +5,8 @@ import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:home_mock/model/entity/settings.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
+import '../../../core/constants/app_durations.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/feedback.dart';
 import '../../state/home/home_bloc.dart';
@@ -32,7 +34,7 @@ class SortSection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 8),
+              AppSpacing.gapMd,
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -155,7 +157,7 @@ class _SortButton extends StatelessWidget {
           color: isSelected ? theme.primary : theme.border,
           width: isSelected ? 1.8 : 1.5,
         ),
-        duration: const Duration(milliseconds: 300),
+        duration: AppDurations.medium,
         selected: isSelected,
         onPressed: onPressed,
       ),

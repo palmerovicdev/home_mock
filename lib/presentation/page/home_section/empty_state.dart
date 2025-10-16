@@ -4,6 +4,8 @@ import 'package:flutter_motionly/widget/button/pulsating_button.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../core/constants/app_radius.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../core/utils/feedback.dart';
 import '../../../gen/assets.gen.dart';
@@ -29,7 +31,7 @@ class EmptyState extends StatelessWidget {
           fit: BoxFit.cover,
           repeat: true,
         ),
-        const SizedBox(height: 12),
+        AppSpacing.gapLg,
         Text(
           context.l10n.noResultsFound,
           style: TextStyle(
@@ -39,7 +41,7 @@ class EmptyState extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8),
+        AppSpacing.gapMd,
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Text(
@@ -52,7 +54,7 @@ class EmptyState extends StatelessWidget {
           ),
         ),
         if (hasActiveFilters) ...[
-          const SizedBox(height: 12),
+          AppSpacing.gapLg,
           SizedBox(
             height: 50,
             width: 180,
@@ -64,7 +66,7 @@ class EmptyState extends StatelessWidget {
                   context.read<HomesBloc>().add(HomesClearFilters());
                 }),
                 color: theme.primary,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: AppRadius.borderLg,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

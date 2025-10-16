@@ -7,6 +7,9 @@ import 'package:home_mock/core/utils/feedback.dart';
 import 'package:home_mock/model/entity/settings.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
 
+import '../../../core/constants/app_durations.dart';
+import '../../../core/constants/app_radius.dart';
+import '../../../core/constants/app_spacing.dart';
 import '../../../core/locator.dart';
 import '../../../model/entity/item.dart';
 import '../../state/home/home_bloc.dart';
@@ -35,36 +38,36 @@ class CategoryRow extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
         children: [
           FadeInLeft(
-            duration: const Duration(milliseconds: 400),
+            duration: AppDurations.medium,
             child: _CategoryChip(
               active: selected == Category.apartment,
               icon: entries[0].$2,
               label: entries[0].$3,
               width: context.read<SettingsBloc>().state.language == AppLanguage.en ? 100 : 120,
-              onTap: () => select(() => bloc.add(HomesChangeCategory(Category.apartment))),
-              onDeselect: () => click(() => bloc.add(HomesChangeCategory(Category.all))),
+              onTap: () => select(() => bloc.add(HomesChangeCategory(Category.apartment))).call(),
+              onDeselect: () => click(() => bloc.add(HomesChangeCategory(Category.all))).call(),
             ),
           ),
           FadeInLeft(
-            delay: const Duration(milliseconds: 400),
-            duration: const Duration(milliseconds: 400),
+            delay: AppDurations.fast,
+            duration: AppDurations.medium,
             child: _CategoryChip(
               active: selected == Category.house,
               icon: entries[1].$2,
               label: entries[1].$3,
-              onTap: () => select(() => bloc.add(HomesChangeCategory(Category.house))),
-              onDeselect: () => click(() => bloc.add(HomesChangeCategory(Category.all))),
+              onTap: () => select(() => bloc.add(HomesChangeCategory(Category.house))).call(),
+              onDeselect: () => click(() => bloc.add(HomesChangeCategory(Category.all))).call(),
             ),
           ),
           FadeInLeft(
-            delay: const Duration(milliseconds: 800),
-            duration: const Duration(milliseconds: 400),
+            delay: AppDurations.slow,
+            duration: AppDurations.medium,
             child: Padding(
               padding: const EdgeInsets.only(left: 4),
               child: Container(
                 width: 100,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: AppRadius.borderHuge,
                   color: theme.bg,
                 ),
                 child: TextButton(
@@ -72,10 +75,12 @@ class CategoryRow extends StatelessWidget {
                     overlayColor: theme.primary,
                     padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: AppRadius.borderHuge,
                     ),
                   ),
-                  onPressed: select(() => bloc.add(HomesChangeCategory(Category.all))),
+                  onPressed: select(() {
+                    bloc.add(HomesChangeCategory(Category.all));
+                  }),
                   child: Text(
                     context.l10n.all,
                     style: TextStyle(
@@ -120,10 +125,10 @@ class _CategoryChip extends StatelessWidget {
         height: 140,
         child: RippleRevealButton(
           height: 140,
-          duration: Duration(milliseconds: 300),
+          duration: AppDurations.medium,
           alignment: AlignmentGeometry.center,
           widgetA: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14.0),
+            padding: AppSpacing.verticalXl,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -154,7 +159,7 @@ class _CategoryChip extends StatelessWidget {
             ),
           ),
           widgetB: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14.0),
+            padding: AppSpacing.verticalXl,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

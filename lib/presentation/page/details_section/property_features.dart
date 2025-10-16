@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_mock/core/localization/app_locale.dart';
 
+import '../../../core/constants/app_spacing.dart';
 import '../../../model/entity/item.dart';
 import '../../widget/details/feature_card.dart';
 
@@ -17,7 +18,7 @@ class PropertyFeatures extends StatelessWidget {
     final sizeData = item.size.split(' ');
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: AppSpacing.horizontalHuge,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

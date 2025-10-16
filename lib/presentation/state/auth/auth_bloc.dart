@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../model/entity/auth_status.dart';
 import '../../../service/auth_service.dart';
 import 'auth_event.dart';
@@ -24,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(state.copyWith(status: AuthStatus.checking));
 
     try {
-      await Future.delayed(const Duration(milliseconds: 1500));
+      await Future.delayed(AppDurations.apiSimulatedDelay);
 
       final token = await _authService.checkSession();
 

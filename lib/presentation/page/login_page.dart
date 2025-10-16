@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_mock/core/constants/app_radius.dart';
 
+import '../../core/constants/app_spacing.dart';
 import '../../core/localization/app_locale.dart';
 import '../../core/locator.dart';
 import '../../core/utils/feedback.dart';
@@ -57,13 +59,13 @@ class _LoginPageState extends State<LoginPage> {
 
           return SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24.0),
+              padding: AppSpacing.paddingExtraLarge,
               child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 40),
+                    AppSpacing.gapGiant,
 
                     Center(
                       child: Container(
@@ -71,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 120,
                         decoration: BoxDecoration(
                           color: theme.bgLight,
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: AppRadius.borderRounded,
                         ),
                         child: Center(
                           child: Icon(
@@ -83,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-                    const SizedBox(height: 40),
+                    AppSpacing.gapGiant,
 
                     Text(
                       context.l10n.welcomeBack,
@@ -95,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                       textAlign: TextAlign.center,
                     ),
 
-                    const SizedBox(height: 8),
+                    AppSpacing.gapMd,
 
                     Text(
                       context.l10n.signInToContinue,
@@ -106,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       textAlign: TextAlign.center,
                     ),
 
-                    const SizedBox(height: 40),
+                    AppSpacing.gapGiant,
 
                     TextFormField(
                       controller: _emailController,
@@ -124,26 +126,26 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: theme.bgLight,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide.none,
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide.none,
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide(
                             color: theme.primary,
                             width: 2,
                           ),
                         ),
                         errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide(color: theme.danger, width: 2),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide(color: theme.danger, width: 2),
                         ),
                         labelStyle: TextStyle(color: theme.textMuted),
@@ -162,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
 
-                    const SizedBox(height: 20),
+                    AppSpacing.gapHuge,
 
                     TextFormField(
                       controller: _passwordController,
@@ -195,26 +197,26 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: theme.bgLight,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide.none,
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide.none,
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide(
                             color: theme.primary,
                             width: 2,
                           ),
                         ),
                         errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide(color: theme.danger, width: 2),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: AppRadius.borderXxl,
                           borderSide: BorderSide(color: theme.danger, width: 2),
                         ),
                         labelStyle: TextStyle(color: theme.textMuted),
@@ -233,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
 
-                    const SizedBox(height: 40),
+                    AppSpacing.gapGiant,
 
                     SizedBox(
                       height: 56,
@@ -245,7 +247,7 @@ class _LoginPageState extends State<LoginPage> {
                             alpha: 0.5,
                           ),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: AppRadius.borderXxl,
                           ),
                           elevation: 0,
                         ),
@@ -272,7 +274,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     if (isLoading) ...[
-                      const SizedBox(height: 20),
+                      AppSpacing.gapHuge,
                       Center(
                         child: Text(
                           context.l10n.loggingIn,
@@ -284,13 +286,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
 
-                    const SizedBox(height: 40),
+                    AppSpacing.gapGiant,
 
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: AppSpacing.paddingXxl,
                       decoration: BoxDecoration(
                         color: theme.bgLight,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: AppRadius.borderXxl,
                         border: Border.all(color: theme.border),
                       ),
                       child: Column(
@@ -313,7 +315,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          AppSpacing.gapMd,
                           Text(
                             'Email: cualquier email con @\nPassword: 6+ caracteres',
                             style: TextStyle(

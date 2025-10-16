@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:screen_corner_radius/screen_corner_radius.dart';
 
+import '../../core/constants/constants.dart';
 import '../../core/locator.dart';
 import '../state/home/home_bloc.dart';
 import '../state/home/home_event.dart';
@@ -51,14 +52,13 @@ class _HomePageState extends State<HomePage> {
         : 15;
 
     return BlocBuilder<HomesBloc, HomesState>(
-      buildWhen: (a, b) => a.isDarkMode != b.isDarkMode,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: theme.bgDark,
           body: BlocBuilder<HomesBloc, HomesState>(
             builder: (context, state) {
               return Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: AppSpacing.paddingXs,
                 child: Column(
                   children: [
                     Expanded(
@@ -67,10 +67,18 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           color: theme.sBgDark,
                           borderRadius: BorderRadiusGeometry.only(
-                            topLeft: Radius.circular(locator.get<ScreenRadius>().topLeft - 4),
-                            topRight: Radius.circular(locator.get<ScreenRadius>().topRight - 4),
-                            bottomLeft: Radius.circular(locator.get<ScreenRadius>().bottomLeft - 24),
-                            bottomRight: Radius.circular(locator.get<ScreenRadius>().bottomRight - 24),
+                            topLeft: Radius.circular(
+                              locator.get<ScreenRadius>().topLeft - 4,
+                            ),
+                            topRight: Radius.circular(
+                              locator.get<ScreenRadius>().topRight - 4,
+                            ),
+                            bottomLeft: Radius.circular(
+                              locator.get<ScreenRadius>().bottomLeft - 24,
+                            ),
+                            bottomRight: Radius.circular(
+                              locator.get<ScreenRadius>().bottomRight - 24,
+                            ),
                           ),
                         ),
                         child: SafeArea(
@@ -80,12 +88,16 @@ class _HomePageState extends State<HomePage> {
                               final isCompact = constraints.maxHeight < 150;
 
                               return Column(
-                                mainAxisAlignment: isCompact ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: isCompact
+                                    ? MainAxisAlignment.center
+                                    : MainAxisAlignment.spaceBetween,
                                 children: [
                                   if (!isCompact) HomeHeader(),
                                   if (isCompact)
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0,
+                                      ),
                                       child: HomeHeader(),
                                     ),
                                   Padding(
@@ -93,11 +105,15 @@ class _HomePageState extends State<HomePage> {
                                       bottom: isCompact ? 8.0 : 16.0,
                                     ),
                                     child: FadeInLeft(
-                                      duration: const Duration(milliseconds: 200),
+                                      duration: AppDurations.fast,
                                       child: HomeSearchBar(
-                                        controller: context.read<HomesBloc>().searchController,
+                                        controller: context
+                                            .read<HomesBloc>()
+                                            .searchController,
                                         onFilterPressed: () {
-                                          setState(() => _showFilters = !_showFilters);
+                                          setState(
+                                            () => _showFilters = !_showFilters,
+                                          );
                                         },
                                       ),
                                     ),
@@ -124,7 +140,9 @@ class _HomePageState extends State<HomePage> {
                         child: CustomScrollView(
                           controller: _scroll,
                           slivers: [
-                            if (!(!state.loading && state.items.isEmpty && state.initialLoadComplete))
+                            if (!(!state.loading &&
+                                state.items.isEmpty &&
+                                state.initialLoadComplete))
                               SliverToBoxAdapter(
                                 child: CategoryRow(selected: state.category),
                               ),
@@ -135,9 +153,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ],
-                            const SliverPadding(padding: EdgeInsets.only(top: 8)),
+                            const SliverPadding(
+                              padding: EdgeInsets.only(top: 8),
+                            ),
                             const HomesGrid(),
-                            const SliverPadding(padding: EdgeInsets.only(bottom: 90)),
+                            const SliverPadding(
+                              padding: EdgeInsets.only(bottom: 90),
+                            ),
                           ],
                         ),
                       ),

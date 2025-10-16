@@ -54,7 +54,6 @@ void main() {
         loading: false,
         query: 'original',
         initialLoadComplete: false,
-        isDarkMode: true,
       );
 
       final updatedState = originalState.copyWith(query: 'updated');
@@ -62,7 +61,6 @@ void main() {
       expect(updatedState.query, equals('updated'));
       expect(updatedState.loading, equals(false));
       expect(updatedState.initialLoadComplete, equals(false));
-      expect(updatedState.isDarkMode, equals(true));
     });
 
     test('hasActiveFilters should return true when filters are active', () {
@@ -101,7 +99,6 @@ void main() {
         category: Category.apartment,
         error: 'error',
         version: 2,
-        isDarkMode: false,
         selectedCities: ['City1'],
         availableCities: ['City1', 'City2'],
         minPriceFilter: 100,
