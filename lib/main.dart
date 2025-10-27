@@ -7,7 +7,7 @@ import 'package:home_mock/l10n/app_localizations.dart';
 import 'package:home_mock/model/entity/settings.dart';
 import 'package:home_mock/presentation/state/auth/auth_bloc.dart';
 import 'package:home_mock/presentation/state/auth/auth_event.dart';
-import 'package:home_mock/presentation/state/auth/auth_state.dart' as auth;
+import 'package:home_mock/presentation/state/auth/auth_state.dart';
 import 'package:home_mock/presentation/state/home/home_bloc.dart';
 import 'package:home_mock/presentation/state/home/home_event.dart';
 import 'package:home_mock/presentation/state/settings/settings_bloc.dart';
@@ -43,7 +43,7 @@ class HomeMockApp extends StatelessWidget {
       ],
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, auth.AuthState>(
+          BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               app_router.authStateNotifier.value = state.status;
 
