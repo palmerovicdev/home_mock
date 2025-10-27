@@ -51,7 +51,7 @@ class PropertyHeader extends StatelessWidget {
         ),
         SafeArea(
           child: Padding(
-            padding: AppSpacing.horizontalExtraLarge,
+            padding: AppSpacing.horizontalXl,
             child: Row(
               children: [
                 CircleButton(

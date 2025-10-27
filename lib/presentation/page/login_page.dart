@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context, state) {
           return SafeArea(
             child: SingleChildScrollView(
-              padding: AppSpacing.paddingExtraLarge,
+              padding: AppSpacing.paddingXl,
               child: Form(
                 key: _formKey,
                 child: Column(

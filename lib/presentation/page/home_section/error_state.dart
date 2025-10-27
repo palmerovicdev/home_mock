@@ -46,7 +46,7 @@ class ErrorState extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          AppSpacing.gapExtraLarge,
+          AppSpacing.gapXxl,
           SizedBox(
             height: 50,
             width: 180,

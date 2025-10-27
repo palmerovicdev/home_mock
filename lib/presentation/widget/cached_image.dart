@@ -56,7 +56,7 @@ class CachedImage extends StatelessWidget {
                   Icon(
                     Icons.broken_image_outlined,
                     color: Colors.white38,
-                    size: AppUI.iconSizeExtraLarge,
+                    size: AppUI.iconXl,
                   ),
                   SizedBox(height: 8),
                   Text(
