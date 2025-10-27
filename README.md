@@ -288,5 +288,3 @@ Este proyecto demuestra:
 - ✅ Testing de lógica de negocio
 - ✅ Internacionalización completa
 - ✅ Buenas prácticas de Flutter/Dart
-
-

@@ -13,59 +13,37 @@ class Theme {
     isDark = darkMode;
   }
 
-  Color get bgDark => isDark
-      ? HSLColor.fromAHSL(1.0, 6, 0.22, 0.01).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 0.10, 0.90).toColor();
+  Color get bgDark => isDark ? const Color(0xFF191718) : const Color(0xFFEBE6DC);
 
-  Color get bg => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.14, 0.05).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 0.21, 0.95).toColor();
+  Color get bg => isDark ? const Color(0xFF242122) : const Color(0xFFF3EEE5);
 
-  Color get bgLight => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.08, 0.09).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 1.0, 1.0).toColor();
+  Color get bgLight => isDark ? const Color(0xFF161418) : const Color(0xFFFFFFFF);
 
-  Color get text => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.44, 0.95).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 0.26, 0.05).toColor();
+  Color get text => isDark ? const Color(0xFFEEEDE4) : const Color(0xFF23201F);
 
-  Color get textMuted => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.06, 0.70).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 0.06, 0.29).toColor();
+  Color get textMuted => isDark ? const Color(0xFF888586) : const Color(0xFF575249);
 
-  Color get border => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.06, 0.29).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 0.04, 0.51).toColor();
+  Color get border => isDark ? const Color(0xFF2C292A) : const Color(0xFF918D84);
 
-  Color get borderMuted => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.08, 0.18).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 0.05, 0.63).toColor();
+  Color get borderMuted => isDark ? const Color(0xFF302F34) : const Color(0xFFA39BA8);
 
-  Color get highlight => isDark
-      ? HSLColor.fromAHSL(1.0, 7, 0.04, 0.39).toColor()
-      : HSLColor.fromAHSL(1.0, 7, 1.0, 1.0).toColor();
+  Color get highlight => isDark ? const Color(0xFF655F66) : const Color(0xFFFFFFFF);
 
-  Color get primary => isDark
-      ? HSLColor.fromAHSL(1.0, 6, 0.68, 0.74).toColor()
-      : HSLColor.fromAHSL(1.0, 4, 0.48, 0.31).toColor();
+  Color get sBgDark => const Color(0xFF1F1B1C);
 
-  Color get secondary => isDark
-      ? HSLColor.fromAHSL(1.0, 187, 0.57, 0.58).toColor()
-      : HSLColor.fromAHSL(1.0, 186, 1.0, 0.11).toColor();
+  Color get sText => const Color(0xFFEEEDE4);
 
-  Color get danger => isDark
-      ? HSLColor.fromAHSL(1.0, 9, 0.26, 0.64).toColor()
-      : HSLColor.fromAHSL(1.0, 9, 0.21, 0.41).toColor();
+  Color get sTextMuted => const Color(0xFF9A968D);
 
-  Color get warning => isDark
-      ? HSLColor.fromAHSL(1.0, 52, 0.19, 0.57).toColor()
-      : HSLColor.fromAHSL(1.0, 52, 0.23, 0.34).toColor();
+  Color get primary => const Color(0xFFD3493C);
 
-  Color get success => isDark
-      ? HSLColor.fromAHSL(1.0, 146, 0.17, 0.59).toColor()
-      : HSLColor.fromAHSL(1.0, 147, 0.19, 0.36).toColor();
+  Color get secondary => const Color(0xFF90A959);
 
-  Color get info => isDark
-      ? HSLColor.fromAHSL(1.0, 217, 0.28, 0.65).toColor()
-      : HSLColor.fromAHSL(1.0, 217, 0.22, 0.41).toColor();
+  Color get danger => const Color(0xFFAC8A8C);
+
+  Color get warning => const Color(0xFF8F8770);
+
+  Color get success => const Color(0xFF75958A);
+
+  Color get info => const Color(0xFF6F95B4);
 }
